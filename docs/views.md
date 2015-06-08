@@ -6,21 +6,21 @@
 ## Feed Show (landing page)
 ![feed-show]
 
-## Blog Show
-![blog-show]
+## User Show
+![user-show]
 
-## Post Show
-![post-show]
+## Song Show
+![song-show]
 
-## Post Form
+## Song Form
 ![post-form]
 
-## Search Results
-![search-results]
+## Playlist Show
+![playlist-show]
 
 [new-session]: ./wireframes/new_session.png
 [feed-show]: ./wireframes/feed_show.png
-[blog-show]: ./wireframes/blog_show.png
-[post-show]: ./wireframes/post_show.png
-[post-form]: ./wireframes/post_form.png
-[search-results]: ./wireframes/search_results.png
+[user-show]: ./wireframes/user_show.png
+[song-show]: ./wireframes/song_show.png
+[song-form]: ./wireframes/song_form.png
+[playlist-show]: ./wireframes/playlist_show.png
