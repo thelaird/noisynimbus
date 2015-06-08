@@ -1,20 +1,24 @@
-# Phase 4: User Feeds
+# Phase 4: Playlists
 
 ## Rails
 ### Models
+* Playlist
 
 ### Controllers
-Api::PostsController (feed)
+* Api::PlaylistsController (create, destroy, show, update)
 
 ### Views
-posts/feed.json.jbuilder
+* playlists/show.json.jbuilder
 
 ## Backbone
 ### Models
+* Playlist (parses nested `songs` association)
 
 ### Collections
+* Playlists
 
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
+* PlaylistForm
+* PlaylistShow (composite view, contains SongItem subview)
 
 ## Gems/Libraries

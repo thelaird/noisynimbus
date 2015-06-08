@@ -1,11 +1,14 @@
-# Phase 3: Editing and Displaying Posts
+# Phase 3: Follow Users and Activity Feed
 
 ## Rails
 ### Models
 
+
 ### Controllers
+* Api::SongsController (feed)
 
 ### Views
+* songs/feed.json.jbuilder
 
 ## Backbone
 ### Models
@@ -13,9 +16,6 @@
 ### Collections
 
 ### Views
-* PostForm
+* FeedShow (composite view, contains SongItem subview)
 
 ## Gems/Libraries
-* Filepicker
-* Markdown-js
-* Bootstrap Markdown

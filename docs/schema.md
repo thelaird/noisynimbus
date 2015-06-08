@@ -1,26 +1,38 @@
 # Schema Information
 
-## blogs
+## songs
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 owner_id    | integer   | not null, foreign key (references users)
+artist      | string    | not null
 title       | string    | not null
+album       | string    |
+song_url    | string    | not null
+art_url     | string    |
+description | text      |
 
 ## followings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
+followee_id | integer   | not null, foreign key (references users)
 follower_id | integer   | not null, foreign key (references users)
 
-## posts
+## playlists
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users)
+owner_id    | integer   | not null, foreign key (references users)
 title       | string    | not null
-body        | string    |
+description | text      |
+
+## playlist_items
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+playlist_id | integer   | not null, foreign key (references playlist)
+song_id     | integer   | not null, foreign key (references songs)
 
 ## tags
 column name | data type | details
@@ -32,7 +44,7 @@ label       | string    | not null, unique
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
+song_id     | integer   | not null, foreign key (references songs)
 tag_id      | integer   | not null, foreign key (references tags)
 
 ## users
@@ -42,4 +54,3 @@ id              | integer   | not null, primary key
 email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
-

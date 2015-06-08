@@ -1,22 +1,19 @@
-# Phase 5: Tags
+# Phase 5: Searching for Songs
 
 ## Rails
 ### Models
-* Tag
 
 ### Controllers
-* Api::TagController (create, destroy, update)
+Api::SongsController (search)
 
 ### Views
 
 ## Backbone
 ### Models
-* Tag
 
 ### Collections
-* Tags
 
 ### Views
-
+* SearchShow (composite view, contains SongItem subviews)
 
 ## Gems/Libraries
