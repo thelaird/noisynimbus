@@ -1,0 +1,21 @@
+<div class='row'>
+  <div class='center span9'>
+    <div class='col-xs-3 col-xs-offset-4'>
+        <form action='<%= action %>' method='POST'>
+          <input type='hidden' name='authenticity_token'
+            value='<%= form_authenticity_token %>'>
+          <div class='form-group'>
+            <label for='form-username'>Username:</label>
+            <input type='text' name='user[username]' value='<%= user.username %>'
+              id='form-username' class='form-control'><br>
+            </div>
+          <div class='form-group'>
+            <label for='form-password'>Password:</label>
+            <input type='password' name='user[password]' id='form-password'
+              class='form-control'><br>
+          </div>
+            <input class='btn btn-default' type='submit' value='<%= submit_text %>'>
+        </form>
+    </div>
+  </div>
+</div>
