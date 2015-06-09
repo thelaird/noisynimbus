@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
     if @user
       log_in_user!(@user)
-      render json: @user
+      redirect_to root_url
     else
       @user = User.new
       @user.errors.add(:base, "Invalid Username or Password")
