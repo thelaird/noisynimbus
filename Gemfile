@@ -17,6 +17,7 @@ gem 'figaro'
 
 
 group :development, :test do
+  gem 'annotate', '~> 2.6.6'
   gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
