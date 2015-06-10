@@ -18,7 +18,7 @@ NoisyNimbus.Views.Navbar = Backbone.View.extend({
       url: '/session',
       type: 'DELETE',
       success: function () {
-        window.location.reload();
+        window.location.href = '/session/new';
       }
     });
   }

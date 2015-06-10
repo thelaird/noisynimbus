@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
+gem 'figaro'
 
 
 group :development, :test do
