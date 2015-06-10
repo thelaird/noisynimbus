@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    @user = current_user
     log_out_user!
+    render json: @user
   end
 end
