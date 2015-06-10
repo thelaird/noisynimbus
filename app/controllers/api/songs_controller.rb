@@ -1,12 +1,12 @@
 module Api
-  class SongsController < ApplicationController
+  class SongsController < ApiController
     def create
       @song = current_user.songs.new(song_params)
 
       if @song.save
         render json: @song
       else
-        render json: @song.errors.full_messages, status: unprocessable_entity
+        render json: @song.errors.full_messages, status: :unprocessable_entity
       end
     end
 
@@ -27,7 +27,7 @@ module Api
       if @song.update(song_params)
         render json: @song
       else
-        render json: @song.errors.full_messages, status: unprocessable_entity
+        render json: @song.errors.full_messages, status: :unprocessable_entity
       end
     end
 
@@ -35,5 +35,6 @@ module Api
 
     def song_params
       params.require(:song).permit(:artist, :title, :description, :song_url)
+    end
   end
 end

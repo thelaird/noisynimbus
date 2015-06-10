@@ -7,7 +7,14 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   },
 
   routes:{
-    '': 'userShow'
+    '': 'userShow',
+    'upload': 'songsUpload'
+  },
+
+  songsUpload: function () {
+    var song = new NoisyNimbus.Models.Song();
+    var view = new NoisyNimbus.Views.SongsUpload({ model: song });
+    this._swapView(view);
   },
 
   userShow: function () {

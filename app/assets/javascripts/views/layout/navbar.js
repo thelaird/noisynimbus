@@ -11,7 +11,7 @@ NoisyNimbus.Views.Navbar = Backbone.View.extend({
     return this;
   },
 
-  signOut: function(event) {
+  signOut: function (event) {
     event.preventDefault();
 
     $.ajax({
