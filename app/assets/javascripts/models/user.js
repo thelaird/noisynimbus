@@ -1,3 +1,3 @@
-NoisyNimbus.Models.Users = Backbone.Model.extend({
-  urlRoot: 'api/users'
+NoisyNimbus.Models.User = Backbone.Model.extend({
+  urlRoot: 'users'
 });

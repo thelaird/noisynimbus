@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass'
 
+
 group :development, :test do
   gem 'byebug'
   gem 'better_errors'

@@ -1,9 +1,8 @@
 NoisyNimbus.Collections.Users = Backbone.Collection.extend({
-  url: 'api/users',
+  url: 'users',
   model: NoisyNimbus.Models.User,
 
   getOrFetch: function (id) {
-    debugger
     var model = this.get(id);
 
     if (model) {

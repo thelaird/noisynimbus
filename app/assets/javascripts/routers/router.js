@@ -12,13 +12,13 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
 
   userShow: function () {
     var user = this.users.getOrFetch(CURRENT_USER_ID);
-    var view = NoisyNimbus.Views.UserShow({ model: user });
+    var view = new NoisyNimbus.Views.UserShow({ model: user });
     this._swapView(view);
   },
 
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
-    this._currentView.html(view.render().$el);
+    this.$rootEl.html(view.render().$el);
   }
 });
