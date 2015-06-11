@@ -6,10 +6,15 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     'change input#Files': 'onChangeFiles'
   },
 
+  initialize: function () {
+    this.progress = 0;
+    this.listenTo(this.progress, 'change', this.render);
+  },
 
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);
+    debugger
     return this;
   },
 
@@ -20,38 +25,46 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return url;
   },
 
-  upload: function (event) {
-    event.preventDefault();
-    var data = $('.song-form').serializeJSON();
-    // Pull album art from iTunes
-    var that = this;
+  fetchSongImage: function (artist) {
     $.ajax({
-      url: this.iTunesUrl(data.artist),
+      url: this.iTunesUrl(artist),
       type: 'GET',
       dataType: 'jsonp',
       success: function (data) {
         if (data.results.length == 1) {
-          that.model.set({ "song_image": data.results[0].artworkUrl100 });
+          this.model.set({ "image_url": data.results[0].artworkUrl100 });
         } else {
-          that.model.set({ "song_image": DEFAULT_IMAGE_URL });
+          this.model.set({ "image_url": DEFAULT_IMAGE_URL });
         }
-      }
+        this.model.save();
+      }.bind(this)
     });
+  },
 
+  upload: function (event) {
+    event.preventDefault();
+    var $progress = $('#progress');
+    var data = $('.song-form').serializeJSON();
+    this.fetchSongImage(data.artist);
 
-    // var s3upload = s3upload != null ? s3upload : new S3Upload({
-    //   file_dom_selector: 'song',
-    //   s3_sign_put_url: 'api/signS3put',
-    //   onProgress: function(percent, message) { // Use this for live upload progress bars
-    //     console.log('Upload progress: ', percent, message);
-    //   },
-    //   onFinishS3Put: function(public_url) { // Get the URL of the uploaded file
-    //     console.log('Upload finished: ', public_url);
-    //   },
-    //   onError: function(status) {
-    //     console.log('Upload error: ', status);
-    //   }
-    //   });
+    var s3upload = s3upload != null ? s3upload : new S3Upload({
+      file_dom_selector: 'song',
+      s3_sign_put_url: 'api/signS3put',
+      onProgress: function(percent, message) { // Use this for live upload progress bars
+        $progress.text(percent);
+      }.bind(this),
+      onFinishS3Put: function(public_url) { // Get the URL of the uploaded file
+        console.log('Upload finished: ', public_url);
+        this.model.save({'song_url': public_url}, {
+          success: function () {
+            Backbone.history.navigate('', { trigger: true });
+          }
+        });
 
+      }.bind(this),
+      onError: function(status) {
+        console.log('Upload error: ', status);
+      }
+      });
   }
 });
