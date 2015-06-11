@@ -14,7 +14,7 @@ gem 'backbone-on-rails'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'figaro'
-
+gem 'aws-sdk', '< 2'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.6'
