@@ -10,5 +10,13 @@
 
 <%= yield %>
 
+<script>
+  <% if Rails.env.production? %>
+    NoisyNimbus.DEFAULT_IMAGE_URL = "https://s3.amazonaws.com/noisynimbus-prod/default.png";
+  <% else %>
+    NoisyNimbus.DEFAULT_IMAGE_URL = "https://s3.amazonaws.com/noisynimbus-dev/default.png";
+  <% end %>
+</script>
+
 </body>
 </html>

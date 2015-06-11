@@ -2,15 +2,15 @@
 #
 # Table name: songs
 #
-#  id            :integer          not null, primary key
-#  uploader_id   :integer          not null
-#  artist        :string           not null
-#  title         :string           not null
-#  song_url      :string           not null
-#  album_art_url :string
-#  description   :text
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id          :integer          not null, primary key
+#  uploader_id :integer          not null
+#  artist      :string           not null
+#  title       :string           not null
+#  song_url    :string           not null
+#  image_url   :string
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 class Song < ActiveRecord::Base

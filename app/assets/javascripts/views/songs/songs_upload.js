@@ -3,12 +3,6 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
 
   events: {
     'click .upload': 'upload',
-    'change input#Files': 'onChangeFiles'
-  },
-
-  initialize: function () {
-    this.progress = 0;
-    this.listenTo(this.progress, 'change', this.render);
   },
 
   render: function () {
@@ -34,12 +28,12 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
         if (data.results.length == 1) {
           this.model.set({ "image_url": data.results[0].artworkUrl100 });
         } else {
-          this.model.set({ "image_url": DEFAULT_IMAGE_URL });
+          this.model.set({ "image_url": NoisyNimbus.DEFAULT_IMAGE_URL });
         }
+        debugger
         deferred.resolve();
       }.bind(this)
     });
-    return deferred;
   },
 
   upload: function (event) {
@@ -48,14 +42,16 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     var songImgDfd = this.fetchSongImage(data.artist);
     var songUploadDfd = this.uploadSong();
     this.model.set(data);
+    var view = this;
     $.when(songImgDfd, songUploadDfd).done(function () {
-      this.model.save({}, {
+      debugger
+      view.model.save({}, {
         success: function () {
-          this.collection.add(this.model);
-          Backbone.history.navigate('', { trigger: true });
-        }.bind(this)
+          view.collection.add(view.model);
+          Backbone.history.navigate('#users/' + CURRENT_USER_ID, { trigger: true });
+        }
       });
-    }.bind(this));
+    });
   },
 
   uploadSong: function () {

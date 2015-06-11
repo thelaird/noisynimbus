@@ -3,12 +3,11 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
     this.users = new NoisyNimbus.Collections.Users();
-    this.users.fetch();
     this.songs = new NoisyNimbus.Collections.Songs();
   },
 
   routes:{
-    '': 'userShow',
+    'users/:id': 'userShow',
     'upload': 'songsUpload'
   },
 
