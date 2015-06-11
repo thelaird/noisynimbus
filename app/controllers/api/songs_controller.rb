@@ -21,22 +21,6 @@ module Api
       render json: @song
     end
 
-    def sign_request
-      objectName = SecureRandom.urlsafe_base64 #params[:s3_object_name]
-      mimeType = params['s3_object_type']
-      expires = Time.now.to_i + 100 # PUT request to S3 must start within 100 seconds
-
-      amzHeaders = "x-amz-acl:public-read" # set the public read permission on the uploaded file
-      stringToSign = "PUT\n\n#{mimeType}\n#{expires}\n#{amzHeaders}\n/#{ENV['s3_bucket']}/#{objectName}";
-      sig = CGI::escape(Base64.strict_encode64(OpenSSL::HMAC.digest('sha1', ENV['aws_secret_access_key'], stringToSign)))
-
-      render json: {
-        signed_request: CGI::escape("http://s3.amazonaws.com/#{ENV['s3_bucket']}/#{objectName}?AWSAccessKeyId=#{ENV['aws_access_key_id']}&Expires=#{expires}&Signature=#{sig}"),
-        url: "http://s3.amazonaws.com/#{ENV['s3_bucket']}/#{objectName}"
-      }
-
-    end
-
     def update
       @song = current_user.songs.find(params[:id])
 
