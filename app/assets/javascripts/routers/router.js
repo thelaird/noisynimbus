@@ -4,6 +4,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
     this.users = new NoisyNimbus.Collections.Users();
     this.users.fetch();
+    this.songs = new NoisyNimbus.Collections.Songs();
   },
 
   routes:{
@@ -13,7 +14,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
 
   songsUpload: function () {
     var song = new NoisyNimbus.Models.Song();
-    var view = new NoisyNimbus.Views.SongsUpload({ model: song });
+    var view = new NoisyNimbus.Views.SongsUpload({ model: song, collection: this.songs });
     this._swapView(view);
   },
 

@@ -14,7 +14,6 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);
-    debugger
     return this;
   },
 
@@ -26,7 +25,8 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
   },
 
   fetchSongImage: function (artist) {
-    $.ajax({
+    var deferred = jQuery.Deferred();
+    return $.ajax({
       url: this.iTunesUrl(artist),
       type: 'GET',
       dataType: 'jsonp',
@@ -36,35 +36,52 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
         } else {
           this.model.set({ "image_url": DEFAULT_IMAGE_URL });
         }
-        this.model.save();
+        deferred.resolve();
       }.bind(this)
     });
+    return deferred;
   },
 
   upload: function (event) {
     event.preventDefault();
-    var $progress = $('#progress');
     var data = $('.song-form').serializeJSON();
-    this.fetchSongImage(data.artist);
+    var songImgDfd = this.fetchSongImage(data.artist);
+    var songUploadDfd = this.uploadSong();
+    this.model.set(data);
+    $.when(songImgDfd, songUploadDfd).done(function () {
+      this.model.save({}, {
+        success: function () {
+          this.collection.add(this.model);
+          Backbone.history.navigate('', { trigger: true });
+        }.bind(this)
+      });
+    }.bind(this));
+  },
 
+  uploadSong: function () {
+    $('.progress').removeClass('inactive');
+    var $progress = $('.progress-bar');
+    var deferred = jQuery.Deferred();
     var s3upload = s3upload != null ? s3upload : new S3Upload({
       file_dom_selector: 'song',
       s3_sign_put_url: 'api/signS3put',
-      onProgress: function(percent, message) { // Use this for live upload progress bars
-        $progress.text(percent);
-      }.bind(this),
-      onFinishS3Put: function(public_url) { // Get the URL of the uploaded file
-        console.log('Upload finished: ', public_url);
-        this.model.save({'song_url': public_url}, {
-          success: function () {
-            Backbone.history.navigate('', { trigger: true });
-          }
-        });
 
+      onProgress: function(percent, message) {
+        $progress.attr("aria-valuenow", percent).css("width", percent + "%");
       }.bind(this),
+
+      onFinishS3Put: function(public_url) {
+        $progress.text("Success!");
+        this.model.set({ "song_url": public_url });
+        setTimeout(function(){ deferred.resolve(); }, 750);
+        }.bind(this),
+
       onError: function(status) {
+        // reject promise
         console.log('Upload error: ', status);
       }
-      });
+    });
+
+    return deferred;
   }
 });
