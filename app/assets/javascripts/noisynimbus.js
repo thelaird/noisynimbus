@@ -10,19 +10,3 @@ window.NoisyNimbus = {
     Backbone.history.start();
   }
 };
-
-// 
-// SongItemView(Subview)
-//
-//   events:
-//    click .play : playSong
-//
-//
-//    playSong: function (event) {
-//
-//     //  if (!NN.globalFooterPlayer) {
-//     //     NN.globalFooterPlayer = new FooterPlayerView
-//     //   }
-//
-//     NN.globalFooterPlayer.play(this.model)
-//

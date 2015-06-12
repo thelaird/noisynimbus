@@ -15,6 +15,7 @@
 //= require jquery.serializejson
 //= require s3upload
 //= require bootstrap
+//= require bootstrap3_player
 //= require underscore
 //= require backbone
 //= require composite_view
