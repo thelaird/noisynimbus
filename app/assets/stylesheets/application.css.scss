@@ -12,10 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require mediaelement_rails
+ *= require mediaelement_rails/mejs-skins
  */
 
  @import "bootstrap-sprockets";
  @import "bootswatch/cerulean/variables";
  @import "bootstrap";
  @import "bootswatch/cerulean/bootswatch";
- @import "bootstrap3_player.css";

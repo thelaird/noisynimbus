@@ -15,11 +15,11 @@
 //= require jquery.serializejson
 //= require s3upload
 //= require bootstrap
-//= audio
 //= require underscore
 //= require backbone
 //= require composite_view
 //= require noisynimbus
+//= require mediaelement_rails
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

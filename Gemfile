@@ -15,6 +15,7 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'figaro'
 gem 'aws-sdk', '< 2'
+gem "mediaelement_rails"
 
 group :development, :test do
   gem 'annotate', '~> 2.6.6'
