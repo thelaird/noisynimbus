@@ -1,4 +1,11 @@
+body {
+  padding-bottom: 75px;
+}
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 .navbar-search {
   padding-right: 15px;
@@ -16,4 +23,12 @@
 
 .inactive {
   display: none;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 70px;
+  margin: 0 auto 0;
+  width: 100%;
 }

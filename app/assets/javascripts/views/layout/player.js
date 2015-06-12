@@ -1,8 +1,8 @@
 NoisyNimbus.Views.Player = Backbone.View.extend({
   template: JST['layout/player'],
 
+
   render: function () {
-    debugger
     var content = this.template({ song: this.model });
     this.$el.html(content);
     this.setupPlayer();
@@ -13,12 +13,12 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   },
 
   setupPlayer:  function () {
-    
+
      this.$el.find('audio[controls]').before(function () {
 
         var song = this;
         song.controls = false;
-
+        // song.play();
         var player_box = document.createElement('div');
         $(player_box).addClass($(song).attr('class') + ' well container-fluid playa');
 
@@ -81,8 +81,10 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
             var timeout = 0;
 
             var loadCheck = setInterval(function () {
+
                 if (isNaN(song.duration) === false) {
-                    play.setPlayState('play');
+                    play.setPlayState('pause');
+                    song.play();
                     clearInterval(loadCheck);
                     return true;
                 }
