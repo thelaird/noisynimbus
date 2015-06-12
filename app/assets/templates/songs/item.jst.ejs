@@ -1,6 +1,9 @@
-<ul>
-  <li>Artist: <%= song.escape('artist') %></li>
-  <li>Title: <%= song.escape('title') %></li>
-  <li class="play">Image Url: <%= song.escape('image_url') %></li>
-  <li>URL: <%= song.escape('song_url') %></li>
-</ul>
+<div class="panel panel-default">
+  <div class="panel-body">
+      <span class='song-image'><img src="<%= song.escape('image_url') %>"
+        alt="<%= song.escape('artist') %>"></img></span>
+      <span class="song-item"><h3>Artist: <%= song.escape('artist') %></h3></span>
+      <span class="song-item-last"><h3>Title: <%= song.escape('title') %></h3></span>
+      <span class="pull-right"><img class="play" src="<%= NoisyNimbus.AMAZON_URL + 'play.png' %>"</span>
+  </div>
+</div>

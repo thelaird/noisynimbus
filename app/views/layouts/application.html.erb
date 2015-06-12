@@ -12,9 +12,9 @@
 
 <script>
   <% if Rails.env.production? %>
-    NoisyNimbus.DEFAULT_IMAGE_URL = "https://s3.amazonaws.com/noisynimbus-prod/default.png";
+    NoisyNimbus.AMAZON_URL = "https://s3.amazonaws.com/noisynimbus-prod/";
   <% else %>
-    NoisyNimbus.DEFAULT_IMAGE_URL = "https://s3.amazonaws.com/noisynimbus-dev/default.png";
+    NoisyNimbus.AMAZON_URL = "https://s3.amazonaws.com/noisynimbus-dev/";
   <% end %>
 </script>
 

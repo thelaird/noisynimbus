@@ -7,6 +7,10 @@ html {
   min-height: 100%;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .navbar-search {
   padding-right: 15px;
 }
@@ -31,4 +35,13 @@ html {
   height: 70px;
   margin: 0 auto 0;
   width: 100%;
+}
+
+.song-image {
+  float: left;
+  margin-right: 15px;
+}
+
+.song-item-last {
+  float: left;
 }

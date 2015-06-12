@@ -13,6 +13,7 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
   },
 
   playSong: function (event) {
+    this.$el.find('.play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
     if (!NoisyNimbus.Player) {
       NoisyNimbus.globalFooterPlayer = new NoisyNimbus.Views.Player( { model: this.model } );
       $('#player').html(NoisyNimbus.globalFooterPlayer.render().$el);

@@ -28,9 +28,8 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
         if (data.results.length == 1) {
           this.model.set({ "image_url": data.results[0].artworkUrl100 });
         } else {
-          this.model.set({ "image_url": NoisyNimbus.DEFAULT_IMAGE_URL });
+          this.model.set({ "image_url": NoisyNimbus.AMAZON_URL + "default.png" });
         }
-        debugger
         deferred.resolve();
       }.bind(this)
     });
@@ -44,7 +43,6 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     this.model.set(data);
     var view = this;
     $.when(songImgDfd, songUploadDfd).done(function () {
-      debugger
       view.model.save({}, {
         success: function () {
           view.collection.add(view.model);
