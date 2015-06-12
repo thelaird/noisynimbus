@@ -1,6 +1,5 @@
 function audioLize($el){
   $el.before(function () {
-
       var song = this;
       song.controls = false;
 
@@ -44,9 +43,11 @@ function audioLize($el){
 
           play.setPlayState = function (toggle) {
               $(play).removeClass('disabled');
+
               if (toggle === 'play') {
                   $(play).html('<i class="glyphicon glyphicon-play"></i>');
                   $(play).click(function () {
+                      debugger
                       song.play();
                   });
               }
@@ -59,9 +60,9 @@ function audioLize($el){
           }; // setPlayState
 
           // media events from the audio element will trigger rebuilding the play button
-          $(song).on('play', function () {play.setPlayState('pause'); });
-          $(song).on('canplay', function () {play.setPlayState('play'); });
-          $(song).on('pause', function () {play.setPlayState('play'); });
+          $(song).one('play', function () {play.setPlayState('pause'); });
+          $(song).one('canplay', function () {play.setPlayState('play'); });
+          $(song).one('pause', function () {play.setPlayState('play'); });
 
           var timeout = 0;
 
@@ -80,6 +81,8 @@ function audioLize($el){
           }, 50);
           $(player).append(play);
       }; // addPlay
+
+      window.NoisyNimbus.addPlay = addPlay;
 
       var addSeek = function () {
           var seek = document.createElement('input');

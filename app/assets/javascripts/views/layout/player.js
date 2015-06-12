@@ -2,29 +2,44 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   className: "footer",
   template: JST['layout/player'],
 
-  initialize: function () {
-    this.$audio = this.$el.find('audio');
-    this.song = this.$audio[0];
-  },
-
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);
-    audioLize(this.$audio);
+    audioLize(this.$audio());
     return this;
   },
 
-  pause: function(){
-    this.song.pause();
+  activateNewSong: function (songView) {
+    songView.$el.find('.panel-body').addClass('current-song');
+    songView.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+    $('source').attr("src", songView.model.get("song_url"));
   },
 
-  play: function (song, songView) {
+  $audio: function () {
+    return this.$el.find('#audioplayer');
+  },
+
+  deactivateOldSong: function (songView) {
+    songView.$el.find('.panel-body').removeClass('current-song');
+    songView.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "play.png");
+  },
+
+  pause: function() {
+    this.song().pause();
+  },
+
+  play: function (newSongView) {
     if (this.currentSongView) {
-      this.currentSongView.$el.find('.panel-body').removeClass('current-song');
-      this.currentSongView.$el.find('.play').attr("src", NoisyNimbus.AMAZON_URL + "play.png");
+      this.deactivateOldSong(this.currentSongView);
     }
-    this.currentSongView = songView;
-    this.currentSongView.$el.find('.panel-body').addClass('current-song');
-    this.$el.find('source').attr("src", song.get("song_url"));
+    this.model = newSongView.model;
+    this.currentSongView = newSongView;
+    this.activateNewSong(this.currentSongView);
+    this.song().load();
+    this.song().play();
+  },
+
+  song: function () {
+    return this.$audio()[0];
   }
 });

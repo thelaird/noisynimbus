@@ -2,7 +2,7 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
   template: JST['songs/item'],
 
   events: {
-    'click .play': 'playSong',
+    // 'click .play': 'playSong',
     'click .toggle-play': 'togglePlay'
   },
 
@@ -13,15 +13,34 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
 
   },
 
-  playSong: function (event) {
-    this.$el.find('.play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+  changeSong: function () {
+
+  },
+
+  playSong: function () {
+    this.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
     this.$el.find('.panel-body').addClass("current-song");
+    NoisyNimbus.globalFooterPlayer.play(this);
+  },
+
+  pauseSong: function () {
+    this.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "play.png");
+    NoisyNimbus.globalFooterPlayer.pause(this);
+  },
+
+  togglePlay: function () {
     if (!NoisyNimbus.globalFooterPlayer) {
       NoisyNimbus.globalFooterPlayer = new NoisyNimbus.Views.Player( { model: this.model } );
       $('#player').html(NoisyNimbus.globalFooterPlayer.$el);
       NoisyNimbus.globalFooterPlayer.render();
+      debugger
     }
 
-    NoisyNimbus.globalFooterPlayer.play(this.model, this);
+    if (NoisyNimbus.globalFooterPlayer.song().paused ||
+          NoisyNimbus.globalFooterPlayer.model !== this.model) {
+      this.playSong();
+    } else {
+      this.pauseSong();
+    }
   }
 });
