@@ -2,7 +2,8 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
   template: JST['songs/item'],
 
   events: {
-    'click .play': 'playSong'
+    'click .play': 'playSong',
+    'click .toggle-play': 'togglePlay'
   },
 
   render: function () {
@@ -14,11 +15,13 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
 
   playSong: function (event) {
     this.$el.find('.play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
-    if (!NoisyNimbus.Player) {
+    this.$el.find('.panel-body').addClass("current-song");
+    if (!NoisyNimbus.globalFooterPlayer) {
       NoisyNimbus.globalFooterPlayer = new NoisyNimbus.Views.Player( { model: this.model } );
-      $('#player').html(NoisyNimbus.globalFooterPlayer.render().$el);
+      $('#player').html(NoisyNimbus.globalFooterPlayer.$el);
+      NoisyNimbus.globalFooterPlayer.render();
     }
 
-    NoisyNimbus.globalFooterPlayer.play(this.model);
+    NoisyNimbus.globalFooterPlayer.play(this.model, this);
   }
 });

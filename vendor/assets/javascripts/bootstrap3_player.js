@@ -1,6 +1,5 @@
 /* global jQuery */
 (function ($) {'use strict';
-
     $('audio[controls]').before(function () {
 
         var song = this;
