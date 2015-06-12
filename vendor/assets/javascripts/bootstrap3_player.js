@@ -1,5 +1,6 @@
 /* global jQuery */
 (function ($) {'use strict';
+
     $('audio[controls]').before(function () {
 
         var song = this;
@@ -97,10 +98,10 @@
                 bg += ', rgba(223, 240, 216, 1) ' + ((song.currentTime / song.duration) * 100) + '%';
                 bg += ', rgba(223, 240, 216, 0) ' + ((song.currentTime / song.duration) * 100) + '%';
                 for (i = 0; i < song.buffered.length; i++) {
-                    if (song.buffered.end(i) > song.currentTime && 
-                        isNaN(song.buffered.end(i)) === false && 
+                    if (song.buffered.end(i) > song.currentTime &&
+                        isNaN(song.buffered.end(i)) === false &&
                         isNaN(song.buffered.start(i)) === false) {
-                        
+
                         if (song.buffered.end(i) < song.duration) {
                             bufferedend = ((song.buffered.end(i) / song.duration) * 100);
                         } else {
@@ -313,9 +314,9 @@
         }; // addInfo
 
         var addData = function () {
-            // jslint will complain about our use of `typeof` but 
-            // it's the only way not to raise an error by referencing 
-            // a nnon-existent data-* variable 
+            // jslint will complain about our use of `typeof` but
+            // it's the only way not to raise an error by referencing
+            // a nnon-existent data-* variable
             if (typeof ($(song).data('infoAlbumArt')) !== 'undefined') {
                 addAlbumArt();
             }
