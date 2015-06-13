@@ -14,7 +14,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
 
   songsIndex: function () {
     this.songs.fetch();
-    this.view = new NoisyNimbus.Views.SongsIndex({ collection: this.songs });
+    var view = new NoisyNimbus.Views.SongsIndex({ collection: this.songs });
     this._swapView(view);
   },
 
