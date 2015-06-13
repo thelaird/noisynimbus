@@ -1,3 +1,1 @@
-json.songs @songs do |song|
-  json.(song, :id, :artist, :title, :description, :song_url, :image_url)
-end
+json.array! @songs, partial: 'song', as: :song

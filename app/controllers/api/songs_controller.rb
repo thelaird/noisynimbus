@@ -18,7 +18,7 @@ module Api
 
     def index
       @songs = current_user.followed_songs
-      render :index
+      render json: @songs
     end
 
     def show

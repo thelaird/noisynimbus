@@ -1,1 +1,1 @@
-json.(@song, :title, :artist, :song_url, :image_url, :description)
+json.partial! 'song', song: @song
