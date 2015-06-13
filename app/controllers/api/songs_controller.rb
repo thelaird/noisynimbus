@@ -16,13 +16,18 @@ module Api
       render json: @song
     end
 
+    def explore
+      @songs = Song.all.sample(2)
+      render json: @songs
+    end
+
     def index
       @songs = current_user.followed_songs
       render json: @songs
     end
 
     def show
-      @song = Songs.find(params[:id])
+      @song = Song.find(params[:id])
       render json: @song
     end
 

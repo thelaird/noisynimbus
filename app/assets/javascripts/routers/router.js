@@ -9,7 +9,15 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   routes:{
     'users/:id': 'userShow',
     'upload': 'songsUpload',
-    '': 'songsIndex'
+    '': 'songsIndex',
+    'explore': 'songsExplore'
+  },
+
+  songsExplore: function () {
+    var exploreSongs = new NoisyNimbus.Collections.ExploreSongs();
+    exploreSongs.fetch();
+    var view = new NoisyNimbus.Views.ExploreSongs({ collection: exploreSongs });
+    this._swapView(view);
   },
 
   songsIndex: function () {

@@ -1,6 +1,7 @@
-NoisyNimbus.Collections.Songs = Backbone.Collection.extend({
+NoisyNimbus.Collections.ExploreSongs = Backbone.Collection.extend({
   model: NoisyNimbus.Models.Song,
-  url: 'api/songs',
+  url: 'api/songs/explore',
+  
   comparator: function (song) {
     return  song.get('created_at');
   },
