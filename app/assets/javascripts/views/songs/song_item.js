@@ -12,51 +12,48 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
 
   },
 
-  changeSong: function () {
-
+  createGlobalPlayer: function () {
+    NoisyNimbus.globalFooterPlayer = new NoisyNimbus.Views.Player( { model: this.model } );
+    $('#player').html(NoisyNimbus.globalFooterPlayer.$el);
+    NoisyNimbus.globalFooterPlayer.render();
+    NoisyNimbus.globalFooterPlayer.play(this);
+    this.toggleIcon();
   },
 
   playSong: function () {
     if (NoisyNimbus.globalFooterPlayer.player[0].paused) {
       NoisyNimbus.globalFooterPlayer.play(this);
     } else {
-      this.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
-      this.$el.find('.panel-body').addClass("current-song");
+      this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+      this.$('.panel-body').addClass("current-song");
       NoisyNimbus.globalFooterPlayer.play(this);
     }
   },
 
   activateSong: function () {
-    this.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
-    this.$el.find('.panel-body').addClass("current-song");
+    this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+    this.$('.panel-body').addClass("current-song");
   },
 
   toggleIcon: function () {
     if (NoisyNimbus.globalFooterPlayer.player[0].paused) {
-      this.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "play.png");
+      this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "play.png");
     } else {
-      this.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+      this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
     }
   },
 
   togglePlay: function () {
     if (!NoisyNimbus.globalFooterPlayer) {
-      NoisyNimbus.globalFooterPlayer = new NoisyNimbus.Views.Player( { model: this.model } );
-      $('#player').html(NoisyNimbus.globalFooterPlayer.$el);
-      NoisyNimbus.globalFooterPlayer.render();
-      this.$el.find('.panel-body').addClass("current-song");
-      NoisyNimbus.globalFooterPlayer.play(this);
+      this.$('.panel-body').addClass("current-song");
+      this.createGlobalPlayer();
+    } else if (NoisyNimbus.globalFooterPlayer.model == this.model) {
+      NoisyNimbus.globalFooterPlayer.toggleState();
       this.toggleIcon();
     } else {
-      if (NoisyNimbus.globalFooterPlayer.model == this.model) {
-        NoisyNimbus.globalFooterPlayer.toggleState();
-        this.toggleIcon();
-      } else {
-        NoisyNimbus.globalFooterPlayer.play(this);
-        this.activateSong();
-      }
+      NoisyNimbus.globalFooterPlayer.play(this);
+      this.activateSong();
     }
-
 
   }
 });

@@ -23,6 +23,25 @@ class User < ActiveRecord::Base
     foreign_key: :uploader_id
   )
 
+  has_many(
+    :followings,
+    class_name: 'Following',
+    foreign_key: :follower_id,
+    dependent: :destroy
+  )
+
+  has_many(
+    :followed_users,
+    through: :followings,
+    source: :followee
+  )
+
+  has_many(
+    :followed_songs,
+    through: :followed_users,
+    source: :songs
+  )
+
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)
     return nil if @user.nil?

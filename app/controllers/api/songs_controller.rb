@@ -16,6 +16,11 @@ module Api
       render json: @song
     end
 
+    def index
+      @songs = current_user.followed_songs
+      render :index
+    end
+
     def show
       @song = Songs.find(params[:id])
       render json: @song
