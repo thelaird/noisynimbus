@@ -5,6 +5,10 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
     'click .toggle-play': 'togglePlay'
   },
 
+  initialize: function () {
+    this.oldProgress = 100;
+  },
+
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);
@@ -23,23 +27,46 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
 
   playSong: function () {
     if (!NoisyNimbus.globalFooterPlayer.player[0].paused) {
-      this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+      this.$('.toggle-play span').removeClass("glyphicon-play");
+      this.$('.toggle-play span').removeClass("glyphicon-pause");
       this.$('.panel-body').addClass("current-song");
     }
 
     NoisyNimbus.globalFooterPlayer.play(this);
   },
 
+  progress: function (num) {
+
+    if (num) {
+      this.$('.progress-radial').removeClass("progress-" + this.oldProgress);
+      this.$('.progress-radial').addClass("progress-" + num);
+      this.oldProgress = num;
+    } else {
+      var duration = NoisyNimbus.globalFooterPlayer.player[0].duration;
+      var currentTime = NoisyNimbus.globalFooterPlayer.player[0].currentTime;
+      var newProgress = Math.floor((currentTime / duration) * 100);
+
+      if (newProgress !== this.oldProgress) {
+        this.$('.progress-radial').removeClass("progress-" + this.oldProgress);
+        this.$('.progress-radial').addClass("progress-" + newProgress);
+        this.oldProgress = newProgress;
+      }
+    }
+  },
+
   activateSong: function () {
-    this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+    this.$('.toggle-play span').removeClass("glyphicon-play");
+    this.$('.toggle-play span').addClass("glyphicon-pause");
     this.$('.panel-body').addClass("current-song");
   },
 
   setIcon: function () {
     if (NoisyNimbus.globalFooterPlayer.player[0].paused) {
-      this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "play.png");
+      this.$('.toggle-play span').removeClass("glyphicon-pause");
+      this.$('.toggle-play span').addClass("glyphicon-play");
     } else {
-      this.$('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "pause.png");
+      this.$('.toggle-play span').removeClass("glyphicon-play");
+      this.$('.toggle-play span').addClass("glyphicon-pause");
     }
   },
 

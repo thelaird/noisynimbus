@@ -8,6 +8,9 @@
         <li class='list-group-item song-item'><h4>Title: <%= song.escape('title') %></h4></li>
       </ul>
     </div>
-      <img class="toggle-play pull-right" src="<%= NoisyNimbus.AMAZON_URL + 'play.png' %>"</img>
+      <div class="progress-radial progress-100 pull-right toggle-play">
+        <div class="overlay"><span class="glyphicon glyphicon-play"></span>
+        </div>
+      </div>
   </div>
 </div>
