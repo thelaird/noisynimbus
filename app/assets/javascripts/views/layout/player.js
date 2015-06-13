@@ -1,5 +1,4 @@
 NoisyNimbus.Views.Player = Backbone.View.extend({
-  className: "footer",
   template: JST['layout/player'],
 
   initialize: function () {
@@ -15,12 +14,14 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   },
 
   activateNewSong: function (songView) {
-    $('audio').attr("src", songView.model.get("song_url"));
+    this.player.attr("src", songView.model.get("song_url"));
+    this.player.on('play pause', function () { songView.setIcon(); });
   },
 
   deactivateOldSong: function (songView) {
     songView.$el.find('.panel-body').removeClass('current-song');
     songView.$el.find('.toggle-play').attr("src", NoisyNimbus.AMAZON_URL + "play.png");
+    this.player.off('play pause');
   },
 
   play: function (newSongView) {
@@ -44,11 +45,11 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   createPlayer: function () {
     this.player = $('audio').mediaelementplayer({
           // width of audio player
-          audioWidth: 400,
+          audioWidth: 800,
           // height of audio player
-          audioHeight: 30,
+          audioHeight: 50,
           // initial volume when the player starts
-          startVolume: 0.8,
+          startVolume: 0,
           // useful for <audio> player loops
           loop: false,
           // enables Flash and Silverlight to resize to content size

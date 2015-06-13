@@ -18,6 +18,7 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
     NoisyNimbus.globalFooterPlayer.render();
     NoisyNimbus.globalFooterPlayer.play(this);
     this.setIcon();
+    NoisyNimbus.globalFooterPlayer.$('#footer').removeClass('initial');
   },
 
   playSong: function () {
