@@ -41,10 +41,17 @@ ul {
 
 #footer .mejs-controls{
   bottom: auto;
+  height: 40px;
+  background: linear-gradient(rgba(83, 179, 235, 1), rgba(29, 156, 229, 1));
+  border-radius: 3px;
 }
 
 #footer.initial {
   margin-bottom: -70px;
+}
+
+#footer.well {
+  padding: 14px;
 }
 
 .song-image {
@@ -52,8 +59,20 @@ ul {
   margin-right: 15px;
 }
 
-.song-item-last {
+.toggle-play {
+  position: relative;
+  top: -10px;
+}
+
+.panel-body {
+  height: 130px;
+}
+
+.song-item {
+  display: flex;
   float: left;
+  margin: 5px;
+  margin-top: 10px;
 }
 
 .current-song {
@@ -69,4 +88,24 @@ ul {
 
 .mejs-container {
   margin: auto;
+}
+
+#footer .mejs-button {
+  margin-top: 5px;
+}
+
+#footer .mejs-time-slider {
+  margin-top: 10px;
+}
+
+#footer .mejs-time {
+  padding-top: 15px;
+}
+
+#footer .mejs-horizontal-volume-total {
+  top: 16px;
+}
+
+#footer .mejs-horizontal-volume-current {
+  top: 16px;
 }
