@@ -15,9 +15,9 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
   },
 
   render: function () {
-    var content = this.template();
+    var content = this.template( { uploader: this.uploader });
     this.$el.html(content);
-    this.setFollowState();
+    // this.setFollowState();
     return this;
   },
 
@@ -32,14 +32,6 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
   hideWindow: function () {
     $('.uploader-' + this.model.id).tooltipster('hide');
     this.remove();
-  },
-
-  setFollowState: function () {
-    if (this.uploader.isFollowed()) {
-      this.$('.follow').text("Unfollow").addClass('active');
-    } else {
-      this.$('.follow').text("Follow").removeClass('active');
-    }
   },
 
   toggleFollowState: function (event) {

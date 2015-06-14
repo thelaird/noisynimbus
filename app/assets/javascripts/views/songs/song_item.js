@@ -14,15 +14,19 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
 
       $('.uploader-' + this.model.id).tooltipster( {
         content: userWindow,
+        arrow: false,
         autoClose: false,
         interactive: true,
         theme: 'tooltipster-light',
         delay: 100,
         position: 'right',
-        multiple: 'true'
+        multiple: 'true',
+        offsetX: -110,
+        animation: 'grow'
         });
     });
   },
+
 
   render: function () {
     var content = this.template({ song: this.model });

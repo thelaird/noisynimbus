@@ -4,6 +4,7 @@ NoisyNimbus.Views.SongsIndex = Backbone.CompositeView.extend({
   initialize: function () {
     this.addSongs();
     this.listenTo(this.collection, 'add', this.addSong);
+    this.listenTo(this.collection, 'remove', this.removeSong);
   },
 
   render: function () {
@@ -22,5 +23,9 @@ NoisyNimbus.Views.SongsIndex = Backbone.CompositeView.extend({
   addSong: function (song) {
     var subview = new NoisyNimbus.Views.SongItem({ model: song });
     this.addSubview('.song-items', subview);
+  },
+
+  removeSong: function (song) {
+    this.removeModelSubview('.song-items', song);
   }
 });

@@ -3,10 +3,7 @@ NoisyNimbus.Models.User = Backbone.Model.extend({
 
   following: function () {
     if (!this._following) {
-      this._following = new NoisyNimbus.Models.Following({
-        followee_id: this.id,
-        follower_id: CURRENT_USER_ID
-        });
+      this._following = new NoisyNimbus.Models.Following();
     }
 
     return this._following;
