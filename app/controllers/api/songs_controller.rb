@@ -17,13 +17,13 @@ module Api
     end
 
     def explore
-      @songs = Song.all.sample(2)
-      render json: @songs
+      @songs = Song.all.includes(:uploader)
+      render :index
     end
 
     def index
       @songs = current_user.followed_songs
-      render json: @songs
+      render :index
     end
 
     def show

@@ -32,8 +32,8 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
   },
 
-  userShow: function () {
-    var user = this.users.getOrFetch(CURRENT_USER_ID);
+  userShow: function (id) {
+    var user = this.users.getOrFetch(id);
     var view = new NoisyNimbus.Views.UserShow({ model: user });
     this._swapView(view);
   },

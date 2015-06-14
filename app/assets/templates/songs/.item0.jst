@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class='song-image'><img src="<%= song.escape('image_url') %>"
+      alt="<%= song.escape('artist') %>"></img>
+    </div>
+  <div class='uploader'>
+    <a href="#users/<%= song.get('uploader').id %>"><%= song.get('uploader').username %></a>
+  </div>
+    <div class='song-attrs'>
+      <ul>
+        <li class='list-group-item song-item'><h4>Artist: <%= song.escape('artist') %></h4></li>
+        <li class='list-group-item song-item'><h4>Title: <%= song.escape('title') %></h4></li>
+      </ul>
+    </div>
+    <div class="progress-radial progress-100 pull-right toggle-play">
+      <div class="overlay"><span class="glyphicon glyphicon-play"></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@
 //= require composite_view
 //= require noisynimbus
 //= require mediaelement_rails
+//= require jquery.timeago
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
