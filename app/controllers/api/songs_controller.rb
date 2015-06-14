@@ -17,7 +17,7 @@ module Api
     end
 
     def explore
-      @songs = Song.all.includes(:uploader)
+      @songs = Song.all.sample(5)
       render :index
     end
 
