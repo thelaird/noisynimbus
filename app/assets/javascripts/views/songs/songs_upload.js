@@ -36,8 +36,12 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
   },
 
   upload: function (event) {
-    if ($('#song')[0].files[0].size > 10000000) {
+    if ($('#song')[0].files[0].size > 10485760) {
       throw "file too large";
+    }
+
+    if ($('#song')[0].files[0].type !== 'audio/mp3'){
+      throw 'wrong file type';
     }
     event.preventDefault();
     var data = $('.song-form').serializeJSON();
