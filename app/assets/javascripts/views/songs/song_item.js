@@ -13,7 +13,12 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
     var content = this.template({ song: this.model });
     this.$el.html(content);
     return this;
+  },
 
+  activateSong: function () {
+    this.$('.toggle-play span').removeClass("glyphicon-play");
+    this.$('.toggle-play span').addClass("glyphicon-pause");
+    this.$('.panel-body').addClass("current-song");
   },
 
   createGlobalPlayer: function () {
@@ -52,12 +57,6 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
         this.oldProgress = newProgress;
       }
     }
-  },
-
-  activateSong: function () {
-    this.$('.toggle-play span').removeClass("glyphicon-play");
-    this.$('.toggle-play span').addClass("glyphicon-pause");
-    this.$('.panel-body').addClass("current-song");
   },
 
   setIcon: function () {
