@@ -39,6 +39,8 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
   setFollowState: function () {
     if ( this.model.get('uploader').followed === "true") {
       this.$('.follow').text("Unfollow").addClass('active');
+    } else {
+      this.$('.follow').text("Follow").removeClass('active');
     }
   },
 
@@ -52,7 +54,17 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
   },
 
   unfollow: function () {
-    var following = new NoisyNimbus.Models.Following();
+    var following = new NoisyNimbus.Models.Following({
+      "follower_id": CURRENT_USER_ID,
+      "followee_id": this.uploaderId
+    });
+    debugger
+    following.destroy({
+      success: function () {
+        this.setFollowState();
+        console.log("success")
+      }.bind(this)
+    });
   },
 
   view: function () {

@@ -7,8 +7,6 @@
 ## Minimum Viable Product
 NoisyNimbus is an online social audio platform inspired by SoundCloud. Users can:
 
-<!-- This is a Markdown checklist. Use it to keep track of your progress! -->
-
 - [X] Create accounts
 - [X] Create sessions (log in)
 - [X] Upload songs
@@ -78,6 +76,7 @@ a `SearchResults` view to display the results and their `SongItem` subviews.
 [Details][phase-six]
 
 ### Bonus Features (TBD)
+- [X] Explore view
 - [ ] Favorite songs
 - [ ] Song comments
 - [ ] Pagination/infinite scroll

@@ -12,7 +12,7 @@ module Api
     end
 
     def destroy
-      @following = Following.find(follower_id: current_user.id, followee_id: following_params)
+      @following = Following.find_by(follower_id: current_user.id, followee_id: following_params)
       @following.destroy
       render json: {}
     end

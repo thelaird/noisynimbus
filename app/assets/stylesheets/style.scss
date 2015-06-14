@@ -11,6 +11,10 @@ ul {
   list-style-type: none;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 #main {
   width: 1220px;
   margin: auto;
@@ -69,6 +73,11 @@ ul {
 
 .toggle-play:hover {
   cursor: pointer;
+}
+
+.logo {
+  position: relative;
+  bottom: 5px;
 }
 
 .panel-body {
