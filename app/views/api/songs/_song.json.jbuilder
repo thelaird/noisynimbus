@@ -2,9 +2,9 @@ json.(song, :id, :artist, :title, :song_url, :image_url, :description, :created_
 json.uploader do
   json.username song.uploader.username
   json.id song.uploader_id
-  if current_user.followed_users.include?(User.find(song.uploader_id))
-    json.followed "true"
-  else
-    json.followed "false"
+
+  json.following do
+    following = current_user.followings.find_by(followee_id: song.uploader_id)
+    json.(following, :id) if following
   end
 end

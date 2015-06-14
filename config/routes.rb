@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     get '/songs/explore', to: 'songs#explore'
     resources :songs, only: [:create, :destroy, :update, :index, :show]
     resources :users, only: [:show]
-    resources :followings, only: [:create, :destroy]
+    resources :followings, only: [:create, :destroy, :index]
   end
 end

@@ -5,10 +5,5 @@ json.songs @user.songs do |song|
   json.uploader do
     json.username song.uploader.username
     json.id song.uploader_id
-    if current_user.followed_users.include?(User.find(song.uploader_id))
-      json.followed "true"
-    else
-      json.followed "false"
-    end
   end
 end

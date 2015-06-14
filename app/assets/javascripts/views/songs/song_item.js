@@ -12,13 +12,14 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
       var userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
       var userWindow = userWindowView.render().$el;
 
-      $('.uploader').tooltipster( {
+      $('.uploader-' + this.model.id).tooltipster( {
         content: userWindow,
         autoClose: false,
         interactive: true,
         theme: 'tooltipster-light',
         delay: 100,
-        position: 'right'
+        position: 'right',
+        multiple: 'true'
         });
     });
   },

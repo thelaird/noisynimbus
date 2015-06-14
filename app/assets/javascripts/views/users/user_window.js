@@ -10,7 +10,8 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
   },
 
   initialize: function () {
-    this.uploaderId = this.model.get('uploader').id;
+    this.uploader = this.model.uploader();
+    this.listenTo(this.uploader.following(), "change", this.render);
   },
 
   render: function () {
@@ -20,24 +21,21 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
     return this;
   },
 
-  follow: function () {
-    var following = new NoisyNimbus.Models.Following({
+  followUser: function () {
+    this.uploader.following().save({
       "follower_id": CURRENT_USER_ID,
-      "followee_id": this.uploaderId });
-    following.save({},{
-      success: function () {
-        this.$('.follow').text("Unfollow").addClass('active');
-      }
+      "followee_id": this.uploader.id
     });
-
   },
 
+
   hideWindow: function () {
-    $('.uploader').tooltipster('hide');
+    $('.uploader-' + this.model.id).tooltipster('hide');
+    this.remove();
   },
 
   setFollowState: function () {
-    if ( this.model.get('uploader').followed === "true") {
+    if (this.uploader.isFollowed()) {
       this.$('.follow').text("Unfollow").addClass('active');
     } else {
       this.$('.follow').text("Follow").removeClass('active');
@@ -46,29 +44,20 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
 
   toggleFollowState: function (event) {
     event.preventDefault();
-    if ( this.model.get('uploader').followed === "true") {
-      this.unfollow();
+    if (this.uploader.isFollowed()) {
+      this.unfollowUser();
     } else {
-      this.follow();
+      this.followUser();
     }
   },
 
-  unfollow: function () {
-    var following = new NoisyNimbus.Models.Following({
-      "follower_id": CURRENT_USER_ID,
-      "followee_id": this.uploaderId
-    });
-    debugger
-    following.destroy({
-      success: function () {
-        this.setFollowState();
-        console.log("success")
-      }.bind(this)
-    });
+  unfollowUser: function () {
+    this.uploader.following().destroy();
+    this.uploader.following().clear();
   },
 
   view: function () {
-    Backbone.history.navigate("users/" + this.uploaderId,
+    Backbone.history.navigate("users/" + this.uploader.id,
       { trigger: true } );
   }
 });

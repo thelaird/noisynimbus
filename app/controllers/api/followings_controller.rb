@@ -12,11 +12,14 @@ module Api
     end
 
     def destroy
-      @following = Following.find_by(follower_id: current_user.id, followee_id: following_params)
-      @following.destroy
-      render json: {}
+      @following = Following.find(params[:id])
+      if @following.follower_id == current_user.id
+        @following.destroy
+        render json: {}
+      else
+        render json: ["Unauthorized"], status: 403
+      end
     end
-
 
     private
 

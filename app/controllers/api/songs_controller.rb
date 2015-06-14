@@ -6,7 +6,7 @@ module Api
       if @song.save
         render json: @song
       else
-        render json: @song.errors.full_messages, status: :unprocessable_entity
+        render json: @song.errors.full_messages, status: 422
       end
     end
 
@@ -37,7 +37,7 @@ module Api
       if @song.update(song_params)
         render json: @song
       else
-        render json: @song.errors.full_messages, status: :unprocessable_entity
+        render json: @song.errors.full_messages, status: 422
       end
     end
 
