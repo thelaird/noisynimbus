@@ -1,13 +1,12 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">NoisyNimbus</a>
+      <a class="navbar-brand" href="/"><img class='logo' src="<%=
+        ENV['s3_url'] %>/<%= ENV['s3_bucket'] %>/logo.png" alt='logo'></img></a>
     </div>
-
-
       <ul class="nav navbar-nav navbar-right">
         <li class="<%= 'active' if signup %>"><a href="/users/new">Sign Up</a></li>
         <li class="<%= 'active' if signin %>"><a href="/session/new">Sign In</a></li>
       </ul>
-  </div><!-- /.container-fluid -->
+  </div>
 </nav>
