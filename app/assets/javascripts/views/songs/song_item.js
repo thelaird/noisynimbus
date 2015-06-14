@@ -2,7 +2,8 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
   template: JST['songs/item'],
 
   events: {
-    'click .toggle-play': 'togglePlay'
+    'click .toggle-play': 'togglePlay',
+    'mouseover .panel-body': 'addUserWindow'
   },
 
   initialize: function () {
@@ -19,6 +20,20 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
     this.$('.toggle-play span').removeClass("glyphicon-play");
     this.$('.toggle-play span').addClass("glyphicon-pause");
     this.$('.panel-body').addClass("current-song");
+  },
+
+  addUserWindow: function () {
+    var userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
+    var userWindow = userWindowView.render().$el;
+
+    $('.uploader').tooltipster( {
+      content: userWindow,
+      autoClose: false,
+      interactive: true,
+      theme: 'tooltipster-light',
+      delay: 100,
+      position: 'right'
+      });
   },
 
   createGlobalPlayer: function () {

@@ -21,6 +21,7 @@
 //= require noisynimbus
 //= require mediaelement_rails
 //= require jquery.timeago
+//= require jquery.tooltipster.min
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
