@@ -125,6 +125,16 @@ a:hover {
   width: 540px;
 }
 
+.playlist-song-item.panel {
+  margin-top: 5px;
+  height: 60px;
+}
+
+.playlist-song-item.panel-body {
+  height: 60px;
+  padding: 5px;
+}
+
 .playlist-bar.row {
   margin-top: 3px;
 }
@@ -173,6 +183,7 @@ a:hover {
 .song-item-top.row {
   height: 20px;
 }
+
 .current-song {
   background-color: #f5f5f5;
   -moz-box-shadow:    inset 0 0 3px #aaa;
@@ -222,6 +233,16 @@ a:hover {
 
 }
 
+.progress-radial.playlist-song-item {
+  bottom: 56px;
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  -moz-box-shadow:    inset 0 0 2px #555;
+  -webkit-box-shadow: inset 0 0 2px #555;
+  box-shadow:         inset 0 0 2px #555;
+}
+
 .progress-radial .overlay {
   position: absolute;
   width: 60px;
@@ -238,11 +259,28 @@ a:hover {
   box-shadow:          0 0 4px #555;
 }
 
+.progress-radial.playlist-song-item .overlay{
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  line-height: 30px;
+  font-size: 8px;
+  -moz-box-shadow:     0 0 2px #555;
+  -webkit-box-shadow:  0 0 2px #555;
+  box-shadow:          0 0 2px #555;
+}
+
 .toggle-play .glyphicon-play, .toggle-play .glyphicon-pause {
   position: relative;
   font-size: 1.5em;
   top: 5px;
   left: 2px;
+}
+
+.glyphicon-play.playlist-song-item, .glyphicon-pause.playlist-song-item {
+  top: 2px;
+  left: 1px;
 }
 
 .progress-0 {

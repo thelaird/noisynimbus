@@ -2,6 +2,7 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
   template: JST['playlists/show'],
 
   initialize: function () {
+    this.collection = this.model.songs();
     this.addSongs();
     this.listenTo(this.collection, 'add', this.addSong);
     this.listenTo(this.collection, 'remove', this.removeSong);
