@@ -3,7 +3,7 @@ NoisyNimbus.Models.Song = Backbone.Model.extend({
 
   uploader: function () {
     if (!this._uploader) {
-      this._uploader = new NoisyNimbus.Models.User ({ id: this.uploader_id });
+      this._uploader = new NoisyNimbus.Models.User ();
     }
 
     return this._uploader;
@@ -11,8 +11,7 @@ NoisyNimbus.Models.Song = Backbone.Model.extend({
 
   parse: function (response) {
     if (response.uploader) {
-      response.uploader = NoisyNimbus.Models.User.prototype.parse(response.uploader);
-      this.uploader().set(response.uploader);
+      this.uploader().set(this.uploader().parse(response.uploader));
       delete response.uploader;
     }
 

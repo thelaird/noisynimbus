@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     get '/signS3put', to: 'uploads#sign_request'
     get '/songs/explore', to: 'songs#explore'
+    get '/songs/:artist', to: 'songs#by_artist'
     resources :songs, only: [:create, :destroy, :update, :index, :show]
     resources :users, only: [:show]
     resources :followings, only: [:create, :destroy]

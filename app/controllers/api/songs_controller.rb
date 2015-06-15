@@ -1,5 +1,11 @@
 module Api
   class SongsController < ApiController
+
+    def by_artist
+      @songs = Song.where("artist = ?", params[:artist])
+      render :by_artist
+    end
+
     def create
       @song = current_user.songs.new(song_params)
 
