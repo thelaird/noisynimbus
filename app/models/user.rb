@@ -13,9 +13,12 @@
 class User < ActiveRecord::Base
   validates :username, :session_token, presence: true
   validates :username, uniqueness: true
+  validates :username, length: { maximum: 15 }
   validates :password, length: { minimum: 8, allow_nil: true }
   after_initialize :ensure_session_token
   attr_reader :password
+
+  has_many :playlists
 
   has_many(
     :songs,

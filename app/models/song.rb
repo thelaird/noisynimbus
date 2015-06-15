@@ -15,6 +15,7 @@
 
 class Song < ActiveRecord::Base
   validates :uploader_id, :artist, :title, :song_url, presence: true
+  validates :artist, :title, length: { maximum: 20 }
   belongs_to(
     :uploader,
     class_name: 'User',
