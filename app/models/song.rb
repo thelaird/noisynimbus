@@ -21,4 +21,7 @@ class Song < ActiveRecord::Base
     class_name: 'User',
     foreign_key: :uploader_id
   )
+
+  has_many :tag_items
+  has_many :tags, through: :tag_items, source: :tag
 end
