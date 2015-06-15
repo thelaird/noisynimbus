@@ -1,4 +1,4 @@
-json.(playlist, :title)
+json.(playlist, :title, :id)
 
 json.songs playlist.songs do |song|
   json.(song, :title, :artist, :song_url, :image_url, :description, :created_at)

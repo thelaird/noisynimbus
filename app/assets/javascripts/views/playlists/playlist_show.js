@@ -21,7 +21,7 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
   },
 
   addSong: function (song) {
-    var subview = new NoisyNimbus.Views.SongItem({ model: song });
+    var subview = new NoisyNimbus.Views.PlaylistSongItem({ model: song });
     this.addSubview('.song-items', subview);
   },
 

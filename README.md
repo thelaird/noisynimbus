@@ -13,7 +13,7 @@ NoisyNimbus is an online social audio platform inspired by SoundCloud. Users can
 - [X] Listen to songs
 - [X] Follow other users
 - [X] View a feed of followed users' activity
-- [ ] Create playlists
+- [X] Create playlists
 - [ ] Tag songs
 - [ ] Search for songs by title
 - [ ] Search for songs by tag
