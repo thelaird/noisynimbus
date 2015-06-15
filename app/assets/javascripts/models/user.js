@@ -14,7 +14,6 @@ NoisyNimbus.Models.User = Backbone.Model.extend({
   },
 
   parse: function (response) {
-    // debugger
     if (response.songs) {
       this.songs().set(response.songs, {parse: true});
       delete response.songs;

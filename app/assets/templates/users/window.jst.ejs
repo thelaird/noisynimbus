@@ -1,4 +1,9 @@
 <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-primary follow">Follow</button>
+  <button type="button" class="btn btn-primary follow
+  <% if (uploader.isFollowed()) { %>
+    active">Unfollow</button>
+  <% } else { %>
+    ">Follow</button>
+  <% } %>
   <button type="button" class="btn btn-primary view">View</button>
 </div>

@@ -13,8 +13,8 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
     this.listenTo(this.playlists, 'add', this.render);
 
     this.addUserWindow = _.once(function () {
-      var userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
-      var userWindow = userWindowView.render().$el;
+      this.userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
+      userWindow = this.userWindowView.render().$el;
 
       $('.uploader-' + this.model.id).tooltipster( {
         content: userWindow,
@@ -26,11 +26,11 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
         position: 'right',
         multiple: 'true',
         offsetX: -110,
-        animation: 'grow'
+        animation: 'grow',
+        updateAnimation: false
         });
     });
   },
-
 
   render: function () {
     var content = this.template({ song: this.model, playlists: this.playlists });

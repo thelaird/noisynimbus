@@ -9,15 +9,16 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
     'mouseleave': 'hideWindow'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.tooltip = options.tooltip;
     this.uploader = this.model.uploader();
     this.listenTo(this.uploader.following(), "change", this.render);
+    this.listenTo(this.uploader.following(), "change", this.updateTooltip);
   },
 
   render: function () {
     var content = this.template( { uploader: this.uploader });
     this.$el.html(content);
-    // this.setFollowState();
     return this;
   },
 
@@ -41,6 +42,10 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
     } else {
       this.followUser();
     }
+  },
+
+  updateTooltip: function () {
+    $('.uploader-' + this.model.id).tooltipster('content', this.$el);
   },
 
   unfollowUser: function () {
