@@ -12,12 +12,12 @@ module Api
 
     def index
       @playlists = current_user.playlists.all
-      render json: @playlists
+      render :index
     end
 
     def show
       @playlist = current_user.playlists.find(params[:id])
-      render json: @playlist
+      render :show
     end
 
     private

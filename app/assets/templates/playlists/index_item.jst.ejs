@@ -1,1 +1,8 @@
+<img src="<% if (playlist.songs().length > 0) { %>
+            <%= playlist.songs().first().get('image_url') %>"
+          <% } else { %>
+            <%= NoisyNimbus.AMAZON_URL + 'default.png' %>"
+          <% } %>
+    alt="<%= playlist.escape('title') %>"></img><br>
+<span class="badge playlist-length"><%= playlist.songs().length %> tracks</span>
 <%= playlist.get('title') %>

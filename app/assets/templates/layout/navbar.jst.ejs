@@ -5,9 +5,9 @@
         alt="logo"></img></a>
     </div>
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#playlists">Playlists</a></li>
-        <li><a href="#explore">Explore</a></li>
+        <li class='nav-home'><a href="#">Home</a></li>
+        <li class='nav-playlists'><a href="#playlists">Playlists</a></li>
+        <li class='nav-explore'><a href="#explore">Explore</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -19,9 +19,9 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
         </li>
-        <li><a href="#upload">Upload</a></li>
-        <li><a href="#users/<%= CURRENT_USER_ID %>">My Songs</a></li>
-        <li class='sign-out'><a href="#">Sign Out</a></li>
+        <li class='nav-upload'><a href="#upload">Upload</a></li>
+        <li class='nav-my-songs'><a href="#users/<%= CURRENT_USER_ID %>">My Songs</a></li>
+        <li class='nav-sign-out'><a href="#">Sign Out</a></li>
       </ul>
   </div>
 </nav>
