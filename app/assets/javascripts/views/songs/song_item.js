@@ -1,4 +1,4 @@
-NoisyNimbus.Views.SongItem = Backbone.View.extend({
+NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
   template: JST['songs/item'],
 
   events: {
@@ -10,7 +10,10 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
   initialize: function (options) {
     this.playlists = options.playlists;
     this.oldProgress = 100;
+    this.addTags();
     this.listenTo(this.playlists, 'add', this.render);
+    this.listenTo(this.model.tags(), 'add', this.addTag);
+    this.listenTo(this.model.tags(), 'remove', this.removeTag);
 
     this.addUserWindow = _.once(function () {
       this.userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
@@ -33,8 +36,11 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
   },
 
   render: function () {
-    var content = this.template({ song: this.model, playlists: this.playlists });
+    var content = this.template({ song: this.model,
+      playlists: this.playlists,
+      tags: this.model.tags().first(3) });
     this.$el.html(content);
+    this.attachSubviews();
     return this;
   },
 
@@ -44,17 +50,28 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
     this.$('.panel-body').addClass("current-song");
   },
 
+  addTag: function (tag) {
+    var subview = new NoisyNimbus.Views.TagItem({ model: tag });
+    this.addSubview('.tags', subview);
+  },
+
+  addTags: function () {
+    this.model.tags().each( function (tag) {
+      this.addTag(tag);
+    }, this);
+  },
+
+  removeTag: function (tag) {
+    this.removeModelSubview('.tags', tag);
+  },
+
   addToPlaylist: function (event) {
     var playlistItem = new NoisyNimbus.Models.PlaylistItem({
         "song_id": this.model.id,
         "playlist_id": $(event.currentTarget).data('id')
     });
 
-    playlistItem.save({},{
-      success: function () {
-        $(event.currentTarget).append("ADDED");
-      }
-    });
+    playlistItem.save();
   },
 
   createGlobalPlayer: function () {

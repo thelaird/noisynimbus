@@ -1,19 +1,18 @@
 module Api
   class TagsController < ApiController
     def create
-      @tag = Tag.new(tag_params)
 
-      if @tag.save
+      @tag = Tag.find_or_create_by(text: params[:text])
+
+      if @tag.valid?
         render json: @tag
       else
         render json: @tag.errors.full_messages, status: 422
       end
     end
 
-    private
-
-    def tag_params
-      params.require(:tag).permit(:text)
+    def show
+      @tag = Tag.find(params[:id])
     end
   end
 end

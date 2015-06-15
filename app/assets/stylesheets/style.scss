@@ -16,11 +16,16 @@ a:hover {
 }
 
 #main {
+  padding-top: 55px;
   width: 1220px;
   margin: auto;
 }
 
-
+.navbar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
 
 .navbar-search {
   padding-right: 15px;
@@ -156,8 +161,35 @@ a:hover {
   text-align: center;
 }
 
+.tag-item {
+  text-align: center;
+  padding: 0px 5px;
+  margin: 0;
+  float: left;
+}
+
+.tag-item:hover {
+  display: inline-block;
+  min-width: 10px;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.3;
+  color: #fff;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #2FA4E7;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .time-ago.col-xs-3 {
   width: 29%;
+}
+
+.song-items {
+  padding-top: 15px;
 }
 
 .song-item {

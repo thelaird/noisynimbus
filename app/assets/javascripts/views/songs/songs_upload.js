@@ -11,11 +11,28 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return this;
   },
 
-  iTunesUrl: function (artist) {
-    var url = "http://itunes.apple.com/search?term=";
-    url = url.concat(artist.replace(/ /g, '+'));
-    url = url.concat("&limit=1");
-    return url;
+  attachTags: function (tags){
+    tagsArray = tags.split(' ');
+    var view = this;
+    tagsArray.forEach( function (tagText) {
+      var text = view.hashify(tagText);
+      var tag = new NoisyNimbus.Models.Tag({ "text": text });
+      tag.save({}, {
+        success: function () {
+          var tagItem = new NoisyNimbus.Models.TagItem();
+          tagItem.save({ 'tag_id': tag.id, 'song_id': view.model.id });
+        }
+      });
+
+    });
+  },
+
+  hashify: function (string) {
+    var hashified;
+    if (string.substring(0,1) !== "#") {
+      hashified = "#" + string;
+    }
+    return hashified.toLowerCase();
   },
 
   fetchSongImage: function (artist) {
@@ -35,6 +52,13 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     });
   },
 
+  iTunesUrl: function (artist) {
+    var url = "http://itunes.apple.com/search?term=";
+    url = url.concat(artist.replace(/ /g, '+'));
+    url = url.concat("&limit=1");
+    return url;
+  },
+
   upload: function (event) {
     if ($('#song')[0].files[0].size > 10485760) {
       throw "file too large";
@@ -45,6 +69,8 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     }
     event.preventDefault();
     var data = $('.song-form').serializeJSON();
+    var tags = data.tags;
+    delete data.tags;
     var songImgDfd = this.fetchSongImage(data.artist);
     var songUploadDfd = this.uploadSong();
     this.model.set(data);
@@ -52,6 +78,7 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     $.when(songImgDfd, songUploadDfd).done(function () {
       view.model.save({}, {
         success: function () {
+          view.attachTags(tags);
           view.collection.add(view.model);
           Backbone.history.navigate('#users/' + CURRENT_USER_ID, { trigger: true });
         }
