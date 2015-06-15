@@ -38,9 +38,10 @@
             <span class="glyphicoon glyphicon-plus"></span>
             <span class="sr-only">Toggle Dropdown</span>
           </button>
-          <ul class="dropdown-menu" role="menu">
-            <li>Playlist #1</li>
-            <li>Playlist #2</li>
+          <ul class="dropdown-menu playlists" role="menu">
+          <% playlists.each( function (playlist) { %>
+            <li class='playlist-item' data-id='<%= playlist.get('id') %>'><%= playlist.escape('title') %></li>
+          <% }) %>
             <li class='divider'></li>
             <li><a href='#playlists/new'>Create New Playlist</a></li>
           </ul>

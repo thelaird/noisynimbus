@@ -3,11 +3,15 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
 
   events: {
     'click .toggle-play': 'togglePlay',
-    'mouseover .panel-body': 'addUserWindow'
+    'mouseover .panel-body': 'addUserWindow',
+    'click .playlist-item': 'addToPlaylist'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.playlists = options.playlists;
     this.oldProgress = 100;
+    this.listenTo(this.playlists, 'add', this.render);
+
     this.addUserWindow = _.once(function () {
       var userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
       var userWindow = userWindowView.render().$el;
@@ -29,7 +33,7 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
 
 
   render: function () {
-    var content = this.template({ song: this.model });
+    var content = this.template({ song: this.model, playlists: this.playlists });
     this.$el.html(content);
     return this;
   },
@@ -38,6 +42,19 @@ NoisyNimbus.Views.SongItem = Backbone.View.extend({
     this.$('.toggle-play span').removeClass("glyphicon-play");
     this.$('.toggle-play span').addClass("glyphicon-pause");
     this.$('.panel-body').addClass("current-song");
+  },
+
+  addToPlaylist: function (event) {
+    var playlistItem = new NoisyNimbus.Models.PlaylistItem({
+        "song_id": this.model.id,
+        "playlist_id": $(event.currentTarget).data('id')
+    });
+
+    playlistItem.save({},{
+      success: function () {
+        $(event.currentTarget).append("ADDED");
+      }
+    });
   },
 
   createGlobalPlayer: function () {

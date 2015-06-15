@@ -15,7 +15,7 @@ NoisyNimbus.Collections.Playlists = Backbone.Collection.extend({
         }.bind(this)
       });
     }
-    
+
     return model;
   }
 });

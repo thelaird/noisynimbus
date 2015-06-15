@@ -37,8 +37,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   },
 
   playlistShow: function (id) {
-    var playlist = new NoisyNimbus.Models.Playlist({ id: id });
-    playlist.fetch();
+    var playlist = this.playlists.getOrFetch(id);
     var view = new NoisyNimbus.Views.PlaylistShow({ model: playlist });
     this._swapView(view);
   },
@@ -46,13 +45,17 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   songsExplore: function () {
     var exploreSongs = new NoisyNimbus.Collections.ExploreSongs();
     exploreSongs.fetch();
-    var view = new NoisyNimbus.Views.ExploreSongs({ collection: exploreSongs });
+    this.playlists.fetch();
+    var view = new NoisyNimbus.Views.ExploreSongs({ collection: exploreSongs,
+      playlists: this.playlists });
     this._swapView(view);
   },
 
   songsIndex: function () {
     this.songs.fetch();
-    var view = new NoisyNimbus.Views.SongsIndex({ collection: this.songs });
+    this.playlists.fetch();
+    var view = new NoisyNimbus.Views.SongsIndex({ collection: this.songs,
+      playlists: this.playlists });
     this._swapView(view);
   },
 
@@ -64,7 +67,9 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
 
   userShow: function (id) {
     var user = this.users.getOrFetch(id);
-    var view = new NoisyNimbus.Views.UserShow({ model: user });
+    this.playlists.fetch();
+    var view = new NoisyNimbus.Views.UserShow({ model: user,
+      playlists: this.playlists });
     this._swapView(view);
   },
 

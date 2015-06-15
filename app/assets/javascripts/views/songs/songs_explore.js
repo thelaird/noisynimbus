@@ -1,7 +1,8 @@
 NoisyNimbus.Views.ExploreSongs = Backbone.CompositeView.extend({
   template: JST['songs/explore'],
 
-  initialize: function () {
+  initialize: function (options) {
+    this.playlists = options.playlists;
     this.addSongs();
     this.listenTo(this.collection, 'add', this.addSong);
   },
@@ -20,7 +21,8 @@ NoisyNimbus.Views.ExploreSongs = Backbone.CompositeView.extend({
   },
 
   addSong: function (song) {
-    var subview = new NoisyNimbus.Views.SongItem({ model: song });
+    var subview = new NoisyNimbus.Views.SongItem({ model: song,
+      playlists: this.playlists });
     this.addSubview('.song-items', subview);
   }
 });

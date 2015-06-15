@@ -3,5 +3,6 @@ class Playlist < ActiveRecord::Base
   validates :title, length: { maximum: 30 }
 
   has_many :playlist_items
+  has_many :songs, through: :playlist_items
   belongs_to :user
 end
