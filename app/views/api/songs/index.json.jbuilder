@@ -1,1 +1,1 @@
-json.array! @songs, partial: 'song', as: :song
+json.array! @songs, partial: 'api/shared/song', as: :song
