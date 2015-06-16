@@ -232,12 +232,31 @@ a:hover {
   border-bottom-right-radius: 4px;
 }
 
+.song-show {
+  margin-top: 15px;
+}
+
+.song-show-image {
+  position: relative;
+  left: 25px;
+}
+
+.song-show-item-col {
+  position: relative;
+  left: 60px;
+}
 
 .song-show-song .panel.panel-default {
   margin-bottom: 0px;
   -moz-box-shadow:    0 0 2px #aaa;
   -webkit-box-shadow: 0 0 2px #aaa;
   box-shadow:         0 0 2px #aaa;
+}
+
+.song-show-song .panel.panel-default .current-song {
+  -moz-box-shadow:    0 0 0px #aaa;
+  -webkit-box-shadow: 0 0 0px #aaa;
+  box-shadow:         0 0 0px #aaa;
 }
 
 .current-song {
