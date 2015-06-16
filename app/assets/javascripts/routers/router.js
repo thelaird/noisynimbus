@@ -17,6 +17,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     'playlists/:id': 'playlistShow',
     'playlists/:id/edit': 'playlistEdit',
     'songs/:id': 'songShow',
+    'songs/:id/:edit': 'songEdit',
     'tags/:id': 'tagShow',
     'upload': 'songsUpload',
     'users/:id': 'userShow'

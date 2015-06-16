@@ -17,8 +17,8 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
     this.listenTo(this.model.tags(), 'remove', this.removeTag);
 
     this.addUserWindow = _.once(function () {
-      this.userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
-      userWindow = this.userWindowView.render().$el;
+      userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });
+      userWindow = userWindowView.render().$el;
 
       $('.uploader-' + this.model.id).tooltipster( {
         content: userWindow,

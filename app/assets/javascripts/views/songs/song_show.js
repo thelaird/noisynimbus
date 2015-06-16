@@ -5,6 +5,7 @@ NoisyNimbus.Views.SongShow = Backbone.CompositeView.extend({
     this.playlists = options.playlists;
     this.addSong(this.model);
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync', this.uploaderCheck);
   },
 
   render: function () {
@@ -18,5 +19,18 @@ NoisyNimbus.Views.SongShow = Backbone.CompositeView.extend({
     var subview = new NoisyNimbus.Views.SongItem({ model: song,
       playlists: this.playlists });
     this.addSubview('.song-show-song', subview);
+  },
+
+  addUploaderLinks: function () {
+    var subview = new NoisyNimbus.Views.SongShowLinks({ model: this.model });
+    this.addSubview('.song-show-uploader-links-container', subview);
+    subview.onRender();
+  },
+
+  uploaderCheck: function () {
+    if (this.model.uploader().id.toString() === CURRENT_USER_ID) {
+      this.addUploaderLinks();
+    }
   }
+
 });
