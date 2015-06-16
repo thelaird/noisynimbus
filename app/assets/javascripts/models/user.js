@@ -14,7 +14,7 @@ NoisyNimbus.Models.User = Backbone.Model.extend({
   },
 
   parse: function (response) {
-  
+
     if (response.songs) {
       this.songs().set(response.songs, {parse: true});
       delete response.songs;
@@ -30,7 +30,7 @@ NoisyNimbus.Models.User = Backbone.Model.extend({
 
   songs: function () {
     if(!this._songs) {
-      this._songs = new NoisyNimbus.Collections.Songs({ user: this });
+      this._songs = new NoisyNimbus.Collections.Songs();
     }
 
     return this._songs;

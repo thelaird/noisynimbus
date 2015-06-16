@@ -41,7 +41,12 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
 
   playlistShow: function (id) {
     var playlist = this.playlists.getOrFetch(id);
-    var view = new NoisyNimbus.Views.PlaylistShow({ model: playlist });
+    var view = new NoisyNimbus.Views.SongsIndex({
+      model: playlist,
+      collection: playlist.songs(),
+      template: JST['playlists/show'],
+      subview: NoisyNimbus.Views.PlaylistSongItem
+      });
     this._swapView(view);
   },
 
@@ -52,16 +57,22 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     var exploreSongs = new NoisyNimbus.Collections.ExploreSongs();
     exploreSongs.fetch();
     this.playlists.fetch();
-    var view = new NoisyNimbus.Views.ExploreSongs({ collection: exploreSongs,
-      playlists: this.playlists });
+    var view = new NoisyNimbus.Views.SongsIndex({
+      collection: exploreSongs,
+      playlists: this.playlists,
+      template: JST['songs/explore']
+      });
     this._swapView(view);
   },
 
   songsIndex: function () {
     this.songs.fetch();
     this.playlists.fetch();
-    var view = new NoisyNimbus.Views.SongsIndex({ collection: this.songs,
-      playlists: this.playlists });
+    var view = new NoisyNimbus.Views.SongsIndex({
+      collection: this.songs,
+      playlists: this.playlists,
+      template: JST['songs/index']
+      });
     this._swapView(view);
   },
 
@@ -74,15 +85,22 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   tagShow: function (id) {
     var tag = this.songTags.getOrFetch(id);
     this.playlists.fetch();
-    var view = new NoisyNimbus.Views.TagShow({ model: tag, playlists: this.playlists });
+    var view = new NoisyNimbus.Views.SongsIndex({
+      collection: tag.songs(),
+      model: tag,
+      playlists: this.playlists,
+      template: JST['tags/show']
+      });
     this._swapView(view);
   },
 
   userShow: function (id) {
     var user = this.users.getOrFetch(id);
     this.playlists.fetch();
-    var view = new NoisyNimbus.Views.UserShow({ model: user,
-      playlists: this.playlists });
+    var view = new NoisyNimbus.Views.UserShow({
+      model: user,
+      playlists: this.playlists
+    });
     this._swapView(view);
   },
 

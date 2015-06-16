@@ -1,9 +1,13 @@
 NoisyNimbus.Views.UserShow = Backbone.CompositeView.extend({
+  // leaving unrefactored to allow for follows from usershow
+
   template: JST['users/show'],
 
   initialize: function (options) {
     this.playlists = options.playlists;
     this.collection = this.model.songs();
+
+    this.addSongs();
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addSong);
     this.listenTo(this.collection, 'remove', this.removeSong);
@@ -20,6 +24,12 @@ NoisyNimbus.Views.UserShow = Backbone.CompositeView.extend({
     var subview = new NoisyNimbus.Views.SongItem({ model: song,
       playlists: this.playlists });
     this.addSubview('.song-items', subview);
+  },
+
+  addSongs: function () {
+    this.collection.each( function (song) {
+      this.addSong(song);
+    }, this);
   },
 
   removeSong: function (song) {
