@@ -8,6 +8,9 @@ module Api
 
     def create
       @song = current_user.songs.new(song_params)
+      query_url = self.lastfm_url(@song.artist, @song.title)
+      @song.large_image_url = self.fetch_large_image_url(query_url)
+
 
       if @song.save
         render json: @song
@@ -28,8 +31,38 @@ module Api
     end
 
     def index
+      # if params[:artist].present?
+      #   @songs = Song.where("artist ILIKE ?", params[:artist])
+      # else
+      #   @songs = current_user.followed_songs
+      # end
+
       @songs = current_user.followed_songs
       render :index
+    end
+
+    def lastfm_url(artist, track)
+      base = "http://ws.audioscrobbler.com/2.0/?"
+      url_params = {
+        method: "track.getInfo",
+        api_key: ENV['lastfm_key'],
+        artist: artist,
+        track: track,
+        format: "json",
+      }
+
+      return base.concat(url_params.to_query)
+    end
+
+    def fetch_large_image_url (query_string)
+      response = JSON.parse(RestClient.get query_string)
+
+      begin
+        url = response["track"]["album"]["image"][3]["#text"]
+        return url
+      rescue NoMethodError => e
+        return "#{ENV['s3_url']}/#{ENV['s3_bucket']}/large_default.png"
+      end
     end
 
     def show
@@ -55,8 +88,7 @@ module Api
         :title,
         :description,
         :song_url,
-        :small_image_url,
-        :large_image_url)
+        :small_image_url)
     end
   end
 end

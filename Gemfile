@@ -17,6 +17,8 @@ gem 'bootswatch-rails'
 gem 'figaro'
 gem 'aws-sdk', '< 2'
 gem "mediaelement_rails"
+gem 'rest-client'
+gem 'json'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.6'

@@ -35,24 +35,6 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return hashified.toLowerCase();
   },
 
-  fetchLargeImage: function (artist, title){
-    var dfd = jQuery.Deferred();
-
-    return $.ajax({
-      url: this.lastFmUrl(artist, title),
-      type: 'GET',
-      dataType: 'json',
-      success: function (data) {
-        if (data.track) {
-          this.model.set({ 'large_image_url': data.track.album.image[3]["#text"]});
-        } else {
-          this.model.set({ 'large_image_url': NoisyNimbus.AMAZON_URL + "large_default.png"});
-        }
-        dfd.resolve();
-    }.bind(this)
-  });
-  },
-
   fetchSmallImage: function (artist) {
     var dfd = jQuery.Deferred();
     return $.ajax({
@@ -80,29 +62,15 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return base.concat($.param(params));
   },
 
-  lastFmUrl: function (artist, title) {
-    var base = "http://ws.audioscrobbler.com/2.0/?";
-    var params = {
-      method: "track.getInfo",
-      api_key: NoisyNimbus.LASTFM_API_KEY,
-      artist: artist,
-      track: title,
-      format: "json",
-    };
-
-    return base.concat($.param(params));
-  },
-
   setupDeferreds: function (data) {
     var songSmImgDfd = this.fetchSmallImage(data.artist);
-    var songLgImgDfd = this.fetchLargeImage(data.artist, data.title);
     var songUploadDfd = this.uploadSong();
     var view = this;
 
     var tags = data.tags;
     delete data.tags;
 
-    $.when(songSmImgDfd, songLgImgDfd, songUploadDfd).done(function () {
+    $.when(songSmImgDfd, songUploadDfd).done(function () {
       view.model.save({}, {
         success: function () {
           view.attachTags(tags);

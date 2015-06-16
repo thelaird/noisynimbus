@@ -1,5 +1,4 @@
 NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
-  //             <%= $.timeago(song.get('created_at')) %>
 
   template: JST['songs/item'],
 
