@@ -1,4 +1,4 @@
-json.(song, :id, :artist, :title, :song_url, :image_url, :description, :created_at)
+json.(song, :id, :artist, :title, :song_url, :small_image_url, :large_image_url, :description, :created_at)
 
 json.uploader do
   json.username song.uploader.username

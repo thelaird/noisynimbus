@@ -35,47 +35,74 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return hashified.toLowerCase();
   },
 
-  fetchSongImage: function (artist) {
-    var deferred = jQuery.Deferred();
+  fetchLargeImage: function (artist, title){
+    var dfd = jQuery.Deferred();
+
+    return $.ajax({
+      url: this.lastFmUrl(artist, title),
+      type: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        if (data.track) {
+          this.model.set({ 'large_image_url': data.track.album.image[3]["#text"]});
+        } else {
+          this.model.set({ 'large_image_url': NoisyNimbus.AMAZON_URL + "large_default.png"});
+        }
+        dfd.resolve();
+    }.bind(this)
+  });
+  },
+
+  fetchSmallImage: function (artist) {
+    var dfd = jQuery.Deferred();
     return $.ajax({
       url: this.iTunesUrl(artist),
       type: 'GET',
       dataType: 'jsonp',
       success: function (data) {
         if (data.results.length == 1) {
-          this.model.set({ "image_url": data.results[0].artworkUrl100 });
+          this.model.set({ "small_image_url": data.results[0].artworkUrl100 });
         } else {
-          this.model.set({ "image_url": NoisyNimbus.AMAZON_URL + "default.png" });
+          this.model.set({ "small_image_url": NoisyNimbus.AMAZON_URL + "default.png" });
         }
-        deferred.resolve();
+        dfd.resolve();
       }.bind(this)
     });
   },
 
   iTunesUrl: function (artist) {
-    var url = "http://itunes.apple.com/search?term=";
-    url = url.concat(artist.replace(/ /g, '+'));
-    url = url.concat("&limit=1");
-    return url;
+    var base = "http://itunes.apple.com/search?";
+    var params = {
+      term: artist,
+      limit: 1
+    };
+
+    return base.concat($.param(params));
   },
 
-  upload: function (event) {
-    if ($('#song')[0].files[0].size > 10485760) {
-      throw "file too large";
-    }
+  lastFmUrl: function (artist, title) {
+    var base = "http://ws.audioscrobbler.com/2.0/?";
+    var params = {
+      method: "track.getInfo",
+      api_key: NoisyNimbus.LASTFM_API_KEY,
+      artist: artist,
+      track: title,
+      format: "json",
+    };
 
-    if ($('#song')[0].files[0].type !== 'audio/mp3'){
-      throw 'wrong file type';
-    }
-    event.preventDefault();
-    var data = $('.song-form').serializeJSON();
+    return base.concat($.param(params));
+  },
+
+  setupDeferreds: function (data) {
+    var songSmImgDfd = this.fetchSmallImage(data.artist);
+    var songLgImgDfd = this.fetchLargeImage(data.artist, data.title);
+    var songUploadDfd = this.uploadSong();
+    var view = this;
+
     var tags = data.tags;
     delete data.tags;
-    var songImgDfd = this.fetchSongImage(data.artist);
-    var songUploadDfd = this.uploadSong();
-    this.model.set(data);
-    var view = this;
-    $.when(songImgDfd, songUploadDfd).done(function () {
+
+    $.when(songSmImgDfd, songLgImgDfd, songUploadDfd).done(function () {
       view.model.save({}, {
         success: function () {
           view.attachTags(tags);
@@ -84,6 +111,16 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
         }
       });
     });
+  },
+
+  upload: function (event) {
+    this.validateFile();
+
+    event.preventDefault();
+    var data = $('.song-form').serializeJSON();
+
+    this.setupDeferreds(data);
+    this.model.set(data);
   },
 
   uploadSong: function () {
@@ -111,5 +148,15 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     });
 
     return deferred;
+  },
+
+  validateFile: function () {
+    if ($('#song')[0].files[0].size > 10485760) {
+      throw "file too large";
+    }
+
+    if ($('#song')[0].files[0].type !== 'audio/mp3'){
+      throw 'wrong file type';
+    }
   }
 });

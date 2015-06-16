@@ -50,15 +50,25 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
   },
 
-  songsByArtist: function () {
+  songsByArtist: function (artist) {
+    var songs = new NoisyNimbus.Collections.ArtistSongs();
+    songs.fetch();
+    this.playlists.fetch();
+    var view = new NoisyNimbus.Views.SongsIndex({
+      collection: songs,
+      playlists: this.playlists,
+      template: JST['songs/by_artist']
+    });
+
+    this._swapView(view);
   },
 
   songsExplore: function () {
-    var exploreSongs = new NoisyNimbus.Collections.ExploreSongs();
-    exploreSongs.fetch();
+    var songs = new NoisyNimbus.Collections.ExploreSongs();
+    songs.fetch();
     this.playlists.fetch();
     var view = new NoisyNimbus.Views.SongsIndex({
-      collection: exploreSongs,
+      collection: songs,
       playlists: this.playlists,
       template: JST['songs/explore']
       });

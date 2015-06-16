@@ -2,15 +2,16 @@
 #
 # Table name: songs
 #
-#  id          :integer          not null, primary key
-#  uploader_id :integer          not null
-#  artist      :string           not null
-#  title       :string           not null
-#  song_url    :string           not null
-#  image_url   :string
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id              :integer          not null, primary key
+#  uploader_id     :integer          not null
+#  artist          :string           not null
+#  title           :string           not null
+#  song_url        :string           not null
+#  small_image_url :string
+#  description     :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  large_image_url :string
 #
 
 class Song < ActiveRecord::Base
@@ -22,6 +23,6 @@ class Song < ActiveRecord::Base
     foreign_key: :uploader_id
   )
 
-  has_many :tag_items
+  has_many :tag_items, dependent: :destroy
   has_many :tags, through: :tag_items, source: :tag
 end

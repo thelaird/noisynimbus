@@ -2,8 +2,8 @@ module Api
   class SongsController < ApiController
 
     def by_artist
-      @songs = Song.where("artist = ?", params[:artist])
-      render :by_artist
+      @songs = Song.where("artist = LOWER(?)", params[:artist])
+      render :index
     end
 
     def create
@@ -50,7 +50,13 @@ module Api
     private
 
     def song_params
-      params.require(:song).permit(:artist, :title, :description, :song_url, :image_url)
+      params.require(:song).permit(
+        :artist,
+        :title,
+        :description,
+        :song_url,
+        :small_image_url,
+        :large_image_url)
     end
   end
 end

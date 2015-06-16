@@ -1,5 +1,5 @@
 <div class='playlist-index-item'><img src="<% if (playlist.songs().length > 0) { %>
-            <%= playlist.songs().first().get('image_url') %>"
+            <%= playlist.songs().first().get('small_image_url') %>"
           <% } else { %>
             <%= NoisyNimbus.AMAZON_URL + 'default.png' %>"
           <% } %>

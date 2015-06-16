@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: playlists
+#
+#  id          :integer          not null, primary key
+#  user_id     :integer          not null
+#  title       :string           not null
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class Playlist < ActiveRecord::Base
   validates :title, :user_id, presence: true
   validates :title, length: { maximum: 30 }

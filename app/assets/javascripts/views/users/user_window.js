@@ -31,7 +31,7 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
 
 
   hideWindow: function () {
-    $('.uploader-' + this.model.id).tooltipster('hide');
+    // $('.uploader-' + this.model.id).tooltipster('hide');
     this.remove();
   },
 

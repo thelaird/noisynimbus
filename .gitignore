@@ -17,3 +17,4 @@ _MACOSX
 
 # Ignore application configuration
 /config/application.yml
+/app/assets/javascripts/util/apikey.js
