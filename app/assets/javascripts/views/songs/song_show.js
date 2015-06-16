@@ -27,10 +27,10 @@ NoisyNimbus.Views.SongShow = Backbone.CompositeView.extend({
     subview.onRender();
   },
 
-  uploaderCheck: function () {
+  uploaderCheck: _.once(function () {
     if (this.model.uploader().id.toString() === CURRENT_USER_ID) {
       this.addUploaderLinks();
     }
-  }
+  })
 
 });

@@ -66,6 +66,12 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     }.bind(this));
   },
 
+  songEdit: function (id) {
+    var song = this.songs.getOrFetch(id);
+    var view = new NoisyNimbus.Views.SongEdit({ model: song });
+    this._swapView(view);
+  },
+
   songsExplore: function () {
     var songs = new NoisyNimbus.Collections.ExploreSongs();
     songs.fetch();
