@@ -42,6 +42,7 @@ NoisyNimbus.Views.Navbar = Backbone.View.extend({
         break;
       case 'songsExplore':
       case 'tagShow':
+      case 'songsByArtist':
         this.$currentActive = $('.nav-explore').toggleClass('active');
         break;
     }

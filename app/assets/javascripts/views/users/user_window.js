@@ -6,7 +6,6 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
   events: {
     'click .follow': 'toggleFollowState',
     'click .view': 'view',
-    'mouseleave': 'hideWindow'
   },
 
   initialize: function (options) {
@@ -27,12 +26,6 @@ NoisyNimbus.Views.UserWindow = Backbone.View.extend({
       "follower_id": CURRENT_USER_ID,
       "followee_id": this.uploader.id
     });
-  },
-
-
-  hideWindow: function () {
-    // $('.uploader-' + this.model.id).tooltipster('hide');
-    this.remove();
   },
 
   toggleFollowState: function (event) {

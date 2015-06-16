@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-4">
+    <div class='song-show-image'>
+    <img src="<%= song.get('large_image_url') %>" alt="<%= song.escape('title') %>">
+    </div>
+  </div>
+  <div class="col-xs-8">
+    <div class='song-show-song'>
+    </div>
+    <div class='song-show-description'>
+      <%= song.escape('description') %>
+    </div>
+  </div>
+</div>

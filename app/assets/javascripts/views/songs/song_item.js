@@ -1,4 +1,6 @@
 NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
+  //             <%= $.timeago(song.get('created_at')) %>
+
   template: JST['songs/item'],
 
   events: {
@@ -21,15 +23,11 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
 
       $('.uploader-' + this.model.id).tooltipster( {
         content: userWindow,
-        arrow: false,
-        autoClose: false,
         interactive: true,
         theme: 'tooltipster-light',
         delay: 100,
         position: 'right',
         multiple: 'true',
-        offsetX: -110,
-        animation: 'grow',
         updateAnimation: false
         });
     });

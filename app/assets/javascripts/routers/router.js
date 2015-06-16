@@ -10,14 +10,15 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
 
   routes:{
     '': 'songsIndex',
+    'artist/:artist': 'songsByArtist',
     'explore': 'songsExplore',
-    'upload': 'songsUpload',
-    'playlists/new': 'playlistNew',
     'playlists': 'playlistsIndex',
+    'playlists/new': 'playlistNew',
     'playlists/:id': 'playlistShow',
     'playlists/:id/edit': 'playlistEdit',
+    'songs/:id': 'songShow',
     'tags/:id': 'tagShow',
-    'songs/:artist': 'songsByArtist',
+    'upload': 'songsUpload',
     'users/:id': 'userShow'
   },
 
@@ -51,16 +52,17 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   },
 
   songsByArtist: function (artist) {
-    var songs = new NoisyNimbus.Collections.ArtistSongs();
-    songs.fetch();
+    var songs = new NoisyNimbus.Collections.ArtistSongs({ artist: artist });
     this.playlists.fetch();
-    var view = new NoisyNimbus.Views.SongsIndex({
-      collection: songs,
-      playlists: this.playlists,
-      template: JST['songs/by_artist']
-    });
+    songs.fetch().then( function () {
+      var view = new NoisyNimbus.Views.SongsIndex({
+        collection: songs,
+        playlists: this.playlists,
+        template: JST['songs/by_artist']
+      });
 
-    this._swapView(view);
+      this._swapView(view);
+    }.bind(this));
   },
 
   songsExplore: function () {
@@ -83,6 +85,17 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
       playlists: this.playlists,
       template: JST['songs/index']
       });
+    this._swapView(view);
+  },
+
+  songShow: function (id) {
+    var song = this.songs.getOrFetch(id);
+    this.playlists.fetch();
+    var view = new NoisyNimbus.Views.SongShow({
+      model: song,
+      playlists: this.playlists
+    });
+
     this._swapView(view);
   },
 

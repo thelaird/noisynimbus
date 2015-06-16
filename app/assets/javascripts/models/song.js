@@ -28,6 +28,7 @@ NoisyNimbus.Models.Song = Backbone.Model.extend({
       delete response.tags;
     }
 
+    response.timeago = $.timeago(response.created_at);
     return response;
   }
 });

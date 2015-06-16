@@ -2,7 +2,7 @@ module Api
   class SongsController < ApiController
 
     def by_artist
-      @songs = Song.where("artist = LOWER(?)", params[:artist])
+      @songs = Song.where("artist ILIKE ?", params[:artist])
       render :index
     end
 
@@ -34,7 +34,7 @@ module Api
 
     def show
       @song = Song.find(params[:id])
-      render json: @song
+      render :show
     end
 
     def update
