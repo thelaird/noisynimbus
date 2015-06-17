@@ -19,6 +19,8 @@ gem 'aws-sdk', '< 2'
 gem "mediaelement_rails"
 gem 'rest-client'
 gem 'json'
+gem 'pry-rails'
+gem 'fuzzily'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.6'

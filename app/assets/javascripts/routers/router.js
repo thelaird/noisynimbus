@@ -53,7 +53,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   },
 
   songsByArtist: function (artist) {
-    var songs = new NoisyNimbus.Collections.ArtistSongs({ artist: artist });
+    var songs = new NoisyNimbus.Collections.ArtistSongs([],{ artist: artist });
     this.playlists.fetch();
     songs.fetch().then( function () {
       var view = new NoisyNimbus.Views.SongsIndex({

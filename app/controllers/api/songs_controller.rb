@@ -1,14 +1,6 @@
 module Api
   class SongsController < ApiController
-    # Figure this out!
-    # wrap_parameters :song, includes: [
-    #         :artist,
-    #         :title,
-    #         :description,
-    #         :song_url,
-    #         :small_image_url,
-    #         :tagstring
-    #         ]
+
 
     def by_artist
       @songs = Song.where("artist ILIKE ?", params[:artist])
@@ -105,7 +97,7 @@ module Api
         :description,
         :song_url,
         :small_image_url
-        )
+    )
     end
   end
 end

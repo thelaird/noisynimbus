@@ -15,6 +15,8 @@ class Tag < ActiveRecord::Base
   validates_format_of :text, with: /\A[a-zA-Z#-]+\z/
   after_initialize :dehashify
 
+  fuzzily_searchable :text
+
   has_many :tag_items, dependent: :destroy
   has_many :songs, through: :tag_items
 

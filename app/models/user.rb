@@ -15,8 +15,13 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :username, length: { maximum: 15 }
   validates :password, length: { minimum: 8, allow_nil: true }
+
+  fuzzily_searchable :username
+
+
   after_initialize :ensure_session_token
   attr_reader :password
+
 
   has_many :playlists
 

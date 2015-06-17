@@ -11,22 +11,6 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return this;
   },
 
-  // attachTags: function (tags){
-  //   tagsArray = tags.split(' ');
-  //   var view = this;
-  //   tagsArray.forEach( function (tagText) {
-  //     var text = view.hashify(tagText);
-  //     var tag = new NoisyNimbus.Models.Tag({ "text": text });
-  //     tag.save({}, {
-  //       success: function () {
-  //         var tagItem = new NoisyNimbus.Models.TagItem();
-  //         tagItem.save({ 'tag_id': tag.id, 'song_id': view.model.id });
-  //       }
-  //     });
-  //
-  //   });
-  // },
-
   fetchSmallImage: function (artist) {
     var dfd = jQuery.Deferred();
     return $.ajax({
@@ -65,9 +49,8 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     $.when(songSmImgDfd, songUploadDfd).done(function () {
       view.model.save({}, {
         success: function () {
-          view.attachTags(tags);
           view.collection.add(view.model);
-          Backbone.history.navigate('#users/' + CURRENT_USER_ID, { trigger: true });
+          Backbone.history.navigate('#songs/' + view.model.id, { trigger: true });
         }
       });
     });
@@ -102,8 +85,8 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
         }.bind(this),
 
       onError: function(status) {
-        // reject promise
         console.log('Upload error: ', status);
+        deferred.reject();
       }
     });
 

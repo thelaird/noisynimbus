@@ -1,7 +1,7 @@
 NoisyNimbus.Collections.ArtistSongs = Backbone.Collection.extend({
   model: NoisyNimbus.Models.Song,
 
-  initialize: function (options) {
+  initialize: function (models, options) {
     options || (options = {});
     this.artist = options.artist;
   },
