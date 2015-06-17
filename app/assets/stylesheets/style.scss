@@ -16,7 +16,7 @@ a:hover {
 }
 
 #main {
-  padding-top: 55px;
+  padding-top: 52px;
   width: 1220px;
   margin: auto;
 }
@@ -43,9 +43,41 @@ a:hover {
   box-shadow:         0 0 4px #555;
 }
 
+.user-list-item:hover, .tag-list-item:hover {
+  background-color: #F5F5F5;
+  cursor: pointer;
+}
+
+.user-results.user-results-initial, .tag-results.tag-results-initial {
+  position: relative;
+  top: -600px;
+  right: 15px;
+}
+
+.user-results, .tag-results {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  top: 0px;
+  right: 15px;
+  padding: 15px;
+  border-left: 2px solid #34A6E7;
+  border-bottom: 2px solid #34A6E7;
+  border-right: 2px solid #34A6E7;
+  transition: top .75s ease;
+  -moz-box-shadow: 0 0 4px #aaa;
+  -webkit-box-shadow: 0 0 4px #aaa;
+  box-shadow: 0 0 4px #aaa;
+}
+
+.user-songs, .tag-songs {
+  float: left;
+  width: 75%;
+}
+
 .navbar {
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   width: 100%;
 }
 
@@ -147,10 +179,14 @@ a:hover {
 }
 
 .results-nav {
+  background-color: white;
+  position: relative;
   padding: 15px;
   padding-bottom: 0px;
+  margin-bottom: 0px;
   border-bottom: 2px solid #34A6E7;
   box-shadow: 0 4px 2px -2px #aaa;
+  z-index: 10;
 }
 
 .results-type {

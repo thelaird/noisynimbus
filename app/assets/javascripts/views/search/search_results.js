@@ -79,11 +79,17 @@ NoisyNimbus.Views.SearchResults = Backbone.CompositeView.extend({
   selectUsers: function () {
     $('.results-nav-active-background').css('left', '620px');
     this.addUsers();
+    setTimeout( function () {
+      $('.user-results').removeClass('user-results-initial');
+    }, 0);
   },
 
   selectTags: function () {
     $('.results-nav-active-background').css('left', '918px');
     this.addTags();
+    setTimeout( function () {
+      $('.tag-results').removeClass('tag-results-initial');
+    }, 0);
   }
 
 
