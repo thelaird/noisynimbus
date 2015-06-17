@@ -10,7 +10,7 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
 
   activateNewSong: function (songView) {
     this.player.attr("src", songView.model.get("song_url"));
-    NoisyNimbus.globalEvents.trigger("next-song", this.model);
+    // NoisyNimbus.globalEvents.trigger("next-song", this.model);
     this.player.on('play pause', function () { songView.setIcon(); });
     this.player.on('timeupdate', function () { songView.progress(); });
   },

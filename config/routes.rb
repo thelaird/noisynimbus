@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get '/signS3put', to: 'uploads#sign_request'
     get '/songs/explore', to: 'songs#explore'
     get '/artist/:artist', to: 'songs#by_artist'
+    get '/search/:query', to: 'search#index'
     resources :songs, only: [:create, :destroy, :update, :index, :show]
     resources :users, only: [:show]
     resources :followings, only: [:create, :destroy]

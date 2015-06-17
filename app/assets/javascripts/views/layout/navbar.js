@@ -52,14 +52,6 @@ NoisyNimbus.Views.Navbar = Backbone.View.extend({
 
   },
 
-  // handleNavbarClick: function (event) {
-  //   if (this.$currentActive) {
-  //     this.$currentActive.toggleClass('active');
-  //   }
-  //   $(event.currentTarget).toggleClass('active');
-  //   this.$currentActive = $(event.currentTarget);
-  // },
-
   signOut: function (event) {
     event.preventDefault();
 

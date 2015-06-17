@@ -16,6 +16,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     'playlists/new': 'playlistNew',
     'playlists/:id': 'playlistShow',
     'playlists/:id/edit': 'playlistEdit',
+    'search/:query': 'search',
     'songs/:id': 'songShow',
     'songs/:id/:edit': 'songEdit',
     'tags/:id': 'tagShow',
@@ -49,6 +50,34 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
       template: JST['playlists/show'],
       subview: NoisyNimbus.Views.PlaylistSongItem
       });
+    this._swapView(view);
+  },
+
+  search: function (query) {
+    var songsByArtist = new NoisyNimbus.Collections.Songs();
+    var songsByTitle = new NoisyNimbus.Collections.Songs();
+    var tags = new NoisyNimbus.Collections.Tags();
+    var users = new NoisyNimbus.Collections.Users();
+
+    $.ajax({
+      url: 'api/search/' + query,
+      type: 'GET',
+      dataType: 'json',
+      success: function (response) {
+        songsByArtist.reset(response.songsByArtist);
+        songsByTitle.reset(response.songsByTitle);
+        tags.reset(response.tags);
+        users.reset(response.users);
+      }
+    });
+
+    var view = new NoisyNimbus.Views.SearchResults({
+      songsByArtist: songsByArtist,
+      songsByTitle: songsByTitle,
+      tags: tags,
+      users: users
+    });
+
     this._swapView(view);
   },
 
