@@ -27,7 +27,7 @@ module Api
     end
 
     def explore
-      @songs = Song.all.sample(5)
+      @songs = Song.all.sample(5).sort_by! { |song| -song.id }
       render :index
     end
 

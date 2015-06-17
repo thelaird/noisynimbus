@@ -1,60 +1,62 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class='song-image'><img src="<%= song.escape('small_image_url') %>"
-      alt="<%= song.escape('artist') %>" height="100" width="100"></img>
-    </div>
-    <div class="container">
-      <div class='song-item-top row'>
-        <div class='col-xs-3'>
-          <span>
-            <a class="uploader-<%= song.id %>"><%= song.uploader().get('username') %></a>
-          </span>
-        </div>
-        <div class='col-xs-4 col-xs-offset-1 tags'>
-        </div>
-        <div class='col-xs-3 time-ago pull-right'>
-          <span class='pull-right'>
-            <%= song.get('timeago') %>
-          </span>
-        </div>
+<div class='song-item-border'>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class='song-image'><img src="<%= song.escape('small_image_url') %>"
+        alt="<%= song.escape('artist') %>" height="100" width="100"></img>
       </div>
+      <div class="container">
+        <div class='song-item-top row'>
+          <div class='col-xs-3'>
+            <span>
+              <a class="uploader-<%= song.id %>"><%= song.uploader().get('username') %></a>
+            </span>
+          </div>
+          <div class='col-xs-5 tags'>
+          </div>
+          <div class='col-xs-3 time-ago pull-right'>
+            <span class='pull-right'>
+              <%= song.get('timeago') %>
+            </span>
+          </div>
+        </div>
 
-    <div class='song-attrs row'>
-      <div class='col-xs-5'>
-        <span class='list-group-item song-item artist'>
-          Artist: <a href="#artist/<%= song.escape('artist').toLowerCase() %>">
-            <%= song.escape('artist') %></a>
-        </span>
-      </div>
-      <div class='col-xs-5'>
-        <span class='list-group-item song-item title'>
-          Title: <a href="#songs/<%= song.id %>"><%= song.escape('title') %></a>
-        </span>
-      </div>
-    </div>
-    <div class='playlist-bar row'>
-      <div class='col-xs-5 col-xs-offset-3'>
-        <div class='playlist-bar btn-group dropup'>
-          <button type="button" class="btn btn-primary btn-playlist">Add To Playlist</button>
-          <button type="button" class="btn btn-primary dropdown-toggle btn-playlist" data-toggle="dropdown" aria-expanded="false">
-            <span class="glyphicoon glyphicon-plus"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul class="dropdown-menu playlists" role="menu">
-          <% playlists.each( function (playlist) { %>
-            <li class='playlist-item' data-id='<%= playlist.get('id') %>'><%= playlist.escape('title') %></li>
-          <% }) %>
-            <li class='divider'></li>
-            <li><a href='#playlists/new'>Create New Playlist</a></li>
-          </ul>
+      <div class='song-attrs row'>
+        <div class='col-xs-5'>
+          <span class='list-group-item song-item artist'>
+            Artist: <a href="#artist/<%= song.escape('artist').toLowerCase() %>">
+              <%= song.escape('artist') %></a>
+          </span>
+        </div>
+        <div class='col-xs-5'>
+          <span class='list-group-item song-item title'>
+            Title: <a href="#songs/<%= song.id %>"><%= song.escape('title') %></a>
+          </span>
         </div>
       </div>
-      </div>
-      </div>
-    <div class="progress-radial progress-100 pull-right toggle-play">
-      <div class="overlay"><span class="glyphicon glyphicon-play"></span>
+      <div class='playlist-bar row'>
+        <div class='col-xs-5 col-xs-offset-3'>
+          <div class='playlist-bar btn-group dropup'>
+            <button type="button" class="btn btn-primary btn-playlist">Add To Playlist</button>
+            <button type="button" class="btn btn-primary dropdown-toggle btn-playlist" data-toggle="dropdown" aria-expanded="false">
+              <span class="glyphicoon glyphicon-plus"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu playlists" role="menu">
+            <% playlists.each( function (playlist) { %>
+              <li class='playlist-item' data-id='<%= playlist.get('id') %>'><%= playlist.escape('title') %></li>
+            <% }) %>
+              <li class='divider'></li>
+              <li><a href='#playlists/new'>Create New Playlist</a></li>
+            </ul>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="progress-radial progress-100 pull-right toggle-play">
+        <div class="overlay"><span class="glyphicon glyphicon-play"></span>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  </div>
 </div>

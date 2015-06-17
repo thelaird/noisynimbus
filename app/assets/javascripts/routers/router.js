@@ -11,6 +11,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   routes:{
     '': 'songsIndex',
     'artist/:artist': 'songsByArtist',
+    'embed/:id': 'embedSong',
     'explore': 'songsExplore',
     'playlists': 'playlistsIndex',
     'playlists/new': 'playlistNew',
@@ -22,6 +23,12 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     'tags/:id': 'tagShow',
     'upload': 'songsUpload',
     'users/:id': 'userShow'
+  },
+
+  embedSong: function (id) {
+    var song = this.songs.getOrFetch(id);
+    var view = new NoisyNimbus.Views.EmbedSong({ model: song });
+    this._swapView(view);
   },
 
   playlistEdit: function (id) {
@@ -64,8 +71,8 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
       type: 'GET',
       dataType: 'json',
       success: function (response) {
-        songsByArtist.reset(response.songsByArtist);
-        songsByTitle.reset(response.songsByTitle);
+        songsByArtist.reset(response.songs_by_artist);
+        songsByTitle.reset(response.songs_by_title);
         tags.reset(response.tags);
         users.reset(response.users);
       }

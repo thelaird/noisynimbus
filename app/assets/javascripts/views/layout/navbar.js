@@ -3,6 +3,7 @@ NoisyNimbus.Views.Navbar = Backbone.View.extend({
 
   events: {
     'click .nav-sign-out': 'signOut',
+    'click .submit': 'search'
   },
 
   initialize: function (options) {
@@ -50,6 +51,12 @@ NoisyNimbus.Views.Navbar = Backbone.View.extend({
     }
 
 
+  },
+
+  search: function (event) {
+    event.preventDefault();
+    var query = $('.nav-search').serializeJSON().query;
+    Backbone.history.navigate("#search/" + query, { trigger: true });
   },
 
   signOut: function (event) {
