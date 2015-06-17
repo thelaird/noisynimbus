@@ -1,5 +1,7 @@
-<ul>
-  <% users.each( function(user) { %>
-    <li> <%= user.escape('username') %> </li>
-  <% }) %>
-</ul>
+<div class="user-results pull-right">
+  <ul class='list-group'>
+    <% users.each( function(user) { %>
+      <li class='list-group-item'> <%= user.escape('username') %> </li>
+    <% }) %>
+  </ul>
+</div>

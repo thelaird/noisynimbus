@@ -15,6 +15,7 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
     this.listenTo(this.playlists, 'add', this.render);
     this.listenTo(this.model.tags(), 'add', this.addTag);
     this.listenTo(this.model.tags(), 'remove', this.removeTag);
+    this.listenTo(this.model, 'sync', this.render);
 
     this.addUserWindow = _.once(function () {
       userWindowView = new NoisyNimbus.Views.UserWindow({ model: this.model });

@@ -2,15 +2,23 @@ NoisyNimbus.Views.SearchResults = Backbone.CompositeView.extend({
   template: JST['search/results'],
 
   initialize: function (options) {
+    this.playlists = options.playlists;
     this.songsByArtist = options.songsByArtist;
     this.songsByTitle = options.songsByTitle;
     this.users = options.users;
     this.tags = options.tags;
-
-    this.listenTo(this.songsByArtist, 'reset', this.addSongByArtist);
-    this.listenTo(this.songsByTitle, 'reset', this.addSongByTitle);
+    this.addSongsByArtist();
+    this.listenTo(this.songsByArtist, 'reset', this.addSongsByArtist);
+    this.listenTo(this.songsByTitle, 'reset', this.addSongsByTitle);
     this.listenTo(this.tags, 'reset', this.addTag);
     this.listenTo(this.users, 'reset', this.addUser);
+  },
+
+  events: {
+    'click .songs-by-artist-link': 'selectSongsByArtist',
+    'click .songs-by-title-link': 'selectSongsByTitle',
+    'click .tags-link': 'selectTags',
+    'click .users-link': 'selectUsers'
   },
 
   render: function () {
@@ -20,56 +28,62 @@ NoisyNimbus.Views.SearchResults = Backbone.CompositeView.extend({
     return this;
   },
 
-  addSongByArtist: function (song) {
-    var subview = new NoisyNimbus.Views.SearchResultsSongs({
-      collection: this.songsByArtist
-    });
-    this.addSubview('.songs-by-artist', subview);
-  },
-
   addSongsByArtist: function () {
-    this.songsByArtist.each( function (song) {
-      this.addSongByArtist(song);
-    }, this);
-  },
-
-  addSongByTitle: function (song) {
-    var subview = new NoisyNimbus.Views.SearchResultsSongs({
-      collection: this.songsByTitle
+    var subview = new NoisyNimbus.Views.SongsIndex({
+      collection: this.songsByArtist,
+      playlists: this.playlists
     });
-    this.addSubview('.songs-by-title', subview);
+    this._swapView(subview);
   },
 
   addSongsByTitle: function () {
-    this.songsByTitle.each( function (song) {
-      this.addSongByTitle(song);
-    }, this);
+    var subview = new NoisyNimbus.Views.SongsIndex({
+      collection: this.songsByTitle,
+      playlists: this.playlists
+    });
+    this._swapView(subview);
   },
 
-  addTag: function (tag) {
+  addTags: function (tag) {
     var subview = new NoisyNimbus.Views.SearchResultsTags({
-      collection: this.tags
+      collection: this.tags,
+      playlists: this.playlists
     });
-    this.addSubview('.tags', subview);
+    this._swapView(subview);
   },
 
-  addTags: function () {
-    this.tags.each( function (tag) {
-      this.addTag(tag);
-    }, this);
-  },
-
-  addUser: function (user) {
+  addUsers: function (user) {
     var subview = new NoisyNimbus.Views.SearchResultsUsers({
-      collection: this.users
+      collection: this.users,
+      playlists: this.playlists
     });
-    this.addSubview('.users', subview);
+    this._swapView(subview);
   },
 
-  addUsers: function () {
-    this.users.each( function (user) {
-      this.addUser(user);
-    }, this);
+  _swapView: function (view) {
+    this.currentView && this.currentView.remove();
+    this.currentView = view;
+    $('.results-main').html(view.render().$el);
+  },
+
+  selectSongsByArtist: function () {
+    $('.results-nav-active-background').css('left', '26px');
+    this.addSongsByArtist();
+  },
+
+  selectSongsByTitle: function () {
+    $('.results-nav-active-background').css('left', '323px');
+    this.addSongsByTitle();
+  },
+
+  selectUsers: function () {
+    $('.results-nav-active-background').css('left', '620px');
+    this.addUsers();
+  },
+
+  selectTags: function () {
+    $('.results-nav-active-background').css('left', '918px');
+    this.addTags();
   }
 
 

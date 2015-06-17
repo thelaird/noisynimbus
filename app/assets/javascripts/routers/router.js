@@ -65,20 +65,21 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     var songsByTitle = new NoisyNimbus.Collections.Songs();
     var tags = new NoisyNimbus.Collections.Tags();
     var users = new NoisyNimbus.Collections.Users();
-
+    this.playlists.fetch();
     $.ajax({
       url: 'api/search/' + query,
       type: 'GET',
       dataType: 'json',
       success: function (response) {
-        songsByArtist.reset(response.songs_by_artist);
-        songsByTitle.reset(response.songs_by_title);
-        tags.reset(response.tags);
-        users.reset(response.users);
+        songsByArtist.reset(response.songs_by_artist, { parse: true });
+        songsByTitle.reset(response.songs_by_title, { parse: true });
+        tags.reset(response.tags, { parse: true });
+        users.reset(response.users, { parse: true });
       }
     });
 
     var view = new NoisyNimbus.Views.SearchResults({
+      playlists: this.playlists,
       songsByArtist: songsByArtist,
       songsByTitle: songsByTitle,
       tags: tags,
