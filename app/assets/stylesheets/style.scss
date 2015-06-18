@@ -1,5 +1,6 @@
 body {
   padding-bottom: 75px;
+  height: 0;
 }
 
 html {
@@ -19,6 +20,14 @@ a:hover {
   padding-top: 52px;
   width: 1220px;
   margin: auto;
+}
+
+.embed-song-item {
+  height: 130px;
+  width: 780px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .form-background {

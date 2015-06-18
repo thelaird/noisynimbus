@@ -8,7 +8,11 @@
         <div class='song-item-top row'>
           <div class='col-xs-3'>
             <span>
-              <a class="uploader-<%= song.id %>"><%= song.uploader().get('username') %></a>
+            <% if (CURRENT_USER_ID) { %>
+              <a class="uploader-<%= song.id %>">
+            <% } else { %>
+              <a href="http://noisynimbus.com" target="_blank">
+            <% } %><%= song.uploader().get('username') %></a>
             </span>
           </div>
           <div class='col-xs-5 tags'>
@@ -23,16 +27,26 @@
       <div class='song-attrs row'>
         <div class='col-xs-5'>
           <span class='list-group-item song-item artist'>
-            Artist: <a href="#artist/<%= song.escape('artist').toLowerCase() %>">
-              <%= song.escape('artist') %></a>
+            Artist:
+            <% if (CURRENT_USER_ID) { %>
+              <a href="#artist/<%= song.escape('artist').toLowerCase() %>">
+            <% } else { %>
+              <a href="http://noisynimbus.com" target="_blank">
+            <% } %><%= song.escape('artist') %></a>
           </span>
         </div>
         <div class='col-xs-5'>
           <span class='list-group-item song-item title'>
-            Title: <a href="#songs/<%= song.id %>"><%= song.escape('title') %></a>
+            Title:
+            <% if (CURRENT_USER_ID) { %>
+              <a href="#songs/<%= song.id %>">
+            <% } else { %>
+              <a href="http://noisynimbus.com" target="_blank">
+            <% } %><%= song.escape('title') %></a>
           </span>
         </div>
       </div>
+    <% if (CURRENT_USER_ID) { %>
       <div class='playlist-bar row'>
         <div class='col-xs-5 col-xs-offset-3'>
           <div class='playlist-bar btn-group dropup'>
@@ -41,6 +55,7 @@
               <span class="glyphicoon glyphicon-plus"></span>
               <span class="sr-only">Toggle Dropdown</span>
             </button>
+
             <ul class="dropdown-menu playlists" role="menu">
             <% playlists.each( function (playlist) { %>
               <li class='playlist-item' data-id='<%= playlist.get('id') %>'><%= playlist.escape('title') %></li>
@@ -51,7 +66,9 @@
           </div>
         </div>
         </div>
+        <% } %>
         </div>
+
       <div class="progress-radial progress-100 pull-right toggle-play">
         <div class="overlay"><span class="glyphicon glyphicon-play"></span>
         </div>

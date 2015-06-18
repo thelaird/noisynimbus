@@ -34,8 +34,10 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ song: this.model,
-      playlists: this.playlists });
+    var content = this.template({
+      song: this.model,
+      playlists: this.playlists,
+    });
     this.$el.html(content);
     this.attachSubviews();
     return this;

@@ -1,8 +1,8 @@
 json.songs_by_artist do
-  json.array! @songs_by_artist, partial: 'api/shared/song', as: :song
+  json.array! @songs_by_artist, partial: 'api/shared/song', as: :song, logged_in: true
 end
 json.songs_by_title do
-  json.array! @songs_by_title, partial: 'api/shared/song', as: :song
+  json.array! @songs_by_title, partial: 'api/shared/song', as: :song, logged_in: true
 end
 json.tags do
   json.array! @tags, partial: 'api/shared/tag', as: :tag

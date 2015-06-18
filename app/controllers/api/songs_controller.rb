@@ -74,8 +74,13 @@ module Api
 
 
     def show
-      @song = Song.find(params[:id])
-      render :show
+      if logged_in?
+        @song = Song.find(params[:id])
+        render :show
+      else
+        @song = Song.find(params[:id])
+        render :embed_show
+      end
     end
 
     def update

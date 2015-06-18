@@ -4,6 +4,9 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);
+    if (!CURRENT_USER_ID){
+      $('#player').css("display", "none");
+    }
     this.createPlayer();
     return this;
   },

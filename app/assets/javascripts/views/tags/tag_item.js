@@ -12,6 +12,10 @@ NoisyNimbus.Views.TagItem = Backbone.View.extend({
   },
 
   tagShow: function () {
-    Backbone.history.navigate('#tags/' + this.model.id, { trigger: true });
+    if (CURRENT_USER_ID) {
+      Backbone.history.navigate('#tags/' + this.model.id, { trigger: true });
+    } else {
+      window.location.href = '/session/new';
+    }
   }
 });
