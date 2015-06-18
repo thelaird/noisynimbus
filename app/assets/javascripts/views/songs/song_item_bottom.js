@@ -3,7 +3,7 @@ NoisyNimbus.Views.SongItemBottom = Backbone.View.extend({
 
   events: {
     'click .playlist-item': 'addToPlaylist'
-  },
+    },
 
   initialize: function (options) {
     this.playlists = options.playlists;

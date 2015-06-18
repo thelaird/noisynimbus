@@ -13,7 +13,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     'artist/:artist': 'songsByArtist',
     'explore': 'songsExplore',
     'playlists': 'playlistsIndex',
-    'playlists/new': 'playlistNew',
+    'playlists/new/:id': 'playlistNew',
     'playlists/:id': 'playlistShow',
     'playlists/:id/edit': 'playlistEdit',
     'search/:query': 'search',
@@ -43,9 +43,13 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
   },
 
-  playlistNew: function () {
+  playlistNew: function (id) {
     var playlist = new NoisyNimbus.Models.Playlist();
-    var view = new NoisyNimbus.Views.PlaylistForm({ model: playlist, collection: this.playlists });
+    var view = new NoisyNimbus.Views.PlaylistForm({
+      model: playlist,
+      collection: this.playlists,
+      firstSongId: id
+    });
     this._swapView(view);
   },
 

@@ -19,4 +19,5 @@ class Playlist < ActiveRecord::Base
   has_many :playlist_items, dependent: :destroy
   has_many :songs, through: :playlist_items
   belongs_to :user
+
 end

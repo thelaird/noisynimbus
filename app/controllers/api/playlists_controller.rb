@@ -1,5 +1,11 @@
 module Api
   class PlaylistsController < ApiController
+    wrap_parameters :playlist, include: [
+      :title,
+      :description,
+      :song_ids
+    ]
+
     def create
       @playlist = current_user.playlists.new(playlist_params)
 
@@ -23,7 +29,7 @@ module Api
     private
 
     def playlist_params
-      params.require(:playlist).permit(:title)
+      params.require(:playlist).permit(:title, :description, :song_ids => [])
     end
   end
 end
