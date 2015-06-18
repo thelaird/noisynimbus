@@ -108,7 +108,7 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
       if ($('#song')[0].files[0].size > 10485760) {
         errors.push("File must be less than 10 MB.");
       }
-      if ($('#song')[0].files[0].type !== 'audio/mp3'){
+      if ($('#song')[0].files[0].type !== 'audio/mp3' || $('#song')[0].files[0].type !== 'audio/mpeg'){
         errors.push("File must be an MP3.");
       }
     } else {
