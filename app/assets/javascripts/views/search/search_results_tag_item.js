@@ -16,12 +16,15 @@ NoisyNimbus.Views.SearchResultsTagItem = Backbone.View.extend({
   },
 
   addSongs: function () {
-    debugger;
     var view = new NoisyNimbus.Views.SongsIndex({
       collection: this.model.songs(),
       playlists: this.playlists,
       template: JST['songs/search_results']
     });
-    $('.tag-songs').html(view.render().$el);
+    if (this.model.songs().length === 0) {
+      $('.tag-songs').html("<h1><center>No Results</h1>");
+    } else {
+      $('.tag-songs').html(view.render().$el);
+    }
   }
 });

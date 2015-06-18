@@ -61,7 +61,11 @@ NoisyNimbus.Views.SearchResults = Backbone.CompositeView.extend({
   _swapView: function (view) {
     this.currentView && this.currentView.remove();
     this.currentView = view;
-    $('.results-main').html(view.render().$el);
+    if (view.collection.length === 0) {
+      $('.results-main').html("<h1><center>No Results<h1>");
+    } else {
+      $('.results-main').html(view.render().$el);
+    }
   },
 
   selectSongsByArtist: function () {

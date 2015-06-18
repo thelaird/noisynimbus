@@ -26,11 +26,11 @@ NoisyNimbus.Views.SearchResultsTags = Backbone.CompositeView.extend({
       model: tag,
       playlists: this.playlists
     });
-    this.addSubview('.tag-list', subview);
+    this.addSubview('.tag-results-list', subview);
   },
 
   removeTagItem: function (tag) {
-    this.removeModelSubview('.tag-list', subview);
+    this.removeModelSubview('.tag-results-list', subview);
   }
 
 });

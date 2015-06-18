@@ -1,1 +1,3 @@
-<li class='list-group-item tag-list-item'> <%= tag.escape('text') %> </li>
+<li class='list-group-item tag-list-item'>
+  <%= tag.escape('text') %> <span class="badge"><%= tag.songs().length %> tracks</span>
+</li>
