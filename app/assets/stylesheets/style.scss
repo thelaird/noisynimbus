@@ -22,6 +22,14 @@ a:hover {
   margin: auto;
 }
 
+.download-bar-outer {
+  padding-left: 8px;
+}
+
+.embed-bar-outer {
+  padding-right: 0px;
+}
+
 .embed-song-item {
   height: 130px;
   width: 780px;
@@ -29,6 +37,8 @@ a:hover {
   top: 0;
   left: 0;
 }
+
+
 
 .form-background {
   position: absolute;
@@ -119,6 +129,11 @@ a:hover {
   border-radius: 4px;
   padding-top: 10px;
   padding-left: 10px;
+}
+
+.playlist-bar {
+  float: left;
+  margin-left: 10px;
 }
 
 .playlist-item {
@@ -261,27 +276,23 @@ a:hover {
   padding: 5px;
 }
 
-.playlist-bar.row {
-  margin-top: 3px;
+.song-item-bottom.row {
+  margin-top: 7px;
+  margin-left: 0px;
+  width: 100%;
 }
 
-.playlist-bar .col-xs-5 {
-  margin-left: 30%;
-}
-
-.btn-playlist {
-  padding: 2px 8px 2px 8px;
-}
-
-.btn-playlist:first-child {
-  width: 160px;
+.tag-list {
+  position: relative;
+  left: 10%;
+  text-align: center;
 }
 
 .tag-item {
   text-align: center;
   padding: 0px 5px;
   margin: 0;
-  float: left;
+  display: inline-block;
 }
 
 .tag-item:hover {
@@ -335,7 +346,7 @@ a:hover {
 
 .song-item.title {
   position: relative;
-  left: 50px;
+  left: 42px;
   text-align: right;
 }
 
