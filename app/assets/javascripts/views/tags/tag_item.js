@@ -6,7 +6,7 @@ NoisyNimbus.Views.TagItem = Backbone.View.extend({
   className: 'tag-item',
 
   events: {
-    'click .tag-item': 'tagShow'
+    'click .tag-item-inner': 'tagShow'
   },
 
   render: function () {
@@ -16,6 +16,7 @@ NoisyNimbus.Views.TagItem = Backbone.View.extend({
   },
 
   tagShow: function () {
+    debugger;
     if (CURRENT_USER_ID) {
       Backbone.history.navigate('#tags/' + this.model.id, { trigger: true });
     } else {
