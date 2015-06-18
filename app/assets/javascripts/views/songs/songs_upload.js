@@ -72,7 +72,7 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     this.validateForm(data, function () {
       this.setupDeferreds(data);
       this.model.set(data);
-    });
+    }.bind(this));
   },
 
   uploadSong: function () {

@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       @user = User.new
-      @user.errors.add(:base, "Invalid Username or Password")
-      render json: @user.errors.full_messages
+      flash.now[:errors] = ["Invalid username or password."]
+      render :new
     end
   end
 

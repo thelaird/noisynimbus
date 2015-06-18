@@ -1,3 +1,10 @@
+<div class='errors'>
+<% if flash.now[:errors] %>
+  <% flash.now[:errors].each do |error| %>
+    <div class="alert alert-danger" style="{ z-index:5}"role="alert"><%= error %></div>
+  <% end %>
+<% end %>
+</div>
 <div class='form-background' style="background-image:
   url('<%= ENV['s3_url'] %>/<%= ENV['s3_bucket'] %>/background.jpg')">
   <div class='row userform'>
