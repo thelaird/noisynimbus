@@ -15,8 +15,8 @@ NoisyNimbus is an online social audio platform inspired by SoundCloud. Users can
 - [X] View a feed of followed users' activity
 - [X] Create playlists
 - [X] Tag songs
-- [ ] Search for songs by title
-- [ ] Search for songs by tag
+- [X] Search for songs by title
+- [X] Search for songs by tag
 
 ## Design Docs
 * [View Wireframes][views]
@@ -76,7 +76,7 @@ a `SearchResults` view to display the results and their `SongItem` subviews.
 [Details][phase-six]
 
 ### Bonus Features (TBD)
-- [ ] Embeddable audio player
+- [X] Embeddable audio player
 - [X] Explore view
 - [ ] Favorite songs
 - [ ] Song comments
