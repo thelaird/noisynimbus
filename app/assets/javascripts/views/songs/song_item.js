@@ -4,15 +4,14 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
 
   events: {
     'click .toggle-play': 'togglePlay',
-    'mouseover .panel-body': 'addUserWindow',
-    'click .playlist-item': 'addToPlaylist'
+    'mouseover .panel-body': 'addUserWindow'
   },
 
   initialize: function (options) {
     this.playlists = options.playlists;
     this.oldProgress = 100;
     this.addTags();
-    this.listenTo(this.playlists, 'add', this.render);
+    this.addBottomBar();
     this.listenTo(this.model.tags(), 'add', this.addTag);
     this.listenTo(this.model.tags(), 'remove', this.removeTag);
     this.listenTo(this.model, 'sync', this.render);
@@ -49,6 +48,14 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
     this.$('.panel-body').addClass("current-song");
   },
 
+  addBottomBar: function () {
+    var subview = new NoisyNimbus.Views.SongItemBottom({
+      playlists: this.playlists,
+      model: this.model
+    });
+    this.addSubview('.song-item-bottom', subview);
+  },
+
   addTag: function (tag) {
     var subview = new NoisyNimbus.Views.TagItem({ model: tag });
     this.addSubview('.tags', subview);
@@ -64,14 +71,7 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
     this.removeModelSubview('.tags', tag);
   },
 
-  addToPlaylist: function (event) {
-    var playlistItem = new NoisyNimbus.Models.PlaylistItem({
-        "song_id": this.model.id,
-        "playlist_id": $(event.currentTarget).data('id')
-    });
 
-    playlistItem.save();
-  },
 
   createGlobalPlayer: function () {
     NoisyNimbus.globalFooterPlayer = new NoisyNimbus.Views.Player( { model: this.model } );

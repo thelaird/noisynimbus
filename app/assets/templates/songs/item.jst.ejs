@@ -47,43 +47,7 @@
         </div>
       </div>
       <div class='song-item-bottom row'>
-        <div class='col-xs-4 download-bar-outer'>
-          <div class='download-bar btn-group dropup'>
-            <button type="button" class="btn btn-primary btn-download btn-xs">Download</button>
-            <button type="button" class="btn btn-primary btn-download btn-xs">
-              <span class="glyphicon glyphicon-download-alt"></span>
-            </button>
-          </div>
-        </div>
-        <div class='col-xs-4'>
-        <% if (CURRENT_USER_ID) { %>
-          <div class='playlist-bar btn-group dropup'>
-            <button type="button" class="btn btn-primary btn-playlist btn-xs">Add To Playlist</button>
-            <button type="button" class="btn btn-primary dropdown-toggle btn-playlist btn-xs" data-toggle="dropdown" aria-expanded="false">
-              <span class="glyphicon glyphicon-plus"></span>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-
-            <ul class="dropdown-menu playlists" role="menu">
-            <% playlists.each( function (playlist) { %>
-              <li class='playlist-item' data-id='<%= playlist.get('id') %>'><%= playlist.escape('title') %></li>
-            <% }) %>
-              <li class='divider'></li>
-              <li><a href='#playlists/new'>Create New Playlist</a></li>
-            </ul>
-          </div>
-        <% } %>
-        </div>
-        <div class='col-xs-3 pull-right embed-bar-outer'>
-          <div class='embed-bar btn-group dropup pull-right'>
-            <button type="button" class="btn btn-primary btn-xs btn-embed">Embed</button>
-            <button type="button" class="btn btn-primary btn-xs btn-embed">
-              <span class="glyphicon glyphicon-share"></span>
-            </button>
-          </div>
-        </div>
       </div>
-
     </div>
 
       <div class="progress-radial progress-100 pull-right toggle-play">
