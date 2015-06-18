@@ -34,7 +34,7 @@ NoisyNimbus.Views.SongItemBottom = Backbone.View.extend({
     var src = "http:\/\/noisynimbus.com\/embed#" + this.model.id;
     var options = "width=\"780\" height=\"133\" scrolling=\"no\" style=\"overflow:hidden\" frameBorder=\"0\"";
     var embedCode = "<iframe src=\"" + src + "\" " + options + "></iframe>";
-    var $embed = $("<input type=\'text\' value=\'" + embedCode + "\'/>");
+    var $embed = $("<input type=\'text\' onClick=\"this.select();\" value=\'" + embedCode + "\'/>");
     $('.btn-embed-' + this.model.id).tooltipster( {
       content: $embed,
       interactive: true,

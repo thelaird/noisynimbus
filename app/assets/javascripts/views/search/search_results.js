@@ -7,9 +7,7 @@ NoisyNimbus.Views.SearchResults = Backbone.CompositeView.extend({
     this.songsByTitle = options.songsByTitle;
     this.users = options.users;
     this.tags = options.tags;
-    this.addSongsByArtist();
     this.listenTo(this.songsByArtist, 'reset', this.addSongsByArtist);
-    this.listenTo(this.songsByTitle, 'reset', this.addSongsByTitle);
     this.listenTo(this.tags, 'reset', this.addTag);
     this.listenTo(this.users, 'reset', this.addUser);
   },
