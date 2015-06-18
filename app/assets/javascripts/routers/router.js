@@ -55,12 +55,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
 
   playlistShow: function (id) {
     var playlist = this.playlists.getOrFetch(id);
-    var view = new NoisyNimbus.Views.SongsIndex({
-      model: playlist,
-      collection: playlist.songs(),
-      template: JST['playlists/show'],
-      subview: NoisyNimbus.Views.PlaylistSongItem
-      });
+    var view = new NoisyNimbus.Views.PlaylistShow({ model: playlist });
     this._swapView(view);
   },
 
@@ -94,7 +89,6 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   },
 
   songsByArtist: function (artist) {
-    debugger
     var songs = new NoisyNimbus.Collections.ArtistSongs([],{ artist: artist });
     this.playlists.fetch();
     songs.fetch().then( function () {

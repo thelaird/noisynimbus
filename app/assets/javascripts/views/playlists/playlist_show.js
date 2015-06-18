@@ -1,13 +1,11 @@
-NoisyNimbus.Views.SongsIndex = Backbone.CompositeView.extend({
+NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
+  template: JST['playlists/show'],
 
   initialize: function (options) {
-    this.playlists = options.playlists;
-    this.template = options.template || JST['songs/index'];
-    this.subview = options.subview || NoisyNimbus.Views.SongItem;
-
     this.addSongs();
-    this.listenTo(this.collection, 'add', this.addSong);
-    this.listenTo(this.collection, 'remove', this.removeSong);
+    this.listenTo(this.model.songs(), 'add', this.addSong);
+    this.listenTo(this.model.songs(), 'remove', this.removeSong);
+    this.listenTo(NoisyNimbus.globalEvents, 'nextSong', this.playNext);
   },
 
   render: function () {
@@ -18,14 +16,13 @@ NoisyNimbus.Views.SongsIndex = Backbone.CompositeView.extend({
   },
 
   addSongs: function () {
-    this.collection.each( function (song) {
+    this.model.songs().each( function (song) {
       this.addSong(song);
     }, this);
   },
 
   addSong: function (song) {
-    var subview = new this.subview({ model: song,
-      playlists: this.playlists });
+    var subview = new NoisyNimbus.Views.PlaylistSongItem({ model: song });
     this.addSubview('.song-items', subview);
   },
 
