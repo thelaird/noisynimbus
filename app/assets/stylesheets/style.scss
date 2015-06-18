@@ -43,6 +43,12 @@ button.btn-download.btn-xs:last-child {
   left: 0;
 }
 
+.errors {
+  width: 600px;
+  margin: auto;
+  padding-top: 15px;
+}
+
 
 
 .form-background {
@@ -243,11 +249,10 @@ button.btn-download.btn-xs:last-child {
   transition: left .75s ease;
 }
 
-.song-image {
+.song-image-div {
   float: left;
   margin-right: 15px;
 }
-
 
 .toggle-play:hover {
   cursor: pointer;

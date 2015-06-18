@@ -39,6 +39,15 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return base.concat($.param(params));
   },
 
+  renderErrors: function (errors) {
+    var $errors = $('<div>');
+    errors.forEach( function (error) {
+      var errorMessage = $('<div>').addClass('alert alert-danger').text(error);
+      $errors.append(errorMessage);
+    });
+    $('.errors').html($errors);
+  },
+
   setupDeferreds: function (data) {
     var songSmImgDfd = this.fetchSmallImage(data.artist);
     var songUploadDfd = this.uploadSong();
@@ -58,13 +67,12 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
   },
 
   upload: function (event) {
-    this.validateFile();
-
     event.preventDefault();
     var data = $('.song-form').serializeJSON();
-
-    this.setupDeferreds(data);
-    this.model.set(data);
+    this.validateForm(data, function () {
+      this.setupDeferreds(data);
+      this.model.set(data);
+    });
   },
 
   uploadSong: function () {
@@ -94,13 +102,32 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return deferred;
   },
 
-  validateFile: function () {
-    if ($('#song')[0].files[0].size > 10485760) {
-      throw "file too large";
+  validateForm: function (data, callback) {
+    var errors = [];
+    if ($('#song')[0].files[0]) {
+      if ($('#song')[0].files[0].size > 10485760) {
+        errors.push("File must be less than 10 MB.");
+      }
+      if ($('#song')[0].files[0].type !== 'audio/mp3'){
+        errors.push("File must be an MP3.");
+      }
+    } else {
+      errors.push("Please select a file.");
+    }
+    if (data.artist.length === 0) {
+      errors.push("Artist cannot be blank.");
+    }
+    if (data.title.length === 0) {
+      errors.push("Title cannot be blank.");
+    }
+    if (data.tagstring.length > 0 && !/^[A-Za-z0-9-# ]+$/.test(data.tagstring)){
+      errors.push("Invalid tags. Tags can only contain numbers, letters, hyphens and hash marks.");
     }
 
-    if ($('#song')[0].files[0].type !== 'audio/mp3'){
-      throw 'wrong file type';
+    if (errors.length > 0) {
+      this.renderErrors(errors);
+    } else {
+      callback();
     }
   }
 });
