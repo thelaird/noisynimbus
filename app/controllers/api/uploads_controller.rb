@@ -1,7 +1,7 @@
 module Api
   class UploadsController < ApiController
     def sign_request
-      if params['s3_object_type'] == 'audio/mp3'
+      if params['s3_object_type'] == 'audio/mp3' || params['s3_object_type'] == 'audio/mpeg'
         filename = sanitize_filename(params['s3_object_name'])
         objectName = "#{current_user.username}/#{filename}"
         mimeType = params['s3_object_type']
