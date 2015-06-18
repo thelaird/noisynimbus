@@ -16,6 +16,11 @@ a:hover {
   cursor: pointer;
 }
 
+button.btn-download.btn-xs:last-child {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
 #main {
   padding-top: 52px;
   width: 1220px;

@@ -1,9 +1,8 @@
 <div class='col-xs-4 download-bar-outer'>
   <div class='download-bar btn-group dropup'>
-    <button type="button" class="btn btn-primary btn-download btn-xs">Download</button>
-    <button type="button" class="btn btn-primary btn-download btn-xs">
+    <button type="button" class="btn btn-primary btn-download btn-xs">Download</button><a href="<%= song.get('song_url') %>" download><button type="button" class="btn btn-primary btn-download btn-xs">
       <span class="glyphicon glyphicon-download-alt"></span>
-    </button>
+    </button></a>
   </div>
 </div>
 <div class='col-xs-4'>
@@ -28,7 +27,7 @@
 <div class='col-xs-3 pull-right embed-bar-outer'>
   <div class='embed-bar btn-group dropup pull-right'>
     <button type="button" class="btn btn-primary btn-xs btn-embed">Embed</button>
-    <button type="button" class="btn btn-primary btn-xs btn-embed">
+    <button type="button" class="btn btn-primary btn-xs btn-embed-<%= song.id %>">
       <span class="glyphicon glyphicon-share"></span>
     </button>
   </div>

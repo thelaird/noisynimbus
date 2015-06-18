@@ -54,11 +54,16 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
       model: this.model
     });
     this.addSubview('.song-item-bottom', subview);
+
+    // this feels lazy
+    setTimeout( function () {
+      subview.onRender();
+    }, 500);
   },
 
   addTag: function (tag) {
     var subview = new NoisyNimbus.Views.TagItem({ model: tag });
-    this.addSubview('.tags', subview);
+    this.addSubview('.tag-list', subview);
   },
 
   addTags: function () {

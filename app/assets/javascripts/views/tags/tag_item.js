@@ -1,7 +1,9 @@
 NoisyNimbus.Views.TagItem = Backbone.View.extend({
   template: JST['tags/item'],
 
-  className: 'tag-list',
+  tagName: 'span',
+
+  className: 'tag-item',
 
   events: {
     'click .tag-item': 'tagShow'

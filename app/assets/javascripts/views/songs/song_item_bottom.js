@@ -8,6 +8,8 @@ NoisyNimbus.Views.SongItemBottom = Backbone.View.extend({
   initialize: function (options) {
     this.playlists = options.playlists;
     this.listenTo(this.playlists, 'add', this.render);
+    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync', this.updateTooltip);
   },
 
   render: function () {
@@ -27,4 +29,23 @@ NoisyNimbus.Views.SongItemBottom = Backbone.View.extend({
 
     playlistItem.save();
   },
+
+  attachEmbedTooltip: function () {
+    var src = "http:\/\/noisynimbus.com\/embed#" + this.model.id;
+    var options = "width=\"780\" height=\"133\" scrolling=\"no\" style=\"overflow:hidden\" frameBorder=\"0\"";
+    var embedCode = "<iframe src=\"" + src + "\" " + options + "></iframe>";
+    var $embed = $("<input type=\'text\' value=\'" + embedCode + "\'/>");
+    $('.btn-embed-' + this.model.id).tooltipster( {
+      content: $embed,
+      interactive: true,
+      theme: 'tooltipster-light',
+      delay: 100,
+      updateAnimation: false,
+      trigger: 'click'
+      });
+  },
+
+  onRender: function () {
+    this.attachEmbedTooltip();
+  }
 });
