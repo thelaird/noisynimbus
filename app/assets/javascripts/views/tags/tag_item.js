@@ -15,7 +15,7 @@ NoisyNimbus.Views.TagItem = Backbone.View.extend({
     if (CURRENT_USER_ID) {
       Backbone.history.navigate('#tags/' + this.model.id, { trigger: true });
     } else {
-      window.location.href = '/session/new';
+      window.open('http://noisynimbus.com', '_blank')
     }
   }
 });
