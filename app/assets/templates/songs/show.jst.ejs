@@ -10,8 +10,10 @@
   <div class="col-xs-8 song-show-item-col">
     <div class='song-show-song'>
     </div>
+    <% if (song.escape('description')) { %>
     <div class='song-show-description'>
       <%= song.escape('description') %>
     </div>
+    <% } %>
   </div>
 </div>

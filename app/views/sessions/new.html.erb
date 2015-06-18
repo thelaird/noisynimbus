@@ -1,4 +1,4 @@
 <%= render 'shared/navbar', signin: true, signup: false %>
 
 <%= render 'shared/userform', user: @user, action: session_url,
-  submit_text: 'Sign In' %>
+  submit_text: 'Sign In', show_guest_login: true %>

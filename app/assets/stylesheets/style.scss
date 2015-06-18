@@ -38,6 +38,12 @@ a:hover {
   background-size: cover;
 }
 
+.guest-login-button {
+  float: right;
+  position: relative;
+  top: -38px;
+}
+
 .userform{
   padding-top: 55px;
 }
@@ -240,6 +246,10 @@ a:hover {
   width: 540px;
 }
 
+.playlist-items {
+  padding-top: 15px;
+}
+
 .playlist-song-item.panel {
   margin-top: 5px;
   margin-bottom: 10px;
@@ -292,6 +302,10 @@ a:hover {
 
 .time-ago.col-xs-3 {
   width: 29%;
+}
+
+.song-form {
+  padding-top: 15px;
 }
 
 .song-items {

@@ -11,6 +11,7 @@ NoisyNimbus.Views.SongsUpload = Backbone.View.extend({
     return this;
   },
 
+
   fetchSmallImage: function (artist) {
     var dfd = jQuery.Deferred();
     return $.ajax({
