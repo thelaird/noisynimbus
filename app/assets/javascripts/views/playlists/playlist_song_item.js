@@ -5,15 +5,16 @@ NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
     'click .toggle-play': 'togglePlay',
   },
 
+  initialize: function () {
+    this.oldProgress = 100;
+    this.listenTo(this.playlists, 'add', this.render);
+    this.listenTo(NoisyNimbus.globalEvents, "playNext", this.playNext);
+  },
+
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);
     return this;
-  },
-
-  initialize: function (options) {
-    this.oldProgress = 100;
-    this.listenTo(this.playlists, 'add', this.render);
   },
 
   activateSong: function () {
@@ -39,6 +40,13 @@ NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
     }
 
     NoisyNimbus.globalFooterPlayer.play(this);
+  },
+
+  playNext: function (song) {
+    if ( song.id === this.model.id ){
+      this.playSong();
+      this.activateSong();
+    }
   },
 
   progress: function (num) {

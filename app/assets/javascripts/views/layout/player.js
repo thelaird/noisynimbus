@@ -16,7 +16,6 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
 
   activateNewSong: function (songView) {
     this.player.attr("src", songView.model.get("song_url"));
-    // NoisyNimbus.globalEvents.trigger("next-song", this.model);
     this.player.on('play pause', function () { songView.setIcon(); });
     this.player.on('timeupdate', function () { songView.progress(); });
   },
@@ -68,11 +67,11 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
           keyActions: []
 
       });
-    this.player.on('ended', function () { this.nextSong(); }.bind(this));
+    this.player.on('ended', function () { this.ended(); }.bind(this));
 
   },
 
-  nextSong: function () {
-    NoisyNimbus.globalEvents.trigger('nextSong', this.model);
+  ended: function () {
+    NoisyNimbus.globalEvents.trigger('ended', this.model);
   }
 });

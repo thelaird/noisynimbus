@@ -5,7 +5,7 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
     this.addSongs();
     this.listenTo(this.model.songs(), 'add', this.addSong);
     this.listenTo(this.model.songs(), 'remove', this.removeSong);
-    this.listenTo(NoisyNimbus.globalEvents, 'nextSong', this.playNext);
+    this.listenTo(NoisyNimbus.globalEvents, 'ended', this.playNext);
   },
 
   render: function () {
@@ -27,7 +27,8 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
   },
 
   playNext: function (song) {
-    console.log("Now playing: " + song.escape('artist') + " - " + song.escape('title'));
+    var nextSong = this.model.songs().at(this.model.songs().indexOf(song) + 1);
+    NoisyNimbus.globalEvents.trigger('playNext', nextSong);
   },
 
   removeSong: function (song) {

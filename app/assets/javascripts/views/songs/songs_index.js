@@ -29,10 +29,6 @@ NoisyNimbus.Views.SongsIndex = Backbone.CompositeView.extend({
     this.addSubview('.song-items', subview);
   },
 
-  playNext: function (song) {
-    console.log("Now playing: " + song.escape('artist') + " - " + song.escape('title'));
-  },
-
   removeSong: function (song) {
     this.removeModelSubview('.song-items', song);
   }
