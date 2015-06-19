@@ -26,7 +26,7 @@ NoisyNimbus.Views.SongItemBottom = Backbone.View.extend({
     var playlistItem = new NoisyNimbus.Models.PlaylistItem({
         "song_id": this.model.id,
         "playlist_id": playlistId,
-        "ord": this.playlists.get(playlistId).songs().length
+        "ord": this.playlists.get(playlistId).songs().length + 1
     });
 
     playlistItem.save();

@@ -12,6 +12,7 @@ NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
   },
 
   render: function () {
+    console.log(this.model.get('playlist').ord);
     var content = this.template({ song: this.model });
     this.$el.html(content);
     return this;

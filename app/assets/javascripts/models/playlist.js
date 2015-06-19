@@ -12,7 +12,7 @@ NoisyNimbus.Models.Playlist = Backbone.Model.extend({
 
   songs: function () {
     if(!this._songs) {
-      this._songs = new NoisyNimbus.Collections.Songs({ user: this });
+      this._songs = new NoisyNimbus.Collections.Songs({playlist: this});
     }
 
     return this._songs;

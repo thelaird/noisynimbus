@@ -46,7 +46,9 @@ button.btn-download.btn-xs:last-child {
 .errors {
   width: 600px;
   margin: auto;
-  padding-top: 15px;
+  padding-top: 55px;
+  position: relative;
+  z-index: 4;
 }
 
 
@@ -74,6 +76,7 @@ button.btn-download.btn-xs:last-child {
   border: 4px solid #34A6E7;
   border-radius: 5px;
   padding: 15px;
+  margin-top: 15px;
   -moz-box-shadow:    0 0 4px #555;
   -webkit-box-shadow: 0 0 4px #555;
   box-shadow:         0 0 4px #555;
