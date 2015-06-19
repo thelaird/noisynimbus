@@ -15,6 +15,14 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
     return this;
   },
 
+  onRender: function () {
+      this.attachSortable();
+  },
+
+  attachSortable: function () {
+    $('.song-items').sortable();
+  },
+
   addSongs: function () {
     this.model.songs().each( function (song) {
       this.addSong(song);

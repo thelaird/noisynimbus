@@ -18,6 +18,8 @@ class PlaylistItem < ActiveRecord::Base
 
   before_save :init
 
+  default_scope { order(:ord) }
+
   def init
     self.ord ||= 1
   end
