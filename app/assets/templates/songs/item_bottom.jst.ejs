@@ -1,7 +1,7 @@
 <div class='col-xs-4 download-bar-outer'>
   <div class='download-bar btn-group dropup'>
     <a href="<%= song.get('song_url') %>" download><button type="button" class="btn btn-primary btn-download btn-xs">Download</button><button type="button" class="btn btn-primary btn-download btn-xs">
-      <span class="glyphicon glyphicon-download-alt"></span>
+      <span class="glyphicon glyphicon-cloud-download"></span>
     </button></a>
   </div>
 </div>
@@ -25,6 +25,10 @@
       <li class='divider'></li>
       <li><a href="#/playlists/new/<%= song.id %>">Create New Playlist</a></li>
     </ul>
+  </div>
+<% } else { %>
+  <div class='embed-link'>
+    visit <a href='http://noisynimbus.com'>noisynimbus.com</a>
   </div>
 <% } %>
 </div>
