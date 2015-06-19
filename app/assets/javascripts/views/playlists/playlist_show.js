@@ -51,7 +51,11 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
     $('.playlist-song-outer').each( function (idx, item) {
       var playlistItem = this.model.songs().get($(item).data('song-id')).playlistItem();
       if (playlistItem.get('ord') !== idx + 1) {
-        playlistItem.save({ ord: idx + 1 });
+        if ($(item).data('song-id') === ui.item.data('song-id')) {
+          playlistItem.save({ ord: idx + 1 });
+        } else {
+          playlistItem.set({ ord: idx + 1});
+        }
       }
     }.bind(this));
   }

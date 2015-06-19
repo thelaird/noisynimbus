@@ -18,7 +18,7 @@ module Api
 
     def update
       @playlist_item = PlaylistItem.find(params[:id])
-      @playlist_item.ord = params[:ord]
+      @playlist_item.update_ords(params[:ord])
       @playlist_item.save!
       render json: @playlist_item
     end

@@ -20,6 +20,31 @@ class PlaylistItem < ActiveRecord::Base
 
   default_scope { order(:ord) }
 
+  def update_ords(new_ord)
+
+    if new_ord > self.ord
+      
+      items_to_update = self.playlist
+        .playlist_items
+        .where("playlist_id = ? AND ord BETWEEN ? AND ?", self.playlist_id, self.ord + 1, new_ord)
+
+      items_to_update.each do |item|
+        item.ord -= 1
+        item.save
+      end
+    else
+      items_to_update = self.playlist
+        .playlist_items
+        .where("playlist_id = ? AND ord BETWEEN ? AND ?", self.playlist_id, new_ord, self.ord - 1)
+
+      items_to_update.each do |item|
+        item.ord += 1
+        item.save
+      end
+    end
+    self.ord = new_ord
+  end
+
   def init
     self.ord ||= 1
   end

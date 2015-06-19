@@ -5,7 +5,7 @@ NoisyNimbus.Views.SongShow = Backbone.CompositeView.extend({
     this.playlists = options.playlists;
     this.addSong(this.model);
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.model, 'sync', this.uploaderCheck);
+    this.uploaderCheck();
   },
 
   render: function () {

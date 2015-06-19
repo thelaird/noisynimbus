@@ -134,12 +134,17 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
   songShow: function (id) {
     var song = this.songs.getOrFetch(id);
     this.playlists.fetch();
-    var view = new NoisyNimbus.Views.SongShow({
-      model: song,
-      playlists: this.playlists
-    });
+    song.fetch({
+      success: function () {
+        var view = new NoisyNimbus.Views.SongShow({
+          model: song,
+          playlists: this.playlists
+        });
 
-    this._swapView(view);
+        this._swapView(view);
+
+      }.bind(this)
+    })
   },
 
   songsUpload: function () {
@@ -174,7 +179,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
     this.currentView && this.currentView.remove();
     this.currentView = view;
     this.$rootEl.html(view.render().$el);
-    
+
     if (view.onRender) {
       view.onRender();
     }
