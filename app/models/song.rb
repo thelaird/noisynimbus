@@ -28,5 +28,6 @@ class Song < ActiveRecord::Base
   fuzzily_searchable :artist, :title
 
   has_many :tag_items, dependent: :destroy
+  has_many :playlist_items, dependent: :destroy
   has_many :tags, through: :tag_items, source: :tag
 end

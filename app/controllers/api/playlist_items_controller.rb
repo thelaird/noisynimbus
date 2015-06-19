@@ -19,7 +19,7 @@ module Api
     private
 
     def playlist_item_params
-      params.require(:playlist_item).permit(:song_id, :playlist_id)
+      params.require(:playlist_item).permit(:song_id, :playlist_id, :ord)
     end
 
   end

@@ -7,6 +7,7 @@
 #  song_id     :integer          not null
 #  created_at  :datetime
 #  updated_at  :datetime
+#  ord         :integer          not null
 #
 
 class PlaylistItem < ActiveRecord::Base
@@ -14,5 +15,11 @@ class PlaylistItem < ActiveRecord::Base
 
   belongs_to :song
   belongs_to :playlist
+
+  before_save :init
+
+  def init
+    self.ord ||= 1
+  end
 
 end

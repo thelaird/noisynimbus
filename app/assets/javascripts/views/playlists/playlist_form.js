@@ -1,4 +1,4 @@
-NoisyNimbus.Views.PlaylistForm = Backbone.View.extend({
+ NoisyNimbus.Views.PlaylistForm = Backbone.View.extend({
   template: JST['playlists/form'],
 
   events: {

@@ -15,3 +15,7 @@ end
 json.tags song.tags do |tag|
   json.(tag, :id, :text)
 end
+
+if playlist
+  json.playlist song.playlist_items.find_by(playlist_id: playlist.id)
+end
