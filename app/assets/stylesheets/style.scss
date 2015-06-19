@@ -114,6 +114,15 @@ button.btn-download.btn-xs:last-child {
   width: 75%;
 }
 
+.move-handle {
+  margin-left: 15px;
+}
+
+.move-handle:hover {
+  cursor: move;
+
+}
+
 .navbar {
   position: fixed;
   z-index: 999;
@@ -255,6 +264,10 @@ button.btn-download.btn-xs:last-child {
 .song-image {
   float: left;
   margin-right: 15px;
+}
+
+.playlist-song-item .song-image {
+  margin-right: 0px;
 }
 
 .toggle-play:hover {
