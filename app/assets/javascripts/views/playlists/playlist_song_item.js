@@ -32,7 +32,7 @@ NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
     NoisyNimbus.globalFooterPlayer.$('#footer').removeClass('hide-player');
   },
 
-  playSong: function () {
+  playSong: function (timeoutId) {
     if (!NoisyNimbus.globalFooterPlayer.player[0].paused) {
       this.$('.toggle-play span').removeClass("glyphicon-play");
       this.$('.toggle-play span').removeClass("glyphicon-pause");

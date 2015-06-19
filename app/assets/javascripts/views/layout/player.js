@@ -21,7 +21,7 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   },
 
   deactivateOldSong: function (songView) {
-    songView.$el.find('.panel-body').removeClass('current-song');
+    songView.$('.panel-body').removeClass('current-song');
     songView.$('.toggle-play span').removeClass("glyphicon-pause");
     songView.$('.toggle-play span').addClass("glyphicon-play");
     songView.progress(100);
@@ -32,6 +32,9 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   play: function (newSongView) {
     if (this.currentSongView) {
       this.deactivateOldSong(this.currentSongView);
+    }
+    if (this.timeoutId){
+      window.clearTimeout(this.timeoutId);
     }
       this.currentSongView = newSongView;
       this.model = newSongView.model;
@@ -72,10 +75,10 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   },
 
   ended: function () {
-    setTimeout(
+    this.timeoutId = setTimeout(
       function () {
-        this.$('#footer').addClass('hidden');
-      }.bind(this),0);
+        this.$('#footer').addClass('hide-player');
+      }.bind(this),10000);
     NoisyNimbus.globalEvents.trigger('ended', this.model);
   }
 });
