@@ -20,7 +20,9 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
   },
 
   attachSortable: function () {
-    $('.song-items').sortable();
+    $('.song-items').sortable({
+      stop: function (event, ui) { this.updateOrd(event,  ui); }.bind(this)
+    });
   },
 
   addSongs: function () {
@@ -43,5 +45,14 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
 
   removeSong: function (song) {
     this.removeModelSubview('.song-items', song);
+  },
+
+  updateOrd: function (event, ui) {
+    $('.playlist-song-outer').each( function (idx, item) {
+      var playlistItem = this.model.songs().get($(item).data('song-id')).playlistItem();
+      if (playlistItem.get('ord') !== idx + 1) {
+        playlistItem.save({ ord: idx + 1 });
+      }
+    }.bind(this));
   }
 });

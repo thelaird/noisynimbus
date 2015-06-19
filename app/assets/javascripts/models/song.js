@@ -9,6 +9,14 @@ NoisyNimbus.Models.Song = Backbone.Model.extend({
     return this._playlist;
   },
 
+  playlistItem: function () {
+    if (!this._playlistItem) {
+      this._playlistItem = new NoisyNimbus.Models.PlaylistItem();
+    }
+
+    return this._playlistItem;
+  },
+
   uploader: function () {
     if (!this._uploader) {
       this._uploader = new NoisyNimbus.Models.User();
@@ -34,6 +42,11 @@ NoisyNimbus.Models.Song = Backbone.Model.extend({
     if (response.tags) {
       this.tags().set(response.tags);
       delete response.tags;
+    }
+
+    if (response.playlist_item) {
+      this.playlistItem().set(response.playlist_item);
+      delete response.playlist_item;
     }
 
     response.timeago = $.timeago(response.created_at);

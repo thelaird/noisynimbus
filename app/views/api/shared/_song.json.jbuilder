@@ -17,5 +17,5 @@ json.tags song.tags do |tag|
 end
 
 if playlist
-  json.playlist song.playlist_items.find_by(playlist_id: playlist.id)
+  json.playlist_item song.playlist_items.find_by(playlist_id: playlist.id)
 end

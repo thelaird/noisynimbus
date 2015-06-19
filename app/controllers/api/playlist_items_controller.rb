@@ -16,6 +16,13 @@ module Api
       render json: {}
     end
 
+    def update
+      @playlist_item = PlaylistItem.find(params[:id])
+      @playlist_item.ord = params[:ord]
+      @playlist_item.save!
+      render json: @playlist_item
+    end
+
     private
 
     def playlist_item_params

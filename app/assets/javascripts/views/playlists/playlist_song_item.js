@@ -1,6 +1,8 @@
 NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
   template: JST['playlists/song_item'],
 
+  className: 'playlist-song-outer',
+
   events: {
     'click .toggle-play': 'togglePlay',
   },
@@ -14,6 +16,7 @@ NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);
+    this.$el.data('song-id', this.model.id);
     return this;
   },
 
