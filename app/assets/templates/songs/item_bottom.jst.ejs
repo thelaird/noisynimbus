@@ -16,7 +16,11 @@
 
     <ul class="dropdown-menu playlists" role="menu">
     <% playlists.each( function (playlist) { %>
-      <li class='playlist-item' data-id='<%= playlist.get('id') %>'><%= playlist.escape('title') %></li>
+      <li class='playlist-item' data-id='<%= playlist.get('id') %>'><%= playlist.escape('title') %>
+        <% if (playlist.songs().get(song.id)) { %>
+          <span class='glyphicon glyphicon-ok'></span>
+        <% } %>
+        </li>
     <% }) %>
       <li class='divider'></li>
       <li><a href="#/playlists/new/<%= song.id %>">Create New Playlist</a></li>

@@ -22,14 +22,32 @@ NoisyNimbus.Views.SongItemBottom = Backbone.View.extend({
   },
 
   addToPlaylist: function (event) {
-    playlistId = $(event.currentTarget).data('id');
-    var playlistItem = new NoisyNimbus.Models.PlaylistItem({
-        "song_id": this.model.id,
-        "playlist_id": playlistId,
-        "ord": this.playlists.get(playlistId).songs().length + 1
-    });
+    var playlistId = $(event.currentTarget).data('id');
+    var playlist = this.playlists.get(playlistId);
+    event.stopPropagation();
 
-    playlistItem.save();
+    var view = this;
+    if (!playlist.songs().get(this.model.id)) {
+      // var eventCopy = $.extend(true, {}, event);
+      var playlistItem = new NoisyNimbus.Models.PlaylistItem({
+          "song_id": this.model.id,
+          "playlist_id": playlistId,
+          "ord": this.playlists.get(playlistId).songs().length + 1
+      });
+      playlistItem.save({}, {
+        success: function () {
+          $checkMark = $(" <span class='glyphicon glyphicon-ok'>");
+          $(event.currentTarget).append($checkMark);
+          $checkMark.fadeOut('fast',function(){
+            $checkMark.fadeIn('fast');
+          });
+          playlist.songs().add(view.model);
+          // setTimeout( function () {
+          //   $(eventCopy.target.parentNode).trigger(eventCopy);
+          // }, 1150);
+        }
+      });
+    }
   },
 
   attachEmbedTooltip: function () {
