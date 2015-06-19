@@ -23,7 +23,7 @@ class Song < ActiveRecord::Base
     foreign_key: :uploader_id
   )
 
-  default_scope { order(:created_at => :desc) }
+  # default_scope { order(:created_at => :desc) }
 
   fuzzily_searchable :artist, :title
 

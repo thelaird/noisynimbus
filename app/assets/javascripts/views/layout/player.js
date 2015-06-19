@@ -72,6 +72,10 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
   },
 
   ended: function () {
+    setTimeout(
+      function () {
+        this.$('#footer').addClass('hidden');
+      }.bind(this),0);
     NoisyNimbus.globalEvents.trigger('ended', this.model);
   }
 });

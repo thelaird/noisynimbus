@@ -1,8 +1,7 @@
 NoisyNimbus.Collections.Songs = Backbone.Collection.extend({
   model: NoisyNimbus.Models.Song,
   url: 'api/songs',
-  comparator: function (song) {
-  },
+
 
   getOrFetch: function (id) {
     var model = this.get(id);

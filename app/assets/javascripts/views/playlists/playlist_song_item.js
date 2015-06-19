@@ -12,7 +12,6 @@ NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
   },
 
   render: function () {
-    console.log(this.model.get('playlist').ord);
     var content = this.template({ song: this.model });
     this.$el.html(content);
     return this;
@@ -30,7 +29,7 @@ NoisyNimbus.Views.PlaylistSongItem = Backbone.View.extend({
     NoisyNimbus.globalFooterPlayer.render();
     NoisyNimbus.globalFooterPlayer.play(this);
     this.setIcon();
-    NoisyNimbus.globalFooterPlayer.$('#footer').removeClass('initial');
+    NoisyNimbus.globalFooterPlayer.$('#footer').removeClass('hide-player');
   },
 
   playSong: function () {

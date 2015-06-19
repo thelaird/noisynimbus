@@ -1,6 +1,14 @@
 NoisyNimbus.Models.Song = Backbone.Model.extend({
   urlRoot: 'api/songs',
 
+  playlist: function () {
+    if (!this._playlist) {
+      this._playlist = new NoisyNimbus.Models.Playlist();
+    }
+
+    return this._playlist;
+  },
+
   uploader: function () {
     if (!this._uploader) {
       this._uploader = new NoisyNimbus.Models.User();

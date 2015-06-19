@@ -84,7 +84,7 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
     NoisyNimbus.globalFooterPlayer.render();
     NoisyNimbus.globalFooterPlayer.play(this);
     this.setIcon();
-    NoisyNimbus.globalFooterPlayer.$('#footer').removeClass('initial');
+    NoisyNimbus.globalFooterPlayer.$('#footer').removeClass('hide-player');
   },
 
   playSong: function () {
