@@ -28,7 +28,9 @@ NoisyNimbus.Views.PlaylistShow = Backbone.CompositeView.extend({
 
   playNext: function (song) {
     var nextSong = this.model.songs().at(this.model.songs().indexOf(song) + 1);
-    NoisyNimbus.globalEvents.trigger('playNext', nextSong);
+    if (nextSong) {
+      NoisyNimbus.globalEvents.trigger('playNext', nextSong);
+    }
   },
 
   removeSong: function (song) {
