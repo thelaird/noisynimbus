@@ -36,14 +36,16 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
     if (this.timeoutId){
       window.clearTimeout(this.timeoutId);
     }
-      this.currentSongView = newSongView;
-      this.model = newSongView.model;
-      this.activateNewSong(newSongView);
-      this.player[0].play();
+    this.$('#footer').removeClass('hide-player');
+    this.currentSongView = newSongView;
+    this.model = newSongView.model;
+    this.activateNewSong(newSongView);
+    this.player[0].play();
   },
 
   toggleState: function () {
     if (this.player[0].paused) {
+      this.$('#footer').removeClass('hide-player');
       this.player[0].play();
     } else {
       this.player[0].pause();
