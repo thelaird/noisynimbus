@@ -14,12 +14,11 @@ class SessionsController < ApplicationController
 
   def new
     @user = User.new
-
     render :new
   end
 
   def destroy
     log_out_user!
-    render text: 'logged out successully'
+    render text: 'logged out successfully'
   end
 end

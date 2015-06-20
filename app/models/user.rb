@@ -18,32 +18,26 @@ class User < ActiveRecord::Base
 
   fuzzily_searchable :username
 
-
-  after_initialize :ensure_session_token
   attr_reader :password
 
-
-  has_many :playlists
-
+  has_many :sessions, dependent: :destroy
+  has_many :playlists, dependent: :destroy
   has_many(
     :songs,
     class_name: 'Song',
     foreign_key: :uploader_id
   )
-
   has_many(
     :followings,
     class_name: 'Following',
     foreign_key: :follower_id,
     dependent: :destroy
   )
-
   has_many(
     :followed_users,
     through: :followings,
     source: :followee
   )
-
   has_many(
     :followed_songs,
     through: :followed_users,
@@ -66,15 +60,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
-  def reset_session_token!
-    self.session_token = SecureRandom.urlsafe_base64
-    self.save
-    self.session_token
-  end
+  # def reset_session_token!
+  #   self.session_token = SecureRandom.urlsafe_base64
+  #   self.save
+  #   self.session_token
+  # end
 
-  private
-
-  def ensure_session_token
-    self.session_token ||= SecureRandom.urlsafe_base64
-  end
 end
