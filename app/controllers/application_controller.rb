@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def log_out_user!
-    session = Session.find_by(token: session[:session_token])
-    session.destroy!
+    @session = Session.find_by(token: session[:session_token])
+    @session.destroy!
     session[:session_token] = nil
   end
 
