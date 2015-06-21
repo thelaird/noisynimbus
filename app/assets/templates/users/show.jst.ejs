@@ -1,7 +1,7 @@
 <div class="row user-show">
   <div class="col-xs-3">
     <div class='user-show-image'>
-    <img src="<%= Gravtastic(user.escape('email'), {default: 'identicon', size: 300} ) %>"
+    <img src="<%= Gravtastic(user.escape('email'), {default: 'retro', size: 300} ) %>"
       alt="<%= user.escape('username') %> height="300" width="300">
     </div>
     <% if (user.escape('about_me').length > 0) { %>

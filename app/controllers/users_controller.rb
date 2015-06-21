@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user.songs.order_by('created_at desc')
     render :show
   end
 
