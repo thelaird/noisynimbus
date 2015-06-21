@@ -21,6 +21,7 @@ gem 'rest-client'
 gem 'json'
 gem 'pry-rails'
 gem 'fuzzily'
+gem 'gravtastic'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.6'

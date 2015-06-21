@@ -3,7 +3,7 @@ module Api
 
 
     def by_artist
-      @songs = Song.where("artist ILIKE ?", params[:artist]).order('created_at')
+      @songs = Song.where("artist ILIKE ?", params[:artist]).order('created_at desc')
       render :index
     end
 

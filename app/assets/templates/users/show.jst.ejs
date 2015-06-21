@@ -1,6 +1,16 @@
-<h1><%= user.escape('username') %></h1>
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-3 song-items">
+<div class="row user-show">
+  <div class="col-xs-3">
+    <div class='user-show-image'>
+    <img src="<%= Gravtastic(user.escape('email'), {default: 'identicon', size: 300} ) %>"
+      alt="<%= user.escape('username') %> height="300" width="300">
+    </div>
+    <% if (user.escape('about_me').length > 0) { %>
+      <div class='user-show-about-me-container'>
+      <h5 class='about-me-header'>About Me:</h5> <%= user.escape('about_me') %>
+      </div>
+    <% } %>
+  </div>
+  <div class="col-xs-8 user-show-song-items">
     <div class='song-items'></div>
   </div>
 </div>

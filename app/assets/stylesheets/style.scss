@@ -21,6 +21,18 @@ button.btn-download.btn-xs:last-child {
   border-bottom-left-radius: 0px;
 }
 
+.about-me-header {
+  margin-top: 0px;
+}
+
+.about-me-group .about-me-label {
+  display: block
+}
+
+.about-me-group .about-me-textarea {
+  width: 100%
+}
+
 #main {
   padding-top: 52px;
   width: 1220px;
@@ -390,12 +402,15 @@ button.btn-download.btn-xs:last-child {
   margin: auto;
 }
 
-.song-show-uploader-links, .song-show-description{
+.song-show-uploader-links, .song-show-description, .user-show-about-me-container{
   border-left: 4px solid #34A6E7;
   border-bottom: 4px solid #34A6E7;
   border-right: 4px solid #34A6E7;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  -moz-box-shadow:    0 0 2px #aaa;
+  -webkit-box-shadow: 0 0 2px #aaa;
+  box-shadow:         0 0 2px #aaa;
 }
 
 .song-show-uploader-links {
@@ -404,11 +419,22 @@ button.btn-download.btn-xs:last-child {
   text-align: center;
 }
 
+.user-show-about-me-container {
+  position: relative;
+  left: 48px;
+  padding: 5px;
+}
+
 .song-show {
   margin-top: 15px;
 }
 
-.song-show-image {
+.user-show {
+  margin-top: 15px;
+  margin-right: 15-px
+}
+
+.song-show-image, .user-show-image {
   position: relative;
   left: 25px;
   border: 4px solid #34A6E7;
@@ -421,17 +447,27 @@ button.btn-download.btn-xs:last-child {
   box-shadow:         0 0 2px #aaa;
 }
 
-.song-show-item-col {
+.song-show-item-col, .user-show-song-items {
   position: relative;
   left: 60px;
 }
 
-.song-show-song .panel.panel-default {
+.song-show-song .panel.panel-default, .user-show-song-items {
   margin-bottom: 0px;
   border: 4px solid #34A6E7;
   -moz-box-shadow:    0 0 2px #aaa;
   -webkit-box-shadow: 0 0 2px #aaa;
   box-shadow:         0 0 2px #aaa;
+}
+
+.user-show-song-items {
+  border-radius: 4px;
+  padding: 0px;
+  margin-left: 15px;
+}
+
+.user-show-song-items .panel.panel-default {
+  margin-bottom: 15px;
 }
 
 .panel.panel-default {
@@ -447,6 +483,7 @@ button.btn-download.btn-xs:last-child {
 .upload-form {
   margin-bottom: 75px;
 }
+
 
 .current-song {
   background-color: #f5f5f5;

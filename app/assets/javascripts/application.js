@@ -21,6 +21,7 @@
 //= require composite_view
 //= require noisynimbus
 //= require mediaelement_rails
+//= require gravtastic
 //= require jquery.timeago
 //= require jquery.tooltipster.min
 //= require_tree ../templates

@@ -11,10 +11,12 @@
 #
 
 class User < ActiveRecord::Base
-  validates :username, :session_token, presence: true
-  validates :username, uniqueness: true
+  validates :username, :email, presence: true
+  validates :username, :email, uniqueness: true
   validates :username, length: { maximum: 15 }
   validates :password, length: { minimum: 8, allow_nil: true }
+  validates :about_me, length: { maximum: 140 }
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   fuzzily_searchable :username
 
@@ -59,11 +61,5 @@ class User < ActiveRecord::Base
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
-
-  # def reset_session_token!
-  #   self.session_token = SecureRandom.urlsafe_base64
-  #   self.save
-  #   self.session_token
-  # end
 
 end

@@ -19,11 +19,24 @@
               <input type='text' name='user[username]' value='<%= user.username %>'
                 id='form-username' class='form-control'><br>
               </div>
+            <% if action == users_url %>
+            <div class='form-group'>
+              <label for='form-email'>Email:</label>
+              <input type='text' name='user[email]' value='<%= user.email %>'
+                id='form-email' class='form-control'><br>
+              </div>
+            <% end %>
             <div class='form-group'>
               <label for='form-password'>Password:</label>
               <input type='password' name='user[password]' id='form-password'
                 class='form-control'><br>
             </div>
+            <% if action == users_url %>
+            <div class='form-group about-me-group'>
+              <label for='form-about-me' class='about-me-label'>About Me:</label>
+              <textarea name='user[about_me]' id='form-about-me' class='about-me-textarea'><%= user.about_me %></textarea>
+            </div>
+            <% end %>
               <input class='btn btn-default user-form-submit' type='submit' value='<%= submit_text %>'>
           </form>
           <% if show_guest_login %>
