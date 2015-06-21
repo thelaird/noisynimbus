@@ -1,13 +1,13 @@
 class Session < ActiveRecord::Base
   validates :user_id, :token, presence: true
   belongs_to :user
-  after_initialize :ensure_session_token
+  after_initialize :ensure_unique_token
 
   def self.find_user(session_token)
     session = Session.find_by(token: session_token)
 
     if session
-      return session
+      return session.user
     else
       nil
     end
