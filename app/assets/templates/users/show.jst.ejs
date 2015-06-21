@@ -4,11 +4,14 @@
     <img src="<%= Gravtastic(user.escape('email'), {default: 'retro', size: 300} ) %>"
       alt="<%= user.escape('username') %> height="300" width="300">
     </div>
+    <div class='user-show-info-container'>
+      <h5 class='info-header'>Username:</h5> <%= user.escape('username') %>
     <% if (user.escape('about_me').length > 0) { %>
-      <div class='user-show-about-me-container'>
-      <h5 class='about-me-header'>About Me:</h5> <%= user.escape('about_me') %>
-      </div>
+
+      <h5 class='info-header'>About Me:</h5> <%= user.escape('about_me') %>
     <% } %>
+    </div>
+
   </div>
   <div class="col-xs-8 user-show-song-items">
     <div class='song-items'></div>

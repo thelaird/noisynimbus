@@ -21,8 +21,10 @@ button.btn-download.btn-xs:last-child {
   border-bottom-left-radius: 0px;
 }
 
-.about-me-header {
+.info-header {
   margin-top: 0px;
+  margin-bottom: 5px;
+  padding-top: 5px;
 }
 
 .about-me-group .about-me-label {
@@ -402,7 +404,7 @@ button.btn-download.btn-xs:last-child {
   margin: auto;
 }
 
-.song-show-uploader-links, .song-show-description, .user-show-about-me-container{
+.song-show-uploader-links, .song-show-description, .user-show-info-container{
   border-left: 4px solid #34A6E7;
   border-bottom: 4px solid #34A6E7;
   border-right: 4px solid #34A6E7;
@@ -419,7 +421,7 @@ button.btn-download.btn-xs:last-child {
   text-align: center;
 }
 
-.user-show-about-me-container {
+.user-show-info-container {
   position: relative;
   left: 48px;
   padding: 5px;

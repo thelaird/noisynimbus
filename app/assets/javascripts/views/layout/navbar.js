@@ -22,9 +22,6 @@ NoisyNimbus.Views.Navbar = Backbone.View.extend({
       this.$currentActive.toggleClass('active');
     }
     switch (route) {
-      case 'songsIndex':
-        this.$currentActive = $('.nav-home').toggleClass('active');
-        break;
       case 'songsUpload':
         this.$currentActive = $('.nav-upload').toggleClass('active');
         break;
