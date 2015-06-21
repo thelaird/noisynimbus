@@ -78,13 +78,13 @@ a `SearchResults` view to display the results and their `SongItem` subviews.
 ### Bonus Features (TBD)
 - [X] Embeddable audio player
 - [X] Explore view
+- [X] User avatars
 - [ ] Favorite songs
 - [ ] Song comments
 - [ ] Pagination/infinite scroll
 - [ ] Reposting
 - [ ] Expand activity feed to include followed users' favorites, playlists, etc
 - [ ] Activity history (e.g. favorites, reposts, taggings)
-- [ ] User avatars
 - [ ] Typeahead search bar
 - [ ] Recommended follows
 
