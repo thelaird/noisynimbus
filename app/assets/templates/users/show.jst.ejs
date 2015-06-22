@@ -2,7 +2,7 @@
   <div class="col-xs-3">
     <div class='user-show-image'>
     <img src="<%= Gravtastic(user.escape('email'), {default: 'retro', size: 300} ) %>"
-      alt="<%= user.escape('username') %> height="300" width="300">
+      alt="<%= user.escape('username') %>" height="300" width="300">
     </div>
     <div class='user-show-info-container'>
       <h5 class='info-header'>Username:</h5> <%= user.escape('username') %>
