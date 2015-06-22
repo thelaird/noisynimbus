@@ -42,8 +42,8 @@
           <% if show_guest_login %>
             <form action="<%= session_url %>" method="post">
               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-              <input type="hidden" name="user[username]" value="guest">
-              <input type="hidden" name="user[password]" value="verysecurepassword">
+              <input type="hidden" name="user[username]" value="musicman22">
+              <input type="hidden" name="user[password]" value="<%= ENV['guest_password'] %>">
               <input class="btn btn-default guest-login-button" type="submit" value="Guest Login">
             </form>
           <% end %>
