@@ -56,7 +56,7 @@ NoisyNimbus.Views.Player = Backbone.View.extend({
     this.player = $('audio').mediaelementplayer({
           audioWidth: 800,
           audioHeight: 50,
-          startVolume: 8,
+          startVolume: 0.8,
           loop: false,
           enableAutosize: true,
           features: ['playpause','progress','current','duration','tracks','volume','fullscreen'],

@@ -55,7 +55,6 @@ NoisyNimbus.Views.SongItem = Backbone.CompositeView.extend({
     });
     this.addSubview('.song-item-bottom', subview);
 
-    // this feels lazy
     setTimeout( function () {
       subview.onRender();
     }, 500);
