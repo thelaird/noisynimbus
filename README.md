@@ -1,84 +1,57 @@
 # NoisyNimbus
 
-[Heroku link][heroku]
+[Live link][live]
 
-[heroku]: http://noisynimbus.com
+[live]: http://noisynimbus.com
 
-## Minimum Viable Product
-NoisyNimbus is an online social audio platform inspired by SoundCloud. Users can:
+## Description
 
-- [X] Create accounts
-- [X] Create sessions (log in)
-- [X] Upload songs
-- [X] Listen to songs
-- [X] Follow other users
-- [X] View a feed of followed users' activity
-- [X] Create playlists
-- [X] Tag songs
-- [X] Search for songs by title
-- [X] Search for songs by tag
+NoisyNimbus is an online social audio platform inspired by SoundCloud, built using a Backbone.js front end with a Rails backend. Features:
 
-## Design Docs
-* [View Wireframes][views]
-* [DB schema][schema]
+- Custom Auth built in Rails to allow user sign-up and sign-in
+- Upload songs to Amazon S3
+- Automatically populate album art from iTunes and Last.fm
+- Song stream featuring songs uploaded by followed users
+- Tag songs by genre, mood, etc and view all songs with a given tag
+- Create playlists
+- Fuzzy search for users, tags, and songs by both artist and title
+- User avatars via Gravatar
+- Media player can be embedded in third-party sites such as Tumblr
 
-[views]: ./docs/views.md
-[schema]: ./docs/schema.md
+## Languages
 
-## Implementation Timeline
+- Ruby on Rails
+- Backbone.js (Javascript, jQuery)
+- SQL
+- HTML
+- CSS
 
-### Phase 1: User Authentication (~ 1/2 day)
-I will implement user authentication in Rails based on practices learned at App
-Academy. At the end of this phase, users will be able to sign up and log in.
-This phase will also be used to push to Heroku and ensure everything is running
-properly there before continuing.
+## Technologies and libraries
 
+- [Bootstrap][bootstrap]
+- [Bootswatch][bootswatch]
+- [Figaro][figaro]
+- [S3Upload][s3upload]
+- [SerializeJSON][serialize]
+- [BCrypt][bcrypt]
+- [MediaElement.js][mediaelement]
+- [Fuzzily][fuzzily]
+- [Gravtastic][gravtastic]
+- [jQuery UI][jqueryui]
 
-[Details][phase-one]
+[bootstrap]: http://getbootstrap.com/
+[bootswatch]: https://bootswatch.com/
+[figaro]: https://github.com/laserlemon/figaro
+[s3upload]: https://github.com/tadruj/s3upload-coffee-javascript
+[serialize]: https://github.com/marioizquierdo/jquery.serializeJSON
+[bcrypt]: https://github.com/codahale/bcrypt-ruby
+[mediaelement]: http://mediaelementjs.com/
+[fuzzily]: https://github.com/mezis/fuzzily
+[gravtastic]: https://github.com/chrislloyd/gravtastic
+[jqueryui]: https://jqueryui.com/
 
-### Phase 2: Uploading and listening to songs (~2 days)
-Phase 2 will add routes, models, and collections for song data. I will use
-Amazon S3 for storage and a third-party library for the audio player. By the
-end of this phase, users will be able upload songs and listen to their songs. A
-`SongShow` view will be used to display full details of the song. The audio
-player will be rendered in a `Player` view and will persist throughout the site.
+### Future Features
 
-[Details][phase-two]
-
-### Phase 3: Follow Users and Activity Feed (~2 days)
-I will add the ability to follow other users. Each user will also get an activity
-feed consisting of recently uploaded songs from users they are following. On the
-Rails side, there will be a `feed` route using the `current_user`'s
-`followed_users` association to deliver a list of songs ordered chronologically.
-In Backbone, a `FeedShow` view will render multiple `SongItem` subviews to display the
-feed upon login. The `SongItem` view will contain limited information about the
-song and a play button to begin playback.
-
-[Details][phase-three]
-
-### Phase 4: Playlists (~1 day)
-Users will be able to create playlists and add songs to the playlists. Playlists
-will make use of the `SongItem` view to display song information.
-
-[Details][phase-four]
-
-### Phase 5: Song tags (~1 day)
-Users will be able to tag songs by genre, mood, etc. Rails will use a `Tag` model
-while in Backbone, the `SongForm` view will be used to add/remove tags and tags
-will be listed on `SongShow` view.
-
-[Details][phase-five]
-
-### Phase 6: Searching for Songs (~2 days)
-In Rails, I'll add a `search` route to the Songs controller and Backbone will use
-a `SearchResults` view to display the results and their `SongItem` subviews.
-
-[Details][phase-six]
-
-### Bonus Features (TBD)
-- [X] Embeddable audio player
-- [X] Explore view
-- [X] User avatars
 - [ ] Favorite songs
 - [ ] Song comments
 - [ ] Pagination/infinite scroll
@@ -87,10 +60,3 @@ a `SearchResults` view to display the results and their `SongItem` subviews.
 - [ ] Activity history (e.g. favorites, reposts, taggings)
 - [ ] Typeahead search bar
 - [ ] Recommended follows
-
-[phase-one]: ./docs/phases/phase1.md
-[phase-two]: ./docs/phases/phase2.md
-[phase-three]: ./docs/phases/phase3.md
-[phase-four]: ./docs/phases/phase4.md
-[phase-five]: ./docs/phases/phase5.md
-[phase-six]: ./docs/phases/phase6.md
