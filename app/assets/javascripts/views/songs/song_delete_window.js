@@ -5,6 +5,9 @@ NoisyNimbus.Views.SongDeleteWindow = Backbone.View.extend({
     'click .really-delete': "deleteSong"
   },
 
+  intialize: function () {
+  },
+
   render: function () {
     var content = this.template({ song: this.model });
     this.$el.html(content);

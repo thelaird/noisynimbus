@@ -4,7 +4,9 @@ NoisyNimbus.Views.SongShowLinks = Backbone.View.extend({
   className: 'song-show-uploader-links',
 
   initialize: function () {
+    this.model.uploader().songs().fetch();
     this.listenTo(this.model, 'sync', this.attachDeleteTooltip);
+    this.listenTo(this.model.uploader().songs(), 'sync', this.updateDeleteTooltip);
   },
 
   render: function () {
@@ -14,8 +16,8 @@ NoisyNimbus.Views.SongShowLinks = Backbone.View.extend({
   },
 
   attachDeleteTooltip: function () {
-    var deleteView = new NoisyNimbus.Views.SongDeleteWindow({ model: this.model });
-    var deleteContent = deleteView.render().$el;
+    this.deleteView = new NoisyNimbus.Views.SongDeleteWindow({ model: this.model });
+    var deleteContent = this.deleteView.render().$el;
     $('.delete-song').tooltipster( {
       content: deleteContent,
       interactive: true,
@@ -28,6 +30,10 @@ NoisyNimbus.Views.SongShowLinks = Backbone.View.extend({
 
   onRender: function () {
     this.attachDeleteTooltip();
+  },
+
+  updateDeleteTooltip: function () {
+    $('.delete-song').tooltipster('content', this.deleteView.render().$el);
   }
 
 });
