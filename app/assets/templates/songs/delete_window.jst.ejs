@@ -1,1 +1,5 @@
-<button class="btn btn-danger really-delete">DELETE</button>
+<% if (song.uploader().songs().length <= 5 && CURRENT_USER_ID === "5") { %>
+  <h6>Sorry, the guest account must have at least 5 songs</h6>
+<% } else { %>
+  <button class="btn btn-danger really-delete">DELETE</button>
+<% } %>
