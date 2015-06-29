@@ -9,11 +9,12 @@
 NoisyNimbus is an online social audio platform inspired by SoundCloud, built using a Backbone.js front end with a Rails backend. Features:
 
 - Custom Auth built in Rails to allow user sign-up and sign-in
-- Upload songs to Amazon S3
+- Generates pre-signed URLs to permit secure uploads directly to Amazon S3
+- Utilizes jQuery deferred objects to coordinate multiple, concurrent AJAX requests
 - Automatically populate album art from iTunes and Last.fm
 - Song stream featuring songs uploaded by followed users
 - Tag songs by genre, mood, etc and view all songs with a given tag
-- Create playlists
+- Create custom playlists
 - Fuzzy search for users, tags, and songs by both artist and title
 - User avatars via Gravatar
 - Media player can be embedded in third-party sites such as Tumblr
