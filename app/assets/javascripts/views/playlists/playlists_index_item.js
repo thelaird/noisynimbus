@@ -21,15 +21,25 @@ NoisyNimbus.Views.PlaylistsIndexItem = Backbone.View.extend({
   },
 
   removeDeleteLink: function () {
-    this.$('.playlist-delete-button').toggleClass('hidden');
-    this.$('.playlist-delete-button').off();
+    if (this.deleteTimeout) {
+      clearTimeout(this.deleteTimeoutId);
+    } else {
+      this.$('.playlist-delete-button').toggleClass('hidden');
+      this.$('.playlist-delete-button').off();
+    }
   },
 
   showDeleteLink: function () {
-    this.$('.playlist-delete-button').toggleClass('hidden');
-    this.$('.playlist-delete-button').on('click', function () {
-      this.deletePlaylist();
-    }.bind(this));
+    var that = this;
+    this.deleteTimeout = true;
+    this.deleteTimeoutId = setTimeout( function () {
+      that.deleteTimeout = false;
+      that.$('.playlist-delete-button').toggleClass('hidden');
+      that.$('.playlist-delete-button').on('click', function () {
+        that.deletePlaylist();
+      });
+    }, 500);
+
   },
 
   showPlaylist: function () {
