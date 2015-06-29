@@ -16,6 +16,12 @@ module Api
       end
     end
 
+    def destroy
+      @playlist = current_user.playlists.find(params[:id])
+      @playlist.destroy
+      render json: {}
+    end
+
     def index
       @playlists = current_user.playlists.all
       render :index

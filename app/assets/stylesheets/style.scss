@@ -41,6 +41,31 @@ button.btn-download.btn-xs:last-child {
   margin: auto;
 }
 
+.playlist-delete-button {
+  background-color: #E86E6E;
+  color: white;
+  border-radius: 50%;
+  padding: 3px;
+  font-size: 12px;
+  position: absolute;
+  top: 12px;
+  left: 90px;
+}
+
+.playlist-delete-button:hover {
+  padding: 1px;
+  border: 2px solid white;
+}
+
+.playlist-index-item:hover .playlist-delete-button {
+  top: 10px;
+  left: 88px;
+}
+
+.hidden {
+  display: none;
+}
+
 .download-bar-outer {
   padding-left: 8px;
 }
@@ -80,6 +105,8 @@ button.btn-download.btn-xs:last-child {
   position: relative;
   top: -38px;
 }
+
+
 
 .userform{
   padding-top: 55px;
