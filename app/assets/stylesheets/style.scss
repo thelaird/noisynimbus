@@ -16,6 +16,10 @@ a:hover {
   cursor: pointer;
 }
 
+a.disabled {
+  cursor: default;
+}
+
 button.btn-download.btn-xs:last-child {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
