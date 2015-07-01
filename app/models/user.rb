@@ -17,9 +17,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8, allow_nil: true }
   validates :about_me, length: { maximum: 140 }
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-
-  fuzzily_searchable :username
-
+  
   attr_reader :password
 
   has_many :sessions, dependent: :destroy
