@@ -2,10 +2,10 @@ module Api
   class SearchController < ApiController
 
     def index
-      @songs_by_artist = Song.find_by_fuzzy_artist(search_params[:query], limit: 5)
-      @songs_by_title = Song.find_by_fuzzy_title(search_params[:query], limit: 5)
-      @tags = Tag.find_by_fuzzy_text(search_params[:query], limit: 5)
-      @users = User.find_by_fuzzy_username(search_params[:query], limit: 5)
+      @songs_by_artist = Song.where("artist ILIKE ?", "%#{search_params[:query]}%")
+      @songs_by_title = Song.where("title ILIKE ?", "%#{search_params[:query]}%")
+      @tags = Tag.where("text ILIKE ?", "%#{search_params[:query]}%")
+      @users = User.where("username ILIKE ?", "%#{search_params[:query]}%")
       render :index
     end
 

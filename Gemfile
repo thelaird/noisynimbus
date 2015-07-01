@@ -20,7 +20,6 @@ gem "mediaelement_rails"
 gem 'rest-client'
 gem 'json'
 gem 'pry-rails'
-gem 'fuzzily'
 gem 'gravtastic'
 
 group :development, :test do
