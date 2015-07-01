@@ -15,7 +15,7 @@ NoisyNimbus is an online social audio platform inspired by SoundCloud, built usi
 - Song stream featuring songs uploaded by followed users
 - Tag songs by genre, mood, etc and view all songs with a given tag
 - Create custom playlists
-- Fuzzy search for users, tags, and songs by both artist and title
+- Search for users, tags, and songs by both artist and title
 - User avatars via Gravatar
 - Media player can be embedded in third-party sites such as Tumblr
 
@@ -36,7 +36,6 @@ NoisyNimbus is an online social audio platform inspired by SoundCloud, built usi
 - [SerializeJSON][serialize]
 - [BCrypt][bcrypt]
 - [MediaElement.js][mediaelement]
-- [Fuzzily][fuzzily]
 - [Gravtastic][gravtastic]
 - [jQuery UI][jqueryui]
 
@@ -47,7 +46,6 @@ NoisyNimbus is an online social audio platform inspired by SoundCloud, built usi
 [serialize]: https://github.com/marioizquierdo/jquery.serializeJSON
 [bcrypt]: https://github.com/codahale/bcrypt-ruby
 [mediaelement]: http://mediaelementjs.com/
-[fuzzily]: https://github.com/mezis/fuzzily
 [gravtastic]: https://github.com/chrislloyd/gravtastic
 [jqueryui]: https://jqueryui.com/
 
