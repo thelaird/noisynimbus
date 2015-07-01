@@ -11,5 +11,5 @@
 #
 
 class Trigram < ActiveRecord::Base
-  include Fuzzily::Model
+  # include Fuzzily::Model
 end
