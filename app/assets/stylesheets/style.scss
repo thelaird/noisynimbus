@@ -392,16 +392,19 @@ button.btn-download.btn-xs:last-child {
   padding-top: 15px;
 }
 
-.song-items.song-items-initial, .tag-songs.song-items-initial,
-  .user-songs.song-items-initial, .user-show-song-items.song-items-initial {
+.tag-songs.song-items-initial, .user-songs.song-items-initial,
+  .results-song-items.song-items-initial {
   position: relative;
   top: -800px;
 }
 
-.song-items {
+.results-song-items, .song-items {
   transition: top .75s ease;
   position: relative;
   top: 0px;
+}
+
+.song-items {
   padding-top: 15px;
 }
 
@@ -492,8 +495,6 @@ button.btn-download.btn-xs:last-child {
 
 .song-show-item-col, .user-show-song-items {
   position: relative;
-  transition: top .75s ease;
-  top: 0px;
   left: 60px;
 }
 

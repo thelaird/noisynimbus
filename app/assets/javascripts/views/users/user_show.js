@@ -11,9 +11,6 @@ NoisyNimbus.Views.UserShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addSong);
     this.listenTo(this.collection, 'remove', this.removeSong);
-    setTimeout( function () {
-      $('.song-items-initial').removeClass('song-items-initial');
-    }, 100);
   },
 
   render: function () {

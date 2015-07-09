@@ -29,7 +29,8 @@ NoisyNimbus.Views.SearchResults = Backbone.CompositeView.extend({
   addSongsByArtist: function () {
     var subview = new NoisyNimbus.Views.SongsIndex({
       collection: this.songsByArtist,
-      playlists: this.playlists
+      playlists: this.playlists,
+      template: JST['search/results_songs']
     });
     this._swapView(subview);
   },
@@ -37,7 +38,8 @@ NoisyNimbus.Views.SearchResults = Backbone.CompositeView.extend({
   addSongsByTitle: function () {
     var subview = new NoisyNimbus.Views.SongsIndex({
       collection: this.songsByTitle,
-      playlists: this.playlists
+      playlists: this.playlists,
+      template: JST['search/results_songs']
     });
     this._swapView(subview);
   },
