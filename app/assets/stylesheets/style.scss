@@ -140,8 +140,8 @@ button.btn-download.btn-xs:last-child {
 
 .user-results, .tag-results {
   position: relative;
-  height: 300px;
-  width: 300px;
+  min-height: 300px;
+  min-width: 300px;
   top: 0px;
   right: 15px;
   padding: 15px;
