@@ -155,6 +155,9 @@ button.btn-download.btn-xs:last-child {
 }
 
 .user-songs, .tag-songs {
+  transition: top .75s ease;
+  position: relative;
+  top: 0px;
   float: left;
   width: 75%;
 }
@@ -165,7 +168,6 @@ button.btn-download.btn-xs:last-child {
 
 .move-handle:hover {
   cursor: move;
-
 }
 
 .navbar {
@@ -390,7 +392,16 @@ button.btn-download.btn-xs:last-child {
   padding-top: 15px;
 }
 
+.song-items.song-items-initial, .tag-songs.song-items-initial,
+  .user-songs.song-items-initial, .user-show-song-items.song-items-initial {
+  position: relative;
+  top: -800px;
+}
+
 .song-items {
+  transition: top .75s ease;
+  position: relative;
+  top: 0px;
   padding-top: 15px;
 }
 
@@ -481,6 +492,8 @@ button.btn-download.btn-xs:last-child {
 
 .song-show-item-col, .user-show-song-items {
   position: relative;
+  transition: top .75s ease;
+  top: 0px;
   left: 60px;
 }
 

@@ -7,6 +7,9 @@ NoisyNimbus.Views.SongsIndex = Backbone.CompositeView.extend({
     this.addSongs();
     this.listenTo(this.collection, 'add', this.addSong);
     this.listenTo(this.collection, 'remove', this.removeSong);
+    setTimeout( function () {
+      $('.song-items-initial').removeClass('song-items-initial');
+    }, 0);
   },
 
   render: function () {
