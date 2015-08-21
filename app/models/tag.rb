@@ -16,7 +16,7 @@ class Tag < ActiveRecord::Base
   after_initialize :dehashify
 
   has_many :tag_items, dependent: :destroy
-  has_many :songs, through: :tag_items
+  has_many :songs, -> { order 'songs.updated_at desc'}, through: :tag_items
 
   def dehashify
     self.text.downcase!
