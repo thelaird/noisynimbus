@@ -144,7 +144,7 @@ NoisyNimbus.Routers.Router = Backbone.Router.extend({
         this._swapView(view);
 
       }.bind(this)
-    })
+    });
   },
 
   songsUpload: function () {
