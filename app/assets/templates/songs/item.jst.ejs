@@ -40,11 +40,7 @@
         <div class='col-xs-5'>
           <span class='list-group-item song-item title'>
             Title:
-            <% if (CURRENT_USER_ID) { %>
-              <a href="#songs/<%= song.id %>">
-            <% } else { %>
-              <a href="http://noisynimbus.com" target="_blank">
-            <% } %><%= song.escape('title') %></a>
+            <%= song.escape('title') %>
           </span>
         </div>
       </div>
