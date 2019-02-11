@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     resources :tag_items, only: [:create, :destroy]
   end
   namespace :v2, defaults: { formate: :json } do
-    resource :session, only: [:create, :destroy]
+    resource :session, only: [:create, :destroy], via: [:options]
   end
 end

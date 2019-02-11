@@ -21,6 +21,7 @@ gem 'rest-client'
 gem 'json'
 gem 'pry-rails'
 gem 'gravtastic'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.6'
